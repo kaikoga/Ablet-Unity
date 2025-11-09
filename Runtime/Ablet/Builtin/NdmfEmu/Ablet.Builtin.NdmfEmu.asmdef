@@ -1,0 +1,23 @@
+{
+    "name": "Ablet.Builtin.NdmfEmu",
+    "rootNamespace": "Ablet.Builtin.NdmfEmu",
+    "references": [
+        "nadena.dev.ndmf.runtime",
+        "Ablet"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": ["ABLET_NDMF"],
+    "versionDefines": [
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "(1.8.0-a,2.0-a)",
+            "define": "ABLET_NDMF"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -1,0 +1,27 @@
+{
+    "name": "Ablet.Ndmf.Editor",
+    "rootNamespace": "Ablet.Ndmf",
+    "references": [
+        "Ablet",
+        "Ablet.Editor",
+        "Ablet.Builtin.VRChat",
+        "nadena.dev.ndmf"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "(1.8.0-a,2.0-a)",
+            "define": "ABLET_NDMF"
+        }
+    ],
+    "noEngineReferences": false
+}

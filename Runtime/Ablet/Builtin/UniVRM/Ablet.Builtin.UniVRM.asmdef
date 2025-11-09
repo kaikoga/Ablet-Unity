@@ -1,0 +1,23 @@
+{
+    "name": "Ablet.Builtin.UniVRM",
+    "rootNamespace": "Ablet.Builtin.UniVRM",
+    "references": [
+        "VRM",
+        "Ablet"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": ["ATIV_DETECTED_VRM0"],
+    "versionDefines": [
+        {
+            "name": "com.vrmc.univrm",
+            "expression": "",
+            "define": "ATIV_DETECTED_VRM0"
+        }
+    ],
+    "noEngineReferences": false
+}

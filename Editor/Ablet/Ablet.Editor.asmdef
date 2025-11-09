@@ -1,0 +1,25 @@
+{
+    "name": "Ablet.Editor",
+    "rootNamespace": "Ablet",
+    "references": [
+        "Ablet",
+        "Ablet.Builtin.VRChat"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "(1.8.0-a,2.0-a)",
+            "define": "ABLET_NDMF"
+        }
+    ],
+    "noEngineReferences": false
+}

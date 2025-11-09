@@ -1,0 +1,31 @@
+{
+    "name": "Ablet.Hooks.Av3Emulator.Editor",
+    "rootNamespace": "Ablet.Hooks.Av3Emulator",
+    "references": [
+        "Ablet",
+        "Ablet.Editor",
+        "lyuma.av3emulator"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "VRCSDKBase.dll",
+        "VRCSDKBase-Editor.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "ABLET_AV3EMULATOR"
+    ],
+    "versionDefines": [
+        {
+            "name": "lyuma.av3emulator",
+            "expression": "",
+            "define": "ABLET_AV3EMULATOR"
+        }
+    ],
+    "noEngineReferences": false
+}
