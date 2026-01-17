@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xmlns:ablet="Ablet.View.UIElements"
+>
+    <engine:TwoPaneSplitView class="full-pane" fixed-pane-initial-dimension="200">
+        <engine:VisualElement name="left-pane">
+            <engine:TwoPaneSplitView class="full-pane" orientation="Vertical" fixed-pane-initial-dimension="150">
+                <engine:VisualElement name="left-upper-pane">
+                    <ablet:BuildReporterListView name="buildReporterListView" />
+                </engine:VisualElement>
+                <engine:VisualElement name="left-lower-pane">
+                    <engine:ListView name="entrypointList" class="flex-grow" selection-type="Multiple" />
+                    <editor:Toolbar style="flex-shrink: 0;">
+                        <editor:ToolbarButton name="clearReports" text="Clear" />
+                    </editor:Toolbar>
+                </engine:VisualElement>
+            </engine:TwoPaneSplitView>
+        </engine:VisualElement>
+        <engine:VisualElement name="right-pane">
+            <ablet:GameObjectPopupField label="Select Scene Entrypoints" name="sceneEntrypointsPopup" />
+            <editor:ObjectField type="UnityEngine.GameObject, UnityEngine.CoreModule" label="Specify Entrypoint Object" name="entrypointObjectField" />
+            <engine:ScrollView>
+                <engine:VisualElement name="buildReportsContainer" />
+            </engine:ScrollView>
+        </engine:VisualElement>
+    </engine:TwoPaneSplitView>
+</engine:UXML>

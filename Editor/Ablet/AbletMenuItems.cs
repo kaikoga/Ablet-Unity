@@ -1,78 +1,56 @@
-using System.Linq;
-using System.Text;
-using Ablet.Planning;
+#if !ABLET_PREFER_NDMF
+
+using Ablet.Registries;
 using Ablet.Repositories;
 using UnityEditor;
-using UnityEngine;
 
 namespace Ablet
 {
-    public static class AbletMenuItems
+    static class AbletMenuItems
     {
         [InitializeOnLoadMethod]
         static void Init()
         {
             EditorApplication.delayCall += SetChecked;
+            EditorSettingsRepository.Instance.OnChanged += SetChecked;
+            EditorStateRepository.Instance.OnChanged += SetChecked;
         }
 
-        [MenuItem("Tools/Ablet/Debug/Show Build Plan", false, 0)]
-        static void DebugShowBuildPlan()
+        [MenuItem("GameObject/Ablet/Manual Apply", true, 0)]
+        [MenuItem("Tools/Ablet/Manual Apply", true, 0)]
+        static bool ValidateManualApplyToGameObject()
         {
-            var plan = BuildPlanner.Plan(LayerRepository.Instance.All());
-            Debug.LogError(plan.Aggregate(new StringBuilder(), (sb, pass) =>
-            {
-                sb.AppendLine($"{pass.Layer.Id}: {pass.Layer.DisplayName}");
-                return sb;
-            }));
-        }
-        
-        [MenuItem("Tools/Ablet/Debug/Show Layer Dependency", false, 0)]
-        static void DebugShowLayerDependency()
-        {
-            var layerDeps = LayerDependencySet.Build(LayerRepository.Instance.All());
-            Debug.LogError(layerDeps.All().Aggregate(new StringBuilder(), (sb, layerDep) =>
-            {
-                sb.AppendLine(layerDep.Layer.Id);
-                foreach (var dependency in layerDep.Dependencies)
-                {
-                    sb.AppendLine($"< {dependency.Id}: {dependency.DisplayName}");
-                }
-                foreach (var dependent in layerDep.Dependents)
-                {
-                    sb.AppendLine($"> {dependent.Id}: {dependent.DisplayName}");
-                }
-                return sb;
-            }));
-        }
-        
-        [MenuItem("Tools/Ablet/Manual Export", true, 1)]
-        static bool ValidateManualExportGameObject()
-        {
-            if (Selection.activeGameObject == null)
-            {
-                return false;
-            }
-            var platform = PlatformRepository.Instance.GuessPlatform(Selection.activeGameObject);
-            return platform != null;
+            return Selection.activeGameObject
+                   && PlatformRegistry.Instance.TryGuessPlatform(Selection.activeGameObject, out _);
         }
 
-        [MenuItem("Tools/Ablet/Manual Export", false, 1)]
-        static void ManualExportGameObject()
+        [MenuItem("GameObject/Ablet/Manual Apply", false, 0)]
+        [MenuItem("Tools/Ablet/Manual Apply", false, 0)]
+        static void ManualApplyToGameObject()
         {
-            AbletFacade.ManualExportGameObject(Selection.activeGameObject);
+            AbletFacade.ManualApplyToGameObject(Selection.activeGameObject);
         }
 
-        [MenuItem("Tools/Ablet/Apply on Play", false, 10)]
+        [MenuItem("Tools/Ablet/Apply on Play", false, 20)]
         static void ApplyOnPlay()
         {
             EditorSettingsRepository.Instance.Value.ApplyOnPlay = !EditorSettingsRepository.Instance.Value.ApplyOnPlay;
             EditorSettingsRepository.Instance.Save();
-            SetChecked();
+        }
+
+        [MenuItem("Tools/Ablet/Apply on Platform Build", false, 21)]
+        static void ApplyOnPlatformBuild()
+        {
+            EditorSettingsRepository.Instance.Value.ApplyOnPlatformBuild = !EditorSettingsRepository.Instance.Value.ApplyOnPlatformBuild;
+            EditorSettingsRepository.Instance.Save();
         }
 
         static void SetChecked()
         {
             Menu.SetChecked("Tools/Ablet/Apply on Play", EditorSettingsRepository.Instance.Value.ApplyOnPlay);
+            Menu.SetChecked("Tools/Ablet/Apply on Platform Build", EditorSettingsRepository.Instance.Value.ApplyOnPlatformBuild);
         }
     }
 }
+
+#endif

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:engine="UnityEngine.UIElements"
+>
+    <engine:VisualElement class="row">
+        <engine:Label name="layerNameText" />
+        <engine:Image name="iconImage" />
+        <engine:TextField name="pathField" readonly="true" />
+    </engine:VisualElement>
+</engine:UXML>

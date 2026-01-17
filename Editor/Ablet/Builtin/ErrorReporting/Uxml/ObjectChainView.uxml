@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+>
+    <engine:VisualElement name="container">
+        <engine:Foldout value="false">
+            <engine:VisualElement name="elementContainer" />
+        </engine:Foldout>
+        <engine:VisualElement name="objectFieldContainer">
+            <editor:ObjectField type="UnityEngine.Object, UnityEngine.CoreModule" name="objectField" readonly="true" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

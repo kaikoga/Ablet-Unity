@@ -1,39 +1,42 @@
 using System;
 using System.Collections.Generic;
-using Ablet.API;
-using Ablet.Repositories;
+using System.Diagnostics.CodeAnalysis;
+using Ablet.API.V1;
+using Ablet.Models;
+using Ablet.Registries;
 using Ablet.Utils;
 
 namespace Ablet.Planning
 {
-    public class LayerDependency
+    class LayerDependency
     {
-        public readonly IAbletLayer Layer;
+        public readonly AbletLayer Layer;
+        public int Depth;
 
-        readonly HashSet<IAbletLayer> _dependencies = new HashSet<IAbletLayer>();
-        public IEnumerable<IAbletLayer> Dependencies => _dependencies;
+        readonly HashSet<AbletLayer> _dependencies = new HashSet<AbletLayer>();
+        public IEnumerable<AbletLayer> Dependencies => _dependencies;
 
-        readonly HashSet<IAbletLayer> _dependents = new HashSet<IAbletLayer>();
-        public IEnumerable<IAbletLayer> Dependents => _dependents;
+        readonly HashSet<AbletLayer> _dependents = new HashSet<AbletLayer>();
+        public IEnumerable<AbletLayer> Dependents => _dependents;
 
-        public void TryAddDependency(IAbletLayer layer)
+        public void TryAddDependency(AbletLayer? layer)
         {
             if (layer != null) _dependencies.Add(layer);
         }
 
-        public void TryAddDependent(IAbletLayer layer)
+        public void TryAddDependent(AbletLayer? layer)
         {
             if (layer != null) _dependents.Add(layer);
         }
 
-        public LayerDependency(IAbletLayer layer)
+        public LayerDependency(AbletLayer layer)
         {
             Layer = layer;
         }
 
         public AbletPass ToPass()
         {
-            return new AbletPass(Layer);
+            return new AbletPass(Layer, Depth);
         }
     }
 
@@ -41,7 +44,7 @@ namespace Ablet.Planning
     {
         readonly LayerDependencySet _repository;
         readonly LayerDependency _dependency;
-        public readonly List<IAbletLayer> NonleafLayerReferences = new List<IAbletLayer>();
+        public readonly List<AbletLayer> NonleafLayerReferences = new List<AbletLayer>();
 
         bool _disposed;
 
@@ -55,7 +58,7 @@ namespace Ablet.Planning
         {
             if (_disposed)
             {
-                throw new ObjectDisposedException("Disposed");
+                throw new ObjectDisposedException(nameof(IDependencyConfigurator));
             }
             if (_repository.TryGetLayerDependency(id, out var layerDep))
             {
@@ -71,7 +74,7 @@ namespace Ablet.Planning
         {
             if (_disposed)
             {
-                throw new ObjectDisposedException("Disposed");
+                throw new ObjectDisposedException(nameof(IDependencyConfigurator));
             }
             var layerDep = _repository.GetLayerDependency<T>();
             _dependency.TryAddDependency(layerDep.Layer);
@@ -84,7 +87,7 @@ namespace Ablet.Planning
         {
             if (_disposed)
             {
-                throw new ObjectDisposedException("Disposed");
+                throw new ObjectDisposedException(nameof(IDependencyConfigurator));
             }
             if (_repository.TryGetLayerDependency(id, out var layerDep))
             {
@@ -100,7 +103,7 @@ namespace Ablet.Planning
         {
             if (_disposed)
             {
-                throw new ObjectDisposedException("Disposed");
+                throw new ObjectDisposedException(nameof(IDependencyConfigurator));
             }
             var layerDep = _repository.GetLayerDependency<T>();
             layerDep.TryAddDependency(_dependency.Layer);
@@ -115,16 +118,16 @@ namespace Ablet.Planning
         }
     }
 
-    public class LayerDependencySet
+    class LayerDependencySet
     {
         readonly Dictionary<Type, LayerDependency> _layerDependencies = new Dictionary<Type, LayerDependency>();
         
         public IEnumerable<LayerDependency> All() => _layerDependencies.Values;
-        public LayerDependency GetLayerDependency<T>() where T : IAbletLayer => GetLayerDependency(LayerRepository.Instance.Get<T>());
+        public LayerDependency GetLayerDependency<T>() where T : IAbletLayer => GetLayerDependency(LayerRegistry.Instance.Get<T>());
 
-        public bool TryGetLayerDependency(string id, out LayerDependency layerDep)
+        public bool TryGetLayerDependency(string id, [MaybeNullWhen(false)] out LayerDependency layerDep)
         {
-            if (LayerRepository.Instance.TryGetById(id, out var layer))
+            if (LayerRegistry.Instance.TryGetById(id, out var layer))
             {
                 layerDep = GetLayerDependency(layer);
                 return true;
@@ -133,9 +136,9 @@ namespace Ablet.Planning
             return false;
         }
 
-        public LayerDependency GetLayerDependency(IAbletLayer layer)
+        public LayerDependency GetLayerDependency(AbletLayer layer)
         {
-            var type = layer.GetType();
+            var type = layer.DefType;
             if (_layerDependencies.TryGetValue(type, out var existing))
             {
                 return existing;
@@ -145,21 +148,21 @@ namespace Ablet.Planning
             return value;
         }
 
-        public static LayerDependencySet Build(IEnumerable<IAbletLayer> allLeafLayers)
+        public static LayerDependencySet Build(IEnumerable<AbletLayer> allLeafLayers)
         {
-            var layersToConfigure = new DistinctQueue<IAbletLayer>();
+            var layersToConfigure = new DistinctQueue<AbletLayer>();
             foreach (var leafLayer in allLeafLayers) layersToConfigure.EnqueueDistinct(leafLayer);
-            var repo = new LayerDependencySet();
+            var layerDeps = new LayerDependencySet();
             while (layersToConfigure.TryDequeue(out var layer))
             {
-                using var config = new DependencyConfiguratorImpl(repo, repo.GetLayerDependency(layer));
+                using var config = new DependencyConfiguratorImpl(layerDeps, layerDeps.GetLayerDependency(layer));
                 layer.Configure(config);
                 foreach (var nonleafLayerRef in config.NonleafLayerReferences)
                 {
                     layersToConfigure.EnqueueDistinct(nonleafLayerRef);
                 }
             }
-            return repo;
+            return layerDeps;
         }
     }
 }

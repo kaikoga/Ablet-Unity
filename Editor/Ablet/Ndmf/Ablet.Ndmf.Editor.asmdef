@@ -4,8 +4,9 @@
     "references": [
         "Ablet",
         "Ablet.Editor",
-        "Ablet.Builtin.VRChat",
-        "nadena.dev.ndmf"
+        "Ablet.ErrorReporting",
+        "nadena.dev.ndmf",
+        "Ablet.API"
     ],
     "includePlatforms": [
         "Editor"
@@ -15,7 +16,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": false,
-    "defineConstraints": [],
+    "defineConstraints": ["ABLET_NDMF"],
     "versionDefines": [
         {
             "name": "nadena.dev.ndmf",

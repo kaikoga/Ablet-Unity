@@ -2,8 +2,11 @@
     "name": "Ablet.Editor",
     "rootNamespace": "Ablet",
     "references": [
+        "nadena.dev.ndmf",
         "Ablet",
-        "Ablet.Builtin.VRChat"
+        "Ablet.API",
+        "Ablet.Builtin",
+        "Ablet.InternalAPI.Editor"
     ],
     "includePlatforms": [
         "Editor"

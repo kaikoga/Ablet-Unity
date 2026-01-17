@@ -2,9 +2,11 @@
     "name": "Ablet.Hooks.Av3Emulator.Editor",
     "rootNamespace": "Ablet.Hooks.Av3Emulator",
     "references": [
-        "Ablet",
+        "lyuma.av3emulator",
+        "Ablet.API",
+        "Ablet.InternalAPI.Editor",
         "Ablet.Editor",
-        "lyuma.av3emulator"
+        "Ablet"
     ],
     "includePlatforms": [
         "Editor"

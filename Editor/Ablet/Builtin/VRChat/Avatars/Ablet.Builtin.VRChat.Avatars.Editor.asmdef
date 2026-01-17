@@ -1,0 +1,29 @@
+{
+    "name": "Ablet.Builtin.VRChat.Avatars.Editor",
+    "rootNamespace": "Ablet.Builtin.VRChat.Avatars",
+    "references": [
+        "Ablet",
+        "Ablet.API",
+        "Ablet.Builtin",
+        "Ablet.Builtin.VRChat.Avatars"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "VRCSDK3A.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": ["ABLET_VRCSDK3_AVATARS"],
+    "versionDefines": [
+        {
+            "name": "com.vrchat.avatars",
+            "expression": "",
+            "define": "ABLET_VRCSDK3_AVATARS"
+        }
+    ],
+    "noEngineReferences": false
+}

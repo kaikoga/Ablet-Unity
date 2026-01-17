@@ -1,0 +1,84 @@
+AbletConsoleWindowView {
+    flex-grow: 1;
+}
+
+Toggle.toggle-only {
+    width: 16px;
+}
+
+Toolbar {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+BuildReporterStateView {
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+BuildReporterStateView #displayNameLabel {
+    flex-grow: 1;
+}
+
+BuildReportListView #entrypointObjectContainer,
+BuildReportListView #noEntrypointObjectContainer {
+    height: 20px;
+}
+
+BuildReportListView #entrypointSceneAssetField {
+    width: 200px;
+}
+
+BuildReportListView #entrypointDisplayNameText {
+    -unity-font-style: bold;
+    font-size: 18px;
+}
+
+LayerReportView #layerDisplayNameText {
+    -unity-font-style: bold;
+    font-size: 14px;
+}
+
+#full-pane {
+    flex-grow: 1;
+}
+
+#left-pane {
+    width: 200px;
+}
+
+#right-pane {
+    flex-grow: 1;
+}
+
+#left-upper-pane {
+    height: 150px;
+}
+
+#left-lower-pane {
+    flex-grow: 1;
+}
+
+.header {
+    margin-left: 16px;
+    margin-top: 4px;
+}
+
+.box {
+    padding: 2px;
+    border-width: 1px;
+    border-color: #666666;
+    margin: 2px;
+    width: auto;
+}
+
+.row {
+    flex-direction: row;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}

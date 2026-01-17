@@ -1,24 +1,32 @@
 using Ablet.API;
 using Ablet.API.Internal;
-using Ablet.Building;
-using Ablet.Repositories;
-using JetBrains.Annotations;
+using Ablet.API.V1;
+using Ablet.API.V1.Building;
+using Ablet.Models;
+using Ablet.Registries;
 
 namespace Ablet.Builtin.Utils
 {
-    [PublicAPI]
-    public class BeforeLayer<T> : IBeforeLayer
+    /// <summary>
+    /// Specifies an Before layer which runs before the specified phase or the specified layer.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class BeforeLayer<T> : IAbletSpecialLayer
     where T : IAbletLayer
     {
-        IAbletLayer Target => LayerRepository.Instance.Get<T>(); 
-        string IAbletDefinitionBase.Id => "ablet.before." + Target.Id;
-        string IAbletDefinitionBase.DisplayName => "Before::" + Target.DisplayName;
-        int IAbletDefinitionBase.Priority => 0; // int.MinValue - 1L
+        AbletLayer Target => LayerRegistry.Instance.Get<T>(); 
+        string IAbletDefinition.Id => BuiltinLayerIds.BeforePrefix + Target.Id;
+        string IAbletDefinition.DisplayName => "Before::" + Target.DisplayName;
+
+        // Delegates order of target layer to run just before target layer 
+        int IAbletSpecialLayer.LayerPriority => Target.LayerPriority;
+        string IAbletSpecialLayer.IdForPriority => Target.Id;
+        int IAbletSpecialLayer.InnerPriority => -1;
 
         void IAbletLayer.Configure(IDependencyConfigurator config)
         {
-            config.AddDependency<T>();
+            config.AddReverseDependency<T>();
         }
-        public IAbletProcessor Processor(BuildArgument argument) => null;
+        public AbletProcedure? ToProcedure(IBuildArgument argument) => null;
     }
 }

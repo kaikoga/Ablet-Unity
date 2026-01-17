@@ -1,20 +1,22 @@
 using System.Collections.Generic;
-using System.Linq;
-using Ablet.Repositories;
+using Ablet.API.V1.Querying;
+using Ablet.Models;
+using Ablet.Querying.Resolvers;
 using UnityEngine;
 
 namespace Ablet.Querying
 {
-    public class GetEntrypointsQuery : AMultipleQuery<GameObject>
+    public static partial class AQuery
     {
-        public override IEnumerable<GameObject> Query()
+        public static AQuery<(GameObject gameObject, AbletPlatform platform)> GetEntrypoints(this AQuery<GameObject> query, IEnumerable<AbletPlatform> platforms, bool includeInactive)
         {
-            var entrypointComponentTypes = PlatformRepository.Instance.EntrypointComponentTypes;
-
-            return new GetRootGameObjectsQuery().Query()
-                .SelectMany(gameObject => gameObject.GetComponentsInChildren<Component>(true))
-                .Where(component => component && entrypointComponentTypes.Contains(component.GetType()))
-                .Select(component => component.gameObject);
+            return query.Create(new GetEntrypointsQueryResolver(query, platforms, includeInactive));
         }
+
+        public static AQuery<(GameObject gameObject, AbletPlatform platform)> GetEntrypointFor(this AQuery<GameObject> query, IEnumerable<AbletPlatform> platforms)
+        {
+            return query.Create(new GetEntrypointForQueryResolver(query, platforms));
+        }
+
     }
 }

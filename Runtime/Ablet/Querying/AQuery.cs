@@ -1,22 +1,41 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using Ablet.API.V1.Querying;
 
 namespace Ablet.Querying
 {
-    public static class AQuery
+    public static partial class AQuery
     {
-        public static AMultipleQuery<Component> GetComponents(Type type, bool includeInactive = false) => new GetComponentsQuery(type, includeInactive);
-        public static AMultipleQuery<T> GetComponents<T>(bool includeInactive = false) => new GetComponentsQuery<T>(includeInactive);
-        public static AMultipleQuery<GameObject> GetEntrypoints() => new GetEntrypointsQuery();
+        static AQuery<TOut> Create<TIn, TOut>(this AQuery<TIn> query, AQueryResolver<TOut> resolver) => query.Context.Query(resolver);
+
+        public static IEnumerable<TOut> ResolveNow<T, TOut>(this AQuery<T> query, Func<T, IEnumerable<TOut>> selector) => query.ResolveNow().SelectMany(selector);
     }
 
-    public abstract class AQuery<T>
+    class AQueryImpl<T> : AQuery<T>
     {
-        public abstract T Query();
-    }
+        readonly AQueryContext _context;
+        readonly AQueryResolver<T> _resolver;
 
-    public abstract class AMultipleQuery<T> : AQuery<IEnumerable<T>>
-    {
+        API.V1.Querying.AQueryContext AQuery<T>.Context => _context;
+
+        internal AQueryImpl(AQueryContext context, AQueryResolver<T> resolver)
+        {
+            _context = context;
+            _resolver = resolver;
+        }
+
+        public IEnumerable<T> ResolveNow() => _context.AllowResolve ? _resolver.ResolveNow() : throw new InvalidOperationException();
+
+        public void Observe(Action<T> filter)
+        {
+            AQueryContext.Enqueue(() =>
+            {
+                foreach (var item in ResolveNow())
+                {
+                    filter(item);
+                }
+            });
+        }
     }
 }

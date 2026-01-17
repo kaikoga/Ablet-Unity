@@ -1,0 +1,17 @@
+{
+    "name": "Ablet.ErrorReporting",
+    "rootNamespace": "Ablet.ErrorReporting",
+    "references": [
+        "Ablet",
+        "Ablet.API"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

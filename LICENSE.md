@@ -1,3 +1,12 @@
+Ablet is licensed under MIT License, except for the following directories, which are licensed accordingly.
+The full license text for the contained software portions are available under their responsive directories.
+
+- Editor/Ablet/Builtin/UniVRM/Exporter
+  - MIT License (UniVRM)
+  - LICENSE_VRM.md
+
+----
+
 MIT License
 
 Copyright (c) 2025 kaikoga

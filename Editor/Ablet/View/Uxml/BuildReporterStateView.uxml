@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:engine="UnityEngine.UIElements"
+>
+    <engine:VisualElement class="row">
+        <engine:Toggle name="enabledToggle" class="toggle-only" />
+        <engine:Label name="displayNameLabel" />
+        <engine:Button name="settingsButton" text="..." />
+    </engine:VisualElement>
+</engine:UXML>

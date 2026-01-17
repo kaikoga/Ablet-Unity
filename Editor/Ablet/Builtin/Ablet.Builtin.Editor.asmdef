@@ -1,0 +1,23 @@
+{
+    "name": "Ablet.Builtin.Editor",
+    "rootNamespace": "Ablet.Builtin",
+    "references": [
+        "Ablet",
+        "Ablet.API",
+        "Ablet.Builtin",
+        "Ablet.Editor",
+        "Ablet.EditorAPI.Editor",
+        "Ablet.ErrorReporting"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

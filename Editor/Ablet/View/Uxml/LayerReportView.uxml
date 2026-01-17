@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:engine="UnityEngine.UIElements"
+>
+    <engine:VisualElement class="row">
+        <engine:Label name="layerDisplayNameText" class="layer-name-header" />
+    </engine:VisualElement>
+    <engine:VisualElement class="box">
+        <engine:VisualElement name="resultContainer" />
+    </engine:VisualElement>
+</engine:UXML>

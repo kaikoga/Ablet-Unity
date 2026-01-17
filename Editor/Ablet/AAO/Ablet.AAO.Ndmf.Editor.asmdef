@@ -1,0 +1,31 @@
+{
+    "name": "Ablet.AAO.Ndmf.Editor",
+    "rootNamespace": "Ablet.AAO.Ndmf.Editor",
+    "references": [
+        "com.anatawa12.avatar-optimizer.api.editor",
+        "Ablet.Builtin.NdmfEmu",
+        "Ablet"
+    ],
+    "includePlatforms": [
+       "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": ["ABLET_AAO", "ABLET_NDMF"],
+    "versionDefines": [
+        {
+          "name": "com.anatawa12.avatar-optimizer",
+          "expression": "",
+          "define": "ABLET_AAO"
+        },
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "(1.8.0-a,2.0-a)",
+            "define": "ABLET_NDMF"
+        }
+    ],
+    "noEngineReferences": false
+}

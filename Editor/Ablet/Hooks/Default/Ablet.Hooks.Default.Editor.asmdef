@@ -2,7 +2,8 @@
     "name": "Ablet.Hooks.Default.Editor",
     "rootNamespace": "Ablet.Hooks.Default",
     "references": [
-        "Ablet",
+        "Ablet.API",
+        "Ablet.InternalAPI.Editor",
         "Ablet.Editor"
     ],
     "includePlatforms": [
@@ -11,25 +12,9 @@
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
-    "precompiledReferences": [
-        "VRCSDKBase.dll",
-        "VRCSDKBase-Editor.dll"
-    ],
+    "precompiledReferences": [],
     "autoReferenced": false,
-    "defineConstraints": [
-        "ABLET_VRCSDK3_AVATARS"
-    ],
-    "versionDefines": [
-        {
-            "name": "nadena.dev.ndmf",
-            "expression": "(1.8.0-a,2.0-a)",
-            "define": "ABLET_NDMF"
-        },
-        {
-            "name": "com.vrchat.avatars",
-            "expression": "",
-            "define": "ABLET_VRCSDK3_AVATARS"
-        }
-    ],
+    "defineConstraints": [],
+    "versionDefines": [],
     "noEngineReferences": false
 }

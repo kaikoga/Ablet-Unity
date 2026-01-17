@@ -1,0 +1,30 @@
+{
+    "name": "Ablet.View.Editor",
+    "rootNamespace": "Ablet.View",
+    "references": [
+        "nadena.dev.ndmf",
+        "Ablet",
+        "Ablet.Editor",
+        "Ablet.Ndmf.Editor",
+        "Ablet.API",
+        "Ablet.EditorAPI.Editor",
+        "Ablet.Builtin"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "(1.8.0-a,2.0-a)",
+            "define": "ABLET_NDMF"
+        }
+    ],
+    "noEngineReferences": false
+}

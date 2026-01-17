@@ -1,7 +1,11 @@
 {
     "name": "Ablet.Builtin",
     "rootNamespace": "Ablet.Builtin",
-    "references": [],
+    "references": [
+        "Ablet",
+        "Ablet.API",
+        "Ablet.ErrorReporting"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

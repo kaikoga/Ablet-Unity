@@ -1,0 +1,33 @@
+{
+    "name": "Ablet.Builtin.UniVRM10.Editor",
+    "rootNamespace": "Ablet.Builtin.UniVRM10",
+    "references": [
+        "VrmLib",
+        "UniGLTF",
+        "UniGLTF.Editor",
+        "VRM10",
+        "VRM10.Editor",
+        "Ablet",
+        "Ablet.API",
+        "Ablet.EditorAPI.Editor",
+        "Ablet.Editor",
+        "Ablet.Builtin.UniVRM10"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": ["ATIV_DETECTED_VRM1"],
+    "versionDefines": [
+        {
+            "name": "com.vrmc.vrm",
+            "expression": "0.131.0",
+            "define": "ATIV_DETECTED_VRM1"
+        }
+    ],
+    "noEngineReferences": false
+}

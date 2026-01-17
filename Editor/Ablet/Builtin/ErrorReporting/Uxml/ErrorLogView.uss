@@ -1,0 +1,48 @@
+ErrorLogView {
+    margin: 2px;
+    border-left-width: 6px;
+}
+
+ErrorLogView.Information {
+    border-left-color: gray;
+}
+
+ErrorLogView.Warning {
+    border-left-color: goldenrod;
+}
+
+ErrorLogView.Error {
+    border-left-color: orangered;
+}
+
+ErrorLogView.Exception {
+    border-left-color: darkred;
+}
+
+ErrorLogView #messageText {
+    margin-left: 2px;
+    overflow: scroll;
+    width: auto;
+    height: auto;
+}
+
+ObjectChainView #objectFieldContainer {
+    position: absolute;
+    left: 32px;
+    width: 80%;
+}
+
+ObjectChainView Foldout,
+ObjectChainView TextField {
+    flex-grow: 1;
+}
+
+ObjectChainElementView #layerNameText {
+    width: 150px;
+}
+
+ObjectChainElementView Image {
+    width: 16px;
+    height: 16px;
+}
+

@@ -5,8 +5,10 @@
         "nadena.dev.ndmf",
         "nadena.dev.ndmf.runtime",
         "Ablet",
-        "Ablet.Editor",
-        "Ablet.Builtin.NdmfEmu"
+        "Ablet.API",
+        "Ablet.Builtin",
+        "Ablet.Builtin.NdmfEmu",
+        "Ablet.Editor"
     ],
     "includePlatforms": [
         "Editor"

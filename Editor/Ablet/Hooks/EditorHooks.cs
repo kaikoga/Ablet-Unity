@@ -1,6 +1,5 @@
-using System.Linq;
-using Ablet.EditorAPI;
-using Ablet.EditorAPI.Attributes;
+using Ablet.InternalAPI.V1;
+using Ablet.Registries;
 using Ablet.Repositories;
 using Ablet.Utils;
 using UnityEditor;
@@ -10,10 +9,7 @@ namespace Ablet.Hooks
 {
     public static class EditorHooks
     {
-        static readonly IAbletApplyOnPlay ApplyOnPlayImpl = DefinitionCollector<IAbletApplyOnPlay, AbletApplyOnPlayAttribute>.Collect()
-            .Values
-            .Where(def => def.Available)
-            .OrderBy(def => def.Priority).First();
+        static IAbletApplyOnPlay CurrentApplyOnPlayImpl => ApplyOnPlayRegistry.Instance.CurrentImpl;
 
         [InitializeOnLoadMethod]
         static void InitializeOnLoad()
@@ -27,8 +23,11 @@ namespace Ablet.Hooks
             {
                 return;
             }
-            var applyOnPlayImpl = ApplyOnPlayImpl;
-            applyOnPlayImpl.OnPlayModeStateChanged(playModeStateChange);
+            CurrentApplyOnPlayImpl.OnPlayModeStateChanged(playModeStateChange);
+            if (playModeStateChange == PlayModeStateChange.ExitingPlayMode)
+            {
+                AssetPersister.ClearTempAssets();
+            }
         }
 
         [RuntimeInitializeOnLoadMethod]
@@ -38,8 +37,7 @@ namespace Ablet.Hooks
             {
                 return;
             }
-            var applyOnPlayImpl = ApplyOnPlayImpl;
-            applyOnPlayImpl.OnRuntimeInitializeOnLoad();
+            CurrentApplyOnPlayImpl.OnRuntimeInitializeOnLoad();
         }
     }
 }

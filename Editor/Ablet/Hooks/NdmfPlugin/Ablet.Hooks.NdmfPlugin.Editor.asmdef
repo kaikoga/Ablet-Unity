@@ -4,7 +4,11 @@
     "references": [
         "nadena.dev.ndmf",
         "Ablet",
-        "Ablet.Editor"
+        "Ablet.API",
+        "Ablet.Builtin",
+        "Ablet.Editor",
+        "Ablet.InternalAPI.Editor",
+        "Ablet.ErrorReporting"
     ],
     "includePlatforms": [
         "Editor"

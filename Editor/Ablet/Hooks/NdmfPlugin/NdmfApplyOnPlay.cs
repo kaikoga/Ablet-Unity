@@ -1,6 +1,6 @@
 using Ablet.API;
-using Ablet.EditorAPI;
-using Ablet.EditorAPI.Attributes;
+using Ablet.InternalAPI.V1;
+using Ablet.InternalAPI.V1.Attributes;
 using Ablet.Repositories;
 using nadena.dev.ndmf.config;
 using UnityEditor;
@@ -8,11 +8,11 @@ using UnityEditor;
 namespace Ablet.Hooks.NdmfPlugin
 {
     [AbletApplyOnPlay]
-    public class NdmfApplyOnPlay : IAbletApplyOnPlay
+    class NdmfApplyOnPlay : IAbletApplyOnPlay
     {
-        string IAbletDefinitionBase.Id => "ablet.hooks.apply-on-play.ndmf";
-        string IAbletDefinitionBase.DisplayName => "Apply on Play (NDMF)";
-        int IAbletDefinitionBase.Priority => -1000;
+        string IAbletDefinition.Id => BuiltinApplyOnPlayIds.NDMF;
+        string IAbletDefinition.DisplayName => "Apply on Play (NDMF)";
+        int IAbletApplyOnPlay.Priority => -1000;
 
         bool IAbletApplyOnPlay.Available => Config.ApplyOnPlay;
 

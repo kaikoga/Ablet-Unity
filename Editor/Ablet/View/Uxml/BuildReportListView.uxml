@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+>
+    <engine:VisualElement class="header">
+        <engine:Label name="entrypointDisplayNameText" />
+        <engine:VisualElement class="row">
+            <editor:ObjectField type="UnityEditor.SceneAsset, UnityEditor.CoreModule" label="" name="entrypointSceneAssetField" />
+            <engine:Label name="entrypointScenePathText" />
+        </engine:VisualElement>
+        <engine:VisualElement name="noEntrypointObjectContainer" class="row">
+            <engine:Label text="Entrypoint not found" />
+            <engine:Button name="openSceneButton" text="Open Scene" />
+            <engine:Button name="openSceneAdditiveButton" text="Open Scene Additive" />
+        </engine:VisualElement>
+        <engine:VisualElement name="entrypointObjectContainer">
+            <editor:ObjectField type="UnityEngine.GameObject, UnityEngine.CoreModule" label="Entrypoint" name="entrypointObjectField" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="resultContainer" />
+    <engine:VisualElement name="noActionsContainer">
+        <engine:Label text="Entrypoint not found"/>
+    </engine:VisualElement>
+    <engine:VisualElement name="actionsContainer">
+        <engine:Button name="manualApplyButton" text="Manual Apply" />
+        <engine:VisualElement name="exportUIContainer" />
+    </engine:VisualElement>
+</engine:UXML>
