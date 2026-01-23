@@ -1,4 +1,5 @@
 using Ablet.API.V1;
+using Ablet.API.V1.Attributes;
 using Ablet.Building;
 using Ablet.Builtin.Layers;
 using Ablet.Builtin.Layers.Avatar;
@@ -20,6 +21,11 @@ namespace Ablet.Previewing.Internal
         bool _isRefreshing;
 
         public bool IsBlocked(InplacePreviewRequest request) => _currentPreviewRequest != null && _currentPreviewRequest != request;
+
+        [InitializeOnLoadMethod]
+        static void InitializeOnLoad()
+        {
+        }
 
         InplacePreviewManager()
         {
