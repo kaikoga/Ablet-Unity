@@ -1,13 +1,13 @@
 using System.Linq;
 using Ablet.API.V1;
 using Ablet.Building;
+using Ablet.Building.Ephemeral;
 using Ablet.Builtin;
 using Ablet.Builtin.VRChat.Avatars;
 using Ablet.Planning;
 using Ablet.Registries;
 using Ablet.Repositories;
 using Ablet.Utils;
-using UnityEditor;
 using UnityEngine;
 using VRC.SDKBase.Editor.BuildPipeline;
 
@@ -85,7 +85,7 @@ namespace Ablet.Hooks.VRChat.Avatars
         public void OnPostprocessAvatar()
         {
             // Ablet should delay call this, because Ablet is exporting a prefab instance, in contrast to NDMF
-            EditorApplication.delayCall += AssetPersister.ClearTempAssets;
+            AssetPersister.DelayClearTempAssets();
         }
     }
 }

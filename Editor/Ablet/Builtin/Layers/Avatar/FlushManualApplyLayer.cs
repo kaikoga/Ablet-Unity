@@ -6,6 +6,8 @@ using Ablet.API.Internal;
 using Ablet.API.V1;
 using Ablet.API.V1.Attributes;
 using Ablet.API.V1.Building;
+using Ablet.Building;
+using Ablet.Building.Ephemeral;
 using Ablet.Builtin.Utils;
 using Ablet.Utils;
 using UnityEditor;

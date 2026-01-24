@@ -3,6 +3,7 @@ using System.IO;
 using Ablet.API.V1;
 using Ablet.API.V1.Attributes;
 using Ablet.Building;
+using Ablet.Building.Ephemeral;
 using Ablet.EditorAPI.V1.Extensions.Platform;
 using Ablet.Registries;
 using Ablet.Utils;
@@ -46,7 +47,7 @@ namespace Ablet.Builtin.UniVRM10
                     }
                     finally
                     {
-                        AssetPersister.ClearTempAssets();
+                        AssetPersister.DelayClearTempAssets();
                     }
                 }
             }

@@ -25,6 +25,7 @@ namespace Ablet.Builtin
             public const string Exporting =  "Ablet.Phase.Avatar.Exporting";
 
             public const string InplacePreviewPosing =  "Ablet.Avatar.InplacePreviewPosing";
+            public const string PreparePersistGeneratedAssets =  "Ablet.Avatar.PreparePersistGeneratedAssets";
             public const string FlushManualApply =  "Ablet.Avatar.FlushManualApply";
             public const string FlushErrorReports =  "Ablet.Avatar.FlushErrorReports";
             public const string CloneBeforeBuild =  "Ablet.Avatar.CloneBeforeBuild";
