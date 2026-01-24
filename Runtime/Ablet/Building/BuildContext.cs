@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Ablet.API.V1;
 using Ablet.API.V1.Building;
 using Ablet.API.V1.Querying;
 using Ablet.Planning;
@@ -28,7 +29,15 @@ namespace Ablet.Building
         public GameObject CurrentRootObject => _rootObject;
         public Transform CurrentRootTransform => _rootObject.transform;
 
-        public void SetCurrentRootObject(GameObject gameObject) => _rootObject = gameObject;
+        public void SetCurrentRootObject(GameObject gameObject)
+        {
+            _rootObject = Argument.ObjectRetainMode switch
+            {
+                ObjectRetainMode.None => gameObject,
+                ObjectRetainMode.RetainObjectId => throw new InvalidOperationException("Cannot replace current object"),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
 
         public BuildContext(BuildArgument argument, GameObject rootObject)
         {

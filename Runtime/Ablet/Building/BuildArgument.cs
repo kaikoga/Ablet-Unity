@@ -28,6 +28,7 @@ namespace Ablet.Building
 
         internal PreviewMode PreviewMode => _catalyst.PreviewMode;
         internal bool IsObservable => _catalyst.IsObservable;
+        internal ObjectRetainMode ObjectRetainMode => _catalyst.ObjectRetainMode;
 
         BuildArgument(GameObject entrypointObject, AbletPlatform? entrypointPlatform, AbletPlatform targetPlatform, Catalyst catalyst)
         {
