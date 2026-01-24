@@ -108,7 +108,7 @@ namespace Ablet.Hooks.NdmfPlugin
         {
             var actualEntrypoint = context.GetState<AbletState>(null).ActualEntrypoint;
             var platform = PlatformRegistry.Instance.RequirePlatform(context.AvatarRootObject); 
-            var arguments = BuildArgument.FromPartialBuild(actualEntrypoint, platform, ObjectRetainMode.RetainObjectId);
+            var arguments = BuildArgument.FromPartialBuild(actualEntrypoint, platform, ObjectRetainMode.RetainObjectId, BuildInitiationSourceMode.NDMF);
             var process = BuildProcess.FromSinglePass(_abletPass, arguments);
             process.Build(context.AvatarRootObject);
         }

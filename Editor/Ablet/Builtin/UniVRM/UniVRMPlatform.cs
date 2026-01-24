@@ -35,7 +35,7 @@ namespace Ablet.Builtin.UniVRM
 
                     try
                     {
-                        var arguments = BuildArgument.FromEditModeAssetBuild(entrypointObject, PlatformRegistry.Instance.Get<UniVRMPlatform>(), true);
+                        var arguments = BuildArgument.FromEditModeAssetBuild(entrypointObject, PlatformRegistry.Instance.Get<UniVRMPlatform>(), true, BuildInitiationSourceMode.Ablet);
                         var buildResult = AbletFacade.BuildWithArguments(arguments);
                         VRM0FileExporter.ExportVRM0File(buildResult.GetComponent<VRMMeta>(), filePath);
                         AbletEditorUtil.OpenInExplorer(directory);

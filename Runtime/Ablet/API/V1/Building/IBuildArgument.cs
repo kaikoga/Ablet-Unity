@@ -13,6 +13,7 @@ namespace Ablet.API.V1.Building
         AssetGenerationMode WillCloneSceneObject { get; }
         AssetGenerationMode WillPersistGeneratedAssets { get; }
         bool IsPartial { get; }
+        BuildInitiationSourceMode BuildInitiationSourceMode { get; }
         [Obsolete]
         ObjectRetainMode ObjectRetainMode { get; }
 
