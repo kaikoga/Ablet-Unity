@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Ablet.API.V1.Building
         AssetGenerationMode WillCloneSceneObject { get; }
         AssetGenerationMode WillPersistGeneratedAssets { get; }
         bool IsPartial { get; }
+        [Obsolete]
         ObjectRetainMode ObjectRetainMode { get; }
 
         bool TryGetInput<T>([MaybeNullWhen(false)] out T value) where T : class;
