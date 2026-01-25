@@ -44,12 +44,14 @@ namespace Ablet.Builtin.Layers.Avatar
     {
         const string OptOutDecisionKey = "Ablet.FlushManualApply.OptOut";
 
+        static readonly TimeSpan ClearManualAssetsDelay = TimeSpan.FromHours(12);
+
         public override void Process(IBuildContext context)
         {
             var maxDuration = AssetPersister.GetManualAssetPaths()
                 .Select(path => DateTime.Now - File.GetCreationTime(path))
                 .Max();
-            if (maxDuration > TimeSpan.FromDays(0))
+            if (maxDuration > ClearManualAssetsDelay)
             {
                 if (EditorUtility.GetDialogOptOutDecision(DialogOptOutDecisionType.ForThisSession, OptOutDecisionKey))
                 {
