@@ -46,7 +46,7 @@ namespace Ablet.Builtin
     {
         string IAbletDefinition.Id => BuiltinLayerIds.Avatar.Root;
         string IAbletDefinition.DisplayName => "Avatar Building Phases";
-        int IAbletSpecialLayer.LayerPriority => 0;
+        int IAbletSpecialLayer.LayerPriority => 100;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
 
