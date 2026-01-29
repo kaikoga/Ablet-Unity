@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Ablet.API.V1;
@@ -64,9 +65,19 @@ namespace Ablet
             return AQueryContext.Immediate.Return(child).GetEntrypointFor(PlatformRegistry.Instance.All());
         }
 
+        [Obsolete]
         public static (GameObject gameObject, AbletPlatform platform) GetEntrypointFor(GameObject child)
         {
             return QueryEntrypointFor(child).ResolveNow().FirstOrDefault();
         }
+        
+        public static bool TryGetEntrypointFor(GameObject child, out GameObject entrypointObject, out AbletPlatform platform)
+        {
+            (entrypointObject, platform) = QueryEntrypointFor(child).ResolveNow().FirstOrDefault();
+            return entrypointObject;
+        }
+
+        public static bool TryGetRootObjectFor(Transform child, out GameObject entrypointObject)
+            => TryGetEntrypointFor(child.gameObject, out entrypointObject, out _);
     }
 }
