@@ -18,10 +18,10 @@ namespace Ablet.Builtin.Utils
         string IAbletDefinition.Id => BuiltinLayerIds.BeforePrefix + Target.Id;
         string IAbletDefinition.DisplayName => "Before::" + Target.DisplayName;
 
-        // Delegates order of target layer to run just before target layer 
-        int IAbletSpecialLayer.LayerPriority => Target.LayerPriority;
+        // This layer should dispatch immediately after resolve by dependency  
+        int IAbletSpecialLayer.LayerPriority => int.MinValue;
         string IAbletSpecialLayer.IdForPriority => Target.Id;
-        int IAbletSpecialLayer.InnerPriority => -1;
+        int IAbletSpecialLayer.InnerPriority => int.MinValue;
 
         bool IAbletSpecialLayer.IsConcreteLayer => false;
 

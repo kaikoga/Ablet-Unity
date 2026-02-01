@@ -12,8 +12,7 @@ namespace Ablet.Planning
     class LayerDependency
     {
         public readonly AbletLayer Layer;
-        public int Depth;
-        readonly bool _isContainerPass;
+        public readonly bool IsContainerPass;
 
         readonly HashSet<AbletLayer> _dependencies = new HashSet<AbletLayer>();
         public IEnumerable<AbletLayer> Dependencies => _dependencies;
@@ -34,12 +33,7 @@ namespace Ablet.Planning
         public LayerDependency(AbletLayer layer, bool isContainerPass)
         {
             Layer = layer;
-            _isContainerPass = isContainerPass;
-        }
-
-        public AbletPass ToPass()
-        {
-            return new AbletPass(Layer, _isContainerPass, Depth);
+            IsContainerPass = isContainerPass;
         }
     }
 
