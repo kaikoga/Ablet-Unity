@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:engine="UnityEngine.UIElements"
+>
+    <engine:Button name="copyButton" text="Copy" />
+    <engine:ListView name="passList" />
+</engine:UXML>

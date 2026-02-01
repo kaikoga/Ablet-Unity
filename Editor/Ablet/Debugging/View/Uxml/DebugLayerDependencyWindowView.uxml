@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:engine="UnityEngine.UIElements"
+>
+    <engine:VisualElement style="flex-direction: row;">
+        <engine:VisualElement style="width: 50%;">
+            <engine:ListView name="layersList" />
+        </engine:VisualElement>
+        <engine:VisualElement style="width: 50%;">
+            <engine:Button name="planButton" text="Plan" />
+            <engine:Button name="partialPlanButton" text="Partial Plan" />
+            <engine:TextField name="layerInfoField" multiline="true" readonly="true" style="flex-grow: 1;" />
+            <engine:Button name="copyLayerDepsButton" text="Copy Layer Dependencies" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
