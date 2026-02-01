@@ -2,6 +2,7 @@ using System;
 using Ablet.Utils;
 using UnityEngine;
 
+// NOTE: These APIs are unstable yet
 namespace Ablet.DataObjects
 {
     [Serializable]
