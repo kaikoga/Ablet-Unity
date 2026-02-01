@@ -23,6 +23,8 @@ namespace Ablet.Builtin.Utils
         string IAbletSpecialLayer.IdForPriority => Target.Id;
         int IAbletSpecialLayer.InnerPriority => 1;
 
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
+
         void IAbletLayer.Configure(IDependencyConfigurator config)
         {
             config.AddDependency<T>();

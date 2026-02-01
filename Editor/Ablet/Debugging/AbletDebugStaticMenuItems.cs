@@ -12,10 +12,22 @@ namespace Ablet.Debugging
         [MenuItem("Tools/Ablet/Debug/Show Build Plan", false, 100)]
         static void DebugShowBuildPlan()
         {
-            var plan = AvatarBuildPlanner.Plan(LayerRegistry.Instance.All());
+            var plan = AvatarBuildPlanner.Plan(LayerRegistry.Instance.All(), withContainerPass: true);
             Debug.LogError(plan.Aggregate(new StringBuilder(), (sb, pass) =>
             {
-                sb.AppendLine($"{string.Join("", Enumerable.Repeat("  ", pass.Depth))} {pass.Layer.Id}: {pass.Layer.DisplayName}");
+                string FormatLayerPriority(int value)
+                {
+                    return value == int.MinValue ? "min" : value.ToString();
+                }
+                sb.AppendJoin("", Enumerable.Repeat("  ", pass.Depth));
+                sb.Append(" ");
+                sb.Append(pass.IsContainerPass ? "[" : "<");
+                sb.Append(FormatLayerPriority(pass.Layer.LayerPriority));
+                sb.Append(",");
+                sb.Append(FormatLayerPriority(pass.Layer.InnerPriority));
+                sb.Append(pass.IsContainerPass ? "]" : ">");
+                sb.Append(pass.Layer.Id + ": " + pass.Layer.DisplayName);
+                sb.AppendLine();
                 return sb;
             }));
         }

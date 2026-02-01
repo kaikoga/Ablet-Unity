@@ -16,24 +16,26 @@ namespace Ablet.Planning
             return layer!;
         }
 
-        public static IEnumerable<AbletPass> PartialPlan(IEnumerable<AbletLayer> allLeafLayers, AbletLayer phase)
+        public static IEnumerable<AbletPass> PartialPlan(IEnumerable<AbletLayer> allLeafLayers, AbletLayer phase, bool withContainerPass = false)
         {
-            return BuildPlanner.Plan(allLeafLayers, phase);
+            return BuildPlanner.Plan(allLeafLayers, phase, withContainerPass);
         }
 
-        public static IEnumerable<AbletPass> Plan(IEnumerable<AbletLayer> allLeafLayers)
+        public static IEnumerable<AbletPass> Plan(IEnumerable<AbletLayer> allLeafLayers, bool withContainerPass = false)
         {
-            return BuildPlanner.Plan(allLeafLayers, DefaultRootLayer());
+            return BuildPlanner.Plan(allLeafLayers, DefaultRootLayer(), withContainerPass);
         }
     }
 
     public static class BuildPlanner
     {
-        public static IEnumerable<AbletPass> Plan(IEnumerable<AbletLayer> allLeafLayers, AbletLayer rootLayer)
+        public static IEnumerable<AbletPass> Plan(IEnumerable<AbletLayer> allLeafLayers, AbletLayer rootLayer, bool withContainerPass = false)
         {
             var layerDeps = LayerDependencySet.Build(allLeafLayers);
             var resolvedLayers = ResolveLayers(rootLayer, layerDeps);
-            return CreatePlan(resolvedLayers).ToArray();
+            return CreatePlan(resolvedLayers)
+                .Where(pass => withContainerPass || !pass.IsContainerPass)
+                .ToArray();
         }
 
         static IEnumerable<LayerDependency> ResolveLayers(AbletLayer rootLayer, LayerDependencySet layerDeps)
@@ -50,11 +52,23 @@ namespace Ablet.Planning
                 {
                     layersToResolve.EnqueueDistinct((dependent, depth + 1));
                 }
-                foreach (var dependency in layerDep.Dependencies)
+                if (resolvingLayer != rootLayer)
                 {
-                    layersToResolve.EnqueueDistinct((dependency, depth + 1));
+                    // FIXME: workaround for PartialPlan
+                    // building the entire dependency graph and locating the partial root layer would be better  
+                    // (because cross-phase dependencies may mess up partial dependency graph)
+                    foreach (var dependency in layerDep.Dependencies)
+                    {
+                        layersToResolve.EnqueueDistinct((dependency, depth + 1));
+                    }
                 }
                 depsResolved.Add(layerDep);
+                if (layerDep.Layer.IsConcreteLayer)
+                {
+                    var concreteLayer = layerDeps.GetConcreteLayer(layerDep.Layer);
+                    concreteLayer.Depth = depth + 1;
+                    depsResolved.Add(concreteLayer);
+                }
             }
             return depsResolved;
         }
@@ -66,8 +80,8 @@ namespace Ablet.Planning
             layerDepsToPlan.AddRange(
                 layerDeps
                     .OrderBy(layerDep => layerDep.Layer.LayerPriority)
-                    .ThenBy(layerDep => layerDep.Layer.IdForPriority)
-                    .ThenBy(layerDep => layerDep.Layer.InnerPriority));
+                    .ThenBy(layerDep => layerDep.Layer.InnerPriority)
+                    .ThenBy(layerDep => layerDep.Layer.IdForPriority));
             while (layerDepsToPlan.Count > 0)
             {
                 var nextLayer = layerDepsToPlan

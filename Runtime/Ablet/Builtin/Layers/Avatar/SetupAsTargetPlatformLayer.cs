@@ -20,6 +20,8 @@ namespace Ablet.Builtin.Layers.Avatar
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => int.MinValue;
 
+        bool IAbletSpecialLayer.IsConcreteLayer => true;
+
         void IAbletLayer.Configure(IDependencyConfigurator config)
         {
             config.AddDependency<AfterLayer<MaterializingPhase>>();

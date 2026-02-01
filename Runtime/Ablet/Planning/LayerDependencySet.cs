@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Ablet.API.V1;
 using Ablet.Models;
 using Ablet.Registries;
@@ -12,6 +13,7 @@ namespace Ablet.Planning
     {
         public readonly AbletLayer Layer;
         public int Depth;
+        readonly bool _isContainerPass;
 
         readonly HashSet<AbletLayer> _dependencies = new HashSet<AbletLayer>();
         public IEnumerable<AbletLayer> Dependencies => _dependencies;
@@ -29,14 +31,15 @@ namespace Ablet.Planning
             if (layer != null) _dependents.Add(layer);
         }
 
-        public LayerDependency(AbletLayer layer)
+        public LayerDependency(AbletLayer layer, bool isContainerPass)
         {
             Layer = layer;
+            _isContainerPass = isContainerPass;
         }
 
         public AbletPass ToPass()
         {
-            return new AbletPass(Layer, Depth);
+            return new AbletPass(Layer, _isContainerPass, Depth);
         }
     }
 
@@ -121,8 +124,9 @@ namespace Ablet.Planning
     class LayerDependencySet
     {
         readonly Dictionary<Type, LayerDependency> _layerDependencies = new Dictionary<Type, LayerDependency>();
+        readonly Dictionary<Type, LayerDependency> _concreteLayers = new Dictionary<Type, LayerDependency>();
         
-        public IEnumerable<LayerDependency> All() => _layerDependencies.Values;
+        public IEnumerable<LayerDependency> All() => _layerDependencies.Values.Concat(_concreteLayers.Values);
         public LayerDependency GetLayerDependency<T>() where T : IAbletLayer => GetLayerDependency(LayerRegistry.Instance.Get<T>());
 
         public bool TryGetLayerDependency(string id, [MaybeNullWhen(false)] out LayerDependency layerDep)
@@ -143,8 +147,21 @@ namespace Ablet.Planning
             {
                 return existing;
             }
-            var value = new LayerDependency(layer);
+            var value = new LayerDependency(layer, true);
             _layerDependencies.Add(type, value);
+            return value;
+        }
+
+        public LayerDependency GetConcreteLayer(AbletLayer layer)
+        {
+            var type = layer.DefType;
+            if (_concreteLayers.TryGetValue(type, out var existing))
+            {
+                return existing;
+            }
+            var value = new LayerDependency(layer, false);
+            value.TryAddDependency(layer);
+            _concreteLayers.Add(type, value);
             return value;
         }
 

@@ -8,5 +8,7 @@ namespace Ablet.API.Internal
         int LayerPriority { get; }
         string IdForPriority { get; }
         int InnerPriority { get; }
+
+        bool IsConcreteLayer { get; }
     }
 }

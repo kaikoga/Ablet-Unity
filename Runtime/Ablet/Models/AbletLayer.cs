@@ -54,7 +54,11 @@ namespace Ablet.Models
             _ => 0
         };
 
-        internal bool IsAbletPhase => _def is IAbletPhase; 
+        internal bool IsConcreteLayer => _def switch
+        {
+            IAbletSpecialLayer specialLayer => specialLayer.IsConcreteLayer, 
+            _ => true
+        };
 
         public AbletLayer(IAbletLayer def) => _def = def;
     }

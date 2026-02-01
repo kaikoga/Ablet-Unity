@@ -19,9 +19,11 @@ namespace Ablet.Builtin.Utils
         string IAbletDefinition.DisplayName => "Next::" + Target.DisplayName;
 
         // Delegates order of target layer to run just after target layer but before its dependents
-        int IAbletSpecialLayer.LayerPriority => int.MinValue;
+        int IAbletSpecialLayer.LayerPriority => Target.LayerPriority;
         string IAbletSpecialLayer.IdForPriority => Target.Id;
         int IAbletSpecialLayer.InnerPriority => 0;
+
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config)
         {

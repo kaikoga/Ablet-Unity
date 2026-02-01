@@ -49,6 +49,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 100;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) { }
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -65,6 +66,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1000;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -81,6 +83,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1010;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -98,6 +101,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1100;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -114,6 +118,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1110;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -130,6 +135,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1500;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -146,6 +152,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1510;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -162,6 +169,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1800;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -179,6 +187,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1810;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -196,6 +205,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1820;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;
@@ -213,6 +223,7 @@ namespace Ablet.Builtin
         int IAbletSpecialLayer.LayerPriority => 1900;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => false;
 
         void IAbletLayer.Configure(IDependencyConfigurator config) => config.AddDependency<AvatarBuildingRootLayer>();
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument) => null;

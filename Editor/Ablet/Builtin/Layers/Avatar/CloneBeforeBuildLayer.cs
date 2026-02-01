@@ -23,6 +23,7 @@ namespace Ablet.Builtin.Layers.Avatar
         int IAbletSpecialLayer.LayerPriority => int.MinValue;
         string IAbletSpecialLayer.IdForPriority => "";
         int IAbletSpecialLayer.InnerPriority => 0;
+        bool IAbletSpecialLayer.IsConcreteLayer => true;
 
         AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument)
         {

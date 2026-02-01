@@ -18,8 +18,10 @@ namespace Ablet.Builtin.NdmfEmu
         public abstract string DisplayName { get; }
 
         public virtual int LayerPriority => -1000;
-        public string IdForPriority => Id;
-        public int InnerPriority => 0;
+        string IAbletSpecialLayer.IdForPriority => Id;
+        int IAbletSpecialLayer.InnerPriority => 0;
+
+        bool IAbletSpecialLayer.IsConcreteLayer => true;
 
         protected abstract BuildPhase NdmfBuildPhase { get; }
 
