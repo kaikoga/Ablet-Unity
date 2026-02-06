@@ -30,6 +30,8 @@ namespace Ablet.Builtin
             public const string FlushErrorReports =  "Ablet.Avatar.FlushErrorReports";
             public const string CloneBeforeBuild =  "Ablet.Avatar.CloneBeforeBuild";
 
+            public const string PruneMissingScripts =  "Ablet.Avatar.PruneMissingScripts";
+
             public const string MarkAsTargetPlatform =  "Ablet.Avatar.MarkAsTargetPlatform";
 
             public const string PruneEditorOnlyTag =  "Ablet.Avatar.PruneEditorOnlyTag";
