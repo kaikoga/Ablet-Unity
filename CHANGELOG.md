@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-02-06
+
+### Added
+
+- Prunes Missing scripts. (This is just after Importing Phase for now)
+
+### Changed
+
+- Serializing generated assets and prefab is done in the very last order.   
+
+### Fixed
+
+- Really fixed Manual Apply asset cleanup.
+
 ## [2.1.0] - 2026-02-01
 
 ### Added
