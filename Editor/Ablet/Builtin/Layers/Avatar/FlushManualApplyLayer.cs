@@ -51,7 +51,8 @@ namespace Ablet.Builtin.Layers.Avatar
         {
             var maxDuration = AssetPersister.GetManualAssetPaths()
                 .Select(path => DateTime.Now - File.GetCreationTime(path))
-                .Max();
+                .Aggregate(TimeSpan.Zero, (max, time) => max > time ? max : time);
+
             if (maxDuration > ClearManualAssetsDelay)
             {
                 if (EditorUtility.GetDialogOptOutDecision(DialogOptOutDecisionType.ForThisSession, OptOutDecisionKey))
