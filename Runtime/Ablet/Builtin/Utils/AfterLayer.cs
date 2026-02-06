@@ -19,9 +19,9 @@ namespace Ablet.Builtin.Utils
         string IAbletDefinition.DisplayName => "After::" + Target.DisplayName;
 
         // Delegates order of target layer to run after target layer and its dependents 
-        int IAbletSpecialLayer.LayerPriority => Target.LayerPriority;
+        int IAbletSpecialLayer.LayerPriority => int.MaxValue;
         string IAbletSpecialLayer.IdForPriority => Target.Id;
-        int IAbletSpecialLayer.InnerPriority => 1;
+        int IAbletSpecialLayer.InnerPriority => int.MaxValue;
 
         bool IAbletSpecialLayer.IsConcreteLayer => false;
 

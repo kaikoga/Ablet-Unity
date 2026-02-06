@@ -21,11 +21,14 @@ namespace Ablet.Debugging.View.UIElements
 
         static string Format(AbletLayer layer)
         {
+            string FormatLayerPriority(int value) =>
+                value switch
+                {
+                    int.MinValue => "min",
+                    int.MaxValue => "max",
+                    _ => value.ToString()
+                };
             var sb = new StringBuilder();
-            string FormatLayerPriority(int value)
-            {
-                return value == int.MinValue ? "min" : value.ToString();
-            }
             sb.Append(FormatLayerPriority(layer.LayerPriority));
             sb.Append(",");
             sb.Append(FormatLayerPriority(layer.InnerPriority));

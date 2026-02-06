@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ablet.API;
+using Ablet.API.Internal;
 using Ablet.API.V1;
 using Ablet.API.V1.Attributes;
 using Ablet.API.V1.Building;
@@ -20,7 +21,8 @@ namespace Ablet.Builtin.Layers.Avatar
         string IAbletDefinition.DisplayName => "Persist Generated Assets";
         void IAbletLayer.Configure(IDependencyConfigurator config)
         {
-            config.AddDependency<NextLayer<ExportingPhase>>();
+            // FIXME: AfterLayer<AvatarBuildingRootLayer> is not working
+            config.AddDependency<AfterLayer<AvatarBuildingRootLayer>>();
         }
 
         AbletProcedure IAbletLayer.ToProcedure(IBuildArgument argument) => new PersistGeneratedAssetsProcedure();

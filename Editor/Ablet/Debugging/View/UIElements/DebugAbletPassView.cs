@@ -22,11 +22,14 @@ namespace Ablet.Debugging.View.UIElements
 
         public static string Format(AbletPass pass)
         {
+            string FormatLayerPriority(int value) =>
+                value switch
+                {
+                    int.MinValue => "min",
+                    int.MaxValue => "max",
+                    _ => value.ToString()
+                };
             var sb = new StringBuilder();
-            string FormatLayerPriority(int value)
-            {
-                return value == int.MinValue ? "min" : value.ToString();
-            }
             sb.AppendJoin("", Enumerable.Repeat("  ", pass.Depth));
             sb.Append(" ");
             sb.Append(pass.IsContainerPass ? "[" : "<");
