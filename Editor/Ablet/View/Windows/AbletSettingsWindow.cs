@@ -1,154 +1,124 @@
+using System;
 using Ablet.Repositories;
+using Ablet.View.UIElements;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 #if ABLET_NDMF
 using Ablet.Ndmf;
-#endif
-
-#if ABLET_NDMF && ABLET_LOCH
-using Silksprite.Loch.IMGUI;
 #endif
 
 namespace Ablet.View.Windows
 {
     class AbletSettingsWindow : EditorWindow
     {
-        Vector2 _scrollPosition = new Vector2(0, 0);
-
-        void OnGUI()
-        {
-            void HelpLabel(string message)
-            {
-                GUILayout.Label(message.Replace(" ", " "), new GUIStyle{wordWrap = true});
-            }
-
-            var isCompiling = EditorApplication.isCompiling || EditorApplication.isUpdating;
-            if (isCompiling)
-            {
-                HelpLabel("設定を更新中なのでしばらく待ってね");
-            }
-
-            _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
-
-            using var _ = new EditorGUI.DisabledScope(isCompiling);
-
-            var settings = EditorSettingsRepository.Instance.Value;
-#if ABLET_NDMF
-            GUILayout.Label("一括設定", new GUIStyle { fontStyle = FontStyle.Bold });
-            if (GUILayout.Button("Ablet 優先設定"))
-            {
-                EditorSettingsRepository.Instance.Save(EditorSettingsValue.DefaultPreferAblet);
-                NdmfConfigUpdater.UpdateNdmfConfig();
-            }
-            HelpLabel("Abletをメインで利用します。\nNDMF専用プラグインをAbletの上で互換動作させます。\nハイブリッドプラグインはAbletプラグインとして動作します。\nビルドはAbletから行ってください。");
-            if (GUILayout.Button("NDMF 優先設定"))
-            {
-                EditorSettingsRepository.Instance.Save(EditorSettingsValue.DefaultPreferNdmf);
-                NdmfConfigUpdater.RevertNdmfConfig();
-            }
-            HelpLabel("NDMFをメインで利用します。\nAblet専用プラグインをNDMFの上で互換動作させます。\nハイブリッドプラグインはNDMFプラグインとして動作します。\nビルドはNDMFから行ってください。");
-#endif
-            GUILayout.Space(EditorGUIUtility.singleLineHeight);
-            using (var change = new EditorGUI.ChangeCheckScope())
-            {
-                // ReSharper disable RedundantAssignment
-                var abletPreferNdmf = settings.AbletPreferNdmf;
-                var applyOnPlay = settings.ApplyOnPlay;
-                var applyOnPlatformBuild = settings.ApplyOnPlatformBuild;
-                var autoOpenConsoleWindow = settings.AutoOpenConsoleWindow;
-                var abletOnNdmf = settings.IsAbletOnNdmf;
-                var ndmfOnAblet = settings.IsNdmfOnAblet;
-                var preferAblet = settings.PreferAblet;
-                // ReSharper enable RedundantAssignment
-
-#if ABLET_NDMF
-                GUILayout.Label("全体設定", new GUIStyle { fontStyle = FontStyle.Bold });
-                abletPreferNdmf = GUILayout.Toggle(abletPreferNdmf, "Ablet Prefer NDMF");
-                HelpLabel("オンの場合、NDMFの機能を使用する設定になります。Abletの同等の機能は非表示になります。");
-                GUILayout.Space(EditorGUIUtility.singleLineHeight);
-#endif
-
-                GUILayout.Label("保存される設定", new GUIStyle { fontStyle = FontStyle.Bold });
-                if (!abletPreferNdmf)
-                {
-                    applyOnPlay = GUILayout.Toggle(applyOnPlay, "Apply on Play");
-                    HelpLabel("プレイモードに遷移した際、AbletのApply on Playを適用します。");
-#if ABLET_NDMF
-                    HelpLabel("オンの場合、NDMFのApply on Playは無効化されます。");
-#endif
-                    applyOnPlatformBuild = GUILayout.Toggle(applyOnPlatformBuild, "Apply on Platform Build");
-                    HelpLabel("プラットフォームへのエクスポートを行う際、AbletのApply on Platform Buildを適用します。");
-#if ABLET_NDMF
-                    HelpLabel("オンの場合、NDMFのApply on Buildは無効化されます。");
-#endif
-                }
-                autoOpenConsoleWindow = GUILayout.Toggle(autoOpenConsoleWindow, "Auto Open Console Window");
-                HelpLabel("オンの場合、Abletのコンソールが更新された際に自動的に表示します。");
-#if ABLET_NDMF
-                GUILayout.Space(EditorGUIUtility.singleLineHeight);
-                GUILayout.Label("保存される設定 (NDMF)", new GUIStyle { fontStyle = FontStyle.Bold });
-                abletOnNdmf = GUILayout.Toggle(abletOnNdmf, "Ablet on NDMF");
-                HelpLabel("NDMFからAblet専用プラグインを呼び出します。");
-
-                if (!abletPreferNdmf)
-                {
-                    var isNdmfOnAbletAvailable = NdmfConfigAccess.IsNdmfOnAbletAvailable();
-                    using (new EditorGUI.DisabledScope(!isNdmfOnAbletAvailable))
-                    {
-                        ndmfOnAblet = ndmfOnAblet && !abletOnNdmf;
-                        ndmfOnAblet = GUILayout.Toggle(ndmfOnAblet, "NDMF on Ablet");
-                        if (ndmfOnAblet) abletOnNdmf = false;
-                        HelpLabel("AbletからNDMF専用プラグインを呼び出します。");
-                    }
-                    if (!isNdmfOnAbletAvailable)
-                    {
-                        HelpLabel("NDMFのApply on Playが有効なので、NDMF on Abletを有効にできません。");
-                    }
-                    preferAblet = GUILayout.Toggle(preferAblet, "Prefer Ablet");
-                    HelpLabel("Ablet NDMFハイブリッドプラグインの動作を設定します。\nオンの場合、Abletプラグインとして動作します。\nオフの場合、NDMFプラグインとして動作します。");
-                }
-
-#if ABLET_LOCH
-                var ndmfSync = Silksprite.Loch.Core.NdmfSyncSettingRepository.Instance;
-                var isNdmfSync = ndmfSync.IsNdmfSyncEnabled;
-                isNdmfSync = GUILayout.Toggle(isNdmfSync, "Sync Translation (Loch) with NDMF");
-                ndmfSync.IsNdmfSyncEnabled = isNdmfSync;
-                HelpLabel("オンの場合、NDMFの言語設定を適用します。");
-                using (new EditorGUI.DisabledScope(isNdmfSync))
-                {
-                    LEditorGUILayout.GlobalLanguageSelector();
-                }
-#endif
-
-#endif
-                if (change.changed)
-                {
-                    settings.AbletPreferNdmf = abletPreferNdmf;
-                    settings.ApplyOnPlay = applyOnPlay;
-                    settings.ApplyOnPlatformBuild = applyOnPlatformBuild;
-                    settings.AutoOpenConsoleWindow = autoOpenConsoleWindow;
-                    settings.NdmfInteropMode = abletOnNdmf ? NdmfInteropMode.AbletOnNdmf
-                        : ndmfOnAblet ? NdmfInteropMode.NdmfOnAblet
-                        : NdmfInteropMode.None;
-                    settings.PreferAblet = preferAblet;
-                    EditorSettingsRepository.Instance.Save();
-                }
-                GUILayout.Space(EditorGUIUtility.singleLineHeight);
-                GUILayout.Label("一時的な設定", new GUIStyle { fontStyle = FontStyle.Bold });
-                EditorStateRepository.Instance.IsEnhancedInplacePreview = GUILayout.Toggle(EditorStateRepository.Instance.IsEnhancedInplacePreview, "Enhance Inplace Preview");
-                HelpLabel("AbletのInplace Previewを行う際、一部のAbletプラグインの編集を適用します。");
-            }
-            EditorGUILayout.EndScrollView();
-        }
-
         [MenuItem("Tools/Ablet/Ablet Settings Window", false, 80)]
         static void ShowWindow()
         {
             var window = GetWindow<AbletSettingsWindow>() ?? CreateInstance<AbletSettingsWindow>();
-            window.titleContent = new GUIContent("Ablet Settings Window");
-            window.minSize = new Vector2(600f, 400f);
             window.Show();
+        }
+
+        AbletSettingsWindowView? _view;
+
+        void CreateGUI()
+        {
+            titleContent = new GUIContent("Ablet Settings Window");
+            minSize = new Vector2(600f, 400f);
+            _view = new AbletSettingsWindowView(OnInnerGUI);
+            
+#if ABLET_NDMF
+            _view.PresetPreferAbletButton.clicked += () =>
+            {
+                EditorSettingsRepository.Instance.Save(EditorSettingsValue.DefaultPreferAblet);
+                NdmfConfigUpdater.UpdateNdmfConfig();
+            };
+            _view.PresetPreferNdmfButton.clicked += () =>
+            {
+                EditorSettingsRepository.Instance.Save(EditorSettingsValue.DefaultPreferNdmf);
+                NdmfConfigUpdater.RevertNdmfConfig();
+            };
+#endif
+            _view.OnEditorSettingsChanged += () =>
+            {
+                var settings = EditorSettingsRepository.Instance.Value;
+                settings.AbletPreferNdmf = _view.AbletPreferNdmfToggle.value;
+                settings.ApplyOnPlay = _view.ApplyOnPlayToggle.value;
+                settings.ApplyOnPlatformBuild = _view.ApplyOnPlatformBuildToggle.value;
+                settings.AutoOpenConsoleWindow = _view.AutoOpenConsoleWindowToggle.value;
+                settings.NdmfInteropMode = _view.AbletOnNdmfToggle.value ? NdmfInteropMode.AbletOnNdmf
+                    : _view.NdmfOnAbletToggle.value ? NdmfInteropMode.NdmfOnAblet
+                    : NdmfInteropMode.None;
+                settings.PreferAblet = _view.PreferAbletToggle.value;
+                EditorSettingsRepository.Instance.Save();
+            };
+            EditorSettingsRepository.Instance.OnChanged += Redraw;
+            Redraw();
+
+#if ABLET_NDMF && ABLET_LOCH
+            _view.SyncTranslationToggle.RegisterValueChangedCallback(evt =>
+                Silksprite.Loch.Core.NdmfSyncSettingRepository.Instance.IsNdmfSyncEnabled = evt.newValue);
+            Silksprite.Loch.Core.LochRepository.Instance.OnLanguageChanged += RedrawNdmfSync;
+            RedrawNdmfSync();
+#endif
+
+            _view.EnhanceInplacePreviewToggle.RegisterValueChangedCallback(evt =>
+                EditorStateRepository.Instance.IsEnhancedInplacePreview = evt.newValue);
+            EditorStateRepository.Instance.OnChanged += RedrawEnhanceInplacePreview;
+            RedrawEnhanceInplacePreview();
+
+            rootVisualElement.Add(_view);
+        }
+
+        void OnDisable()
+        {
+            EditorSettingsRepository.Instance.OnChanged -= Redraw;
+#if ABLET_NDMF && ABLET_LOCH
+            Silksprite.Loch.Core.LochRepository.Instance.OnLanguageChanged -= RedrawNdmfSync;
+#endif
+            EditorStateRepository.Instance.OnChanged -= RedrawEnhanceInplacePreview;
+        }
+
+        void Redraw()
+        {
+            if (_view == null)
+            {
+                return;
+            }
+            var settings = EditorSettingsRepository.Instance.Value;
+#if ABLET_NDMF
+            _view.Draw(settings, true);
+#else
+            _view.Draw(settings, false);
+#endif
+        }
+
+#if ABLET_NDMF && ABLET_LOCH
+        void RedrawNdmfSync()
+        {
+            _view?.SyncTranslationToggle.SetValueWithoutNotify(Silksprite.Loch.Core.NdmfSyncSettingRepository.Instance.IsNdmfSyncEnabled);
+        }
+#endif
+
+        void RedrawEnhanceInplacePreview()
+        {
+            _view?.EnhanceInplacePreviewToggle.SetValueWithoutNotify(EditorStateRepository.Instance.IsEnhancedInplacePreview);
+        }
+
+        void OnInnerGUI()
+        {
+            if (_view == null)
+            {
+                return;
+            }
+            var isCompiling = EditorApplication.isCompiling || EditorApplication.isUpdating;
+            _view.IsCompilingLabel.style.display = isCompiling ? DisplayStyle.Flex : DisplayStyle.None;
+            _view.Container.SetEnabled(!isCompiling);
+
+            var isNdmfOnAbletAvailable = NdmfConfigAccess.IsNdmfOnAbletAvailable();
+            _view.NdmfOnAbletContainer.SetEnabled(isNdmfOnAbletAvailable);
+            _view.NdmfOnAbletDisabledLabel.style.display = isNdmfOnAbletAvailable ? DisplayStyle.None : DisplayStyle.Flex;
         }
     }
 }

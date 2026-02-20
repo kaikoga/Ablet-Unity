@@ -9,6 +9,7 @@ namespace Ablet
         static void Init()
         {
             EditorApplication.delayCall += SetChecked;
+            EditorSettingsRepository.Instance.OnChanged += SetChecked;
             EditorStateRepository.Instance.OnChanged += SetChecked;
         }
 

@@ -1,3 +1,31 @@
+AbletSettingsWindowView {
+    flex-grow: 1;
+}
+
+AbletSettingsWindowView .section {
+    margin-bottom: 4px;
+}
+
+AbletSettingsWindowView .field {
+    margin-bottom: 2px;
+}
+
+AbletSettingsWindowView .ndmf {
+    display: none;
+}
+
+AbletSettingsWindowView.ndmfVisible .ndmf {
+    display: flex;
+}
+
+AbletSettingsWindowView .forAblet {
+    display: flex;
+}
+
+AbletSettingsWindowView.abletPreferNdmf .forAblet {
+    display: none;
+}
+
 AbletConsoleWindowView {
     flex-grow: 1;
 }
