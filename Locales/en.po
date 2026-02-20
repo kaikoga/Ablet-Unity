@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-02-20 11:17+0900\n"
+"POT-Creation-Date: 2026-02-21 06:14+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,6 +28,130 @@ msgstr "Specify Entrypoint Object"
 #: Locales/Translations.cs:13
 msgid "AbletConsoleWindowView::sceneEntrypointsPopup"
 msgstr "Select Scene Entrypoints"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::abletOnNdmfInfoLabel"
+msgstr "Executes Ablet Only Plugins from NDMF."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::abletOnNdmfToggle"
+msgstr "Ablet on NDMF"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::abletPreferNdmfInfoLabel"
+msgstr "If enabled, Ablet will proactively utilize NDMF features, and hides similar Ablet features."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::abletPreferNdmfToggle"
+msgstr "Ablet Prefer NDMF"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::applyOnPlatformBuildInfoLabel"
+msgstr "When exporting for platforms, applies Apply on Platform Build of Ablet."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::applyOnPlatformBuildNdmfInfoLabel"
+msgstr "If enabled, Apply on Build of NDMF will be disabled."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::applyOnPlatformBuildToggle"
+msgstr "Apply on Platform Build"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::applyOnPlayInfoLabel"
+msgstr "When entering Play Mode, applies Apply on Play of Ablet."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::applyOnPlayNdmfInfoLabel"
+msgstr "If enabled, Apply on Play of NDMF will be disabled."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::applyOnPlayToggle"
+msgstr "Apply on Play"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::autoOpenConsoleWindowInfoLabel"
+msgstr "If enabled, Ablet Console will automatically open when information is updated."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::autoOpenConsoleWindowToggle"
+msgstr "Auto Open Console Window"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::enhanceInplacePreviewInfoLabel"
+msgstr "Applies modifications by some Ablet Plugins while Inplace Preview of Ablet is active."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::enhanceInplacePreviewToggle"
+msgstr "Enhance Inplace Preview"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::generalHeader"
+msgstr "General Settings"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::isCompilingLabel"
+msgstr "Waiting for settings to update..."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::ndmfOnAbletDisabledLabel"
+msgstr "NDMF on Ablet cannot be enabled while Apply on Play of NDMF is enabled."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::ndmfOnAbletInfoLabel"
+msgstr "Executes NDMF Only Plugins from Ablet."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::ndmfOnAbletToggle"
+msgstr "NDMF on Ablet"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::persistedHeader"
+msgstr "Persisted Settings"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::persistedNdmfHeader"
+msgstr "Persisted Settings (NDMF)"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::preferAbletInfoLabel"
+msgstr "Configures how Ablet-NDMF Hybrid Plugins operate.\\nIf enabled, they operate as Ablet Plugins.\\nIf disabled, they operate as NDMF Plugins."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::preferAbletToggle"
+msgstr "Prefer Ablet"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::presetPreferAbletButton"
+msgstr "Preset: Prefer Ablet"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::presetPreferAbletInfoLabel"
+msgstr "Use Ablet as the primary toolset.\\nNDMF Only Plugins are executed by compatibility feature of Ablet.\\nHybrid Plugins will work as Ablet Plugins.\\nPlease initiate builds from Ablet."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::presetPreferNdmfButton"
+msgstr "Preset: Prefer NDMF"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::presetPreferNdmfInfoLabel"
+msgstr "Use NDMF as the primary toolset.\\nAblet Only Plugins are executed by compatibility feature for NDMF.\\nHybrid Plugins will work as NDMF Plugins.\\nPlease initiate builds from NDMF."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::presetsHeader"
+msgstr "Presets"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::syncTranslationInfoLabel"
+msgstr "If enabled, applies NDMF language setting."
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::syncTranslationToggle"
+msgstr "Sync Translation (Loch) with NDMF"
+
+#: Editor/Ablet/View/Uxml/AbletSettingsWindowView.uxml
+msgid "AbletSettingsWindowView::temporaryHeader"
+msgstr "Temporary Settings"
 
 #: Editor/Ablet/View/Uxml/BuildReporterStateView.uxml
 msgid "BuildReporterStateView::settingsButton"
@@ -73,18 +197,18 @@ msgstr ""
 msgid "DebugLayerDependencyWindowView::planButton"
 msgstr ""
 
-#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:57
+#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:58
 msgid "UniVRM10ExportExtension::exportButton"
 msgstr "Export VRM1.0 Avatar..."
 
-#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:31
+#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:32
 msgid "UniVRM10ExportExtension::saveButton"
 msgstr "Save VRM1.0 File"
 
-#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:57
+#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:58
 msgid "UniVRMExportExtension::exportButton"
 msgstr "Export VRM0.x Avatar..."
 
-#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:31
+#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:32
 msgid "UniVRMExportExtension::saveButton"
 msgstr "Save VRM0.x File"
