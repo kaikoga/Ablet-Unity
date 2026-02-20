@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2026-02-20 11:17+0900\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: Tr;Loc\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: Editor/Ablet/View/Uxml/AbletConsoleWindowView.uxml
+msgid "AbletConsoleWindowView::clearReports"
+msgstr "クリア"
+
+#: Editor/Ablet/View/Uxml/AbletConsoleWindowView.uxml
+#: Locales/Translations.cs:14
+msgid "AbletConsoleWindowView::entrypointObjectField"
+msgstr "エントリポイントを直接指定する"
+
+#: Editor/Ablet/View/Uxml/AbletConsoleWindowView.uxml
+#: Locales/Translations.cs:13
+msgid "AbletConsoleWindowView::sceneEntrypointsPopup"
+msgstr "シーン上のエントリポイントを選択する"
+
+#: Editor/Ablet/View/Uxml/BuildReporterStateView.uxml
+msgid "BuildReporterStateView::settingsButton"
+msgstr "..."
+
+#: Editor/Ablet/View/Uxml/BuildReportListView.uxml
+msgid "BuildReportListView::entrypointObjectField"
+msgstr "エントリポイント"
+
+#: Editor/Ablet/View/Uxml/BuildReportListView.uxml
+msgid "BuildReportListView::entrypointSceneAssetField"
+msgstr "シーン"
+
+#: Editor/Ablet/View/Uxml/BuildReportListView.uxml
+msgid "BuildReportListView::manualApplyButton"
+msgstr "Manual Apply"
+
+#: Editor/Ablet/View/Uxml/BuildReportListView.uxml
+msgid "BuildReportListView::noEntrypointMessageLabel"
+msgstr "不明なエントリポイント"
+
+#: Editor/Ablet/View/Uxml/BuildReportListView.uxml
+msgid "BuildReportListView::openSceneAdditiveButton"
+msgstr "シーンをAdditiveで開く"
+
+#: Editor/Ablet/View/Uxml/BuildReportListView.uxml
+msgid "BuildReportListView::openSceneButton"
+msgstr "シーンを開く"
+
+#: Editor/Ablet/Debugging/View/Uxml/DebugBuildPlanWindowView.uxml
+msgid "DebugBuildPlanWindowView::copyButton"
+msgstr ""
+
+#: Editor/Ablet/Debugging/View/Uxml/DebugLayerDependencyWindowView.uxml
+msgid "DebugLayerDependencyWindowView::copyLayerDepsButton"
+msgstr ""
+
+#: Editor/Ablet/Debugging/View/Uxml/DebugLayerDependencyWindowView.uxml
+msgid "DebugLayerDependencyWindowView::partialPlanButton"
+msgstr ""
+
+#: Editor/Ablet/Debugging/View/Uxml/DebugLayerDependencyWindowView.uxml
+msgid "DebugLayerDependencyWindowView::planButton"
+msgstr ""
+
+#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:57
+msgid "UniVRM10ExportExtension::exportButton"
+msgstr "VRM1.0 アバターをエクスポート..."
+
+#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:31
+msgid "UniVRM10ExportExtension::saveButton"
+msgstr "VRM1.0 ファイルを保存する"
+
+#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:57
+msgid "UniVRMExportExtension::exportButton"
+msgstr "VRM0.x アバターを出力..."
+
+#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:31
+msgid "UniVRMExportExtension::saveButton"
+msgstr "VRM0.x ファイルを保存する"

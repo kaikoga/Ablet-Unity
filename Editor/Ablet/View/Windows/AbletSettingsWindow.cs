@@ -6,6 +6,10 @@ using UnityEngine;
 using Ablet.Ndmf;
 #endif
 
+#if ABLET_NDMF && ABLET_LOCH
+using Silksprite.Loch.IMGUI;
+#endif
+
 namespace Ablet.View.Windows
 {
     class AbletSettingsWindow : EditorWindow
@@ -104,6 +108,19 @@ namespace Ablet.View.Windows
                     preferAblet = GUILayout.Toggle(preferAblet, "Prefer Ablet");
                     HelpLabel("Ablet NDMFハイブリッドプラグインの動作を設定します。\nオンの場合、Abletプラグインとして動作します。\nオフの場合、NDMFプラグインとして動作します。");
                 }
+
+#if ABLET_LOCH
+                var ndmfSync = Silksprite.Loch.Core.NdmfSyncSettingRepository.Instance;
+                var isNdmfSync = ndmfSync.IsNdmfSyncEnabled;
+                isNdmfSync = GUILayout.Toggle(isNdmfSync, "Sync Translation (Loch) with NDMF");
+                ndmfSync.IsNdmfSyncEnabled = isNdmfSync;
+                HelpLabel("オンの場合、NDMFの言語設定を適用します。");
+                using (new EditorGUI.DisabledScope(isNdmfSync))
+                {
+                    LEditorGUILayout.GlobalLanguageSelector();
+                }
+#endif
+
 #endif
                 if (change.changed)
                 {

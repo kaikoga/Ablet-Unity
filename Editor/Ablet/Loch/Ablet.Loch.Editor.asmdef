@@ -1,16 +1,9 @@
 {
-    "name": "Ablet.View.Editor",
-    "rootNamespace": "Ablet.View",
+    "name": "Ablet.Loch.Editor",
+    "rootNamespace": "Ablet.Loch",
     "references": [
-        "nadena.dev.ndmf",
         "Loch",
-        "Loch.Editor",
-        "Ablet",
-        "Ablet.Editor",
-        "Ablet.Ndmf.Editor",
-        "Ablet.API",
-        "Ablet.EditorAPI.Editor",
-        "Ablet.Builtin"
+        "Loch.Editor"
     ],
     "includePlatforms": [
         "Editor"
@@ -22,11 +15,6 @@
     "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [
-        {
-            "name": "nadena.dev.ndmf",
-            "expression": "(1.8.0-a,2.0-a)",
-            "define": "ABLET_NDMF"
-        },
         {
             "name": "net.kaikoga.loch",
             "expression": "",

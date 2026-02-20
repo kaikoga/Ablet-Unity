@@ -3,7 +3,6 @@ using System.IO;
 using Ablet.API.V1;
 using Ablet.API.V1.Attributes;
 using Ablet.Building;
-using Ablet.Building.Ephemeral;
 using Ablet.EditorAPI.V1.Extensions.Platform;
 using Ablet.Registries;
 using Ablet.Utils;
@@ -11,6 +10,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using VRM;
+using static Ablet.Loch.Tools.AbletLochTool;
+using Button = Ablet.Loch.UIElements.AEditor.Button;
 using Object = UnityEngine.Object;
 
 namespace Ablet.Builtin.UniVRM
@@ -27,7 +28,11 @@ namespace Ablet.Builtin.UniVRM
                 const string lastDirectoryPrefsKey = "net.kaikoga.ativ.VRM0.LastDirectory";
                 var lastDirectory = PlayerPrefs.GetString(lastDirectoryPrefsKey, "");
 
-                var filePath = EditorUtility.SaveFilePanel("Save VRM0.x File", lastDirectory, $"{entrypointObject.name}.vrm", ".vrm");
+                var filePath = EditorUtility.SaveFilePanel(
+                    Tr("UniVRMExportExtension::saveButton"),
+                    lastDirectory,
+                    $"{entrypointObject.name}.vrm",
+                    ".vrm");
                 if (!string.IsNullOrWhiteSpace(filePath))
                 {
                     var directory = Path.GetDirectoryName(filePath) ?? "";
@@ -50,10 +55,9 @@ namespace Ablet.Builtin.UniVRM
             
             return new Button(OnBuild)
             {
-                text = "Export VRM0.x Avatar"
+                loc = Loc("UniVRMExportExtension::exportButton"),
+                text = "Export VRM0.x Avatar..."
             };
         }
-        
-        
     }
 }

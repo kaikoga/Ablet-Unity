@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dcbc496cfa546e9b08407d1d8eb1005, type: 3}
+  m_Name: Ablet.Loch
+  m_EditorClassIdentifier: 
+  key: Ablet
+  assemblies:
+  - Ablet.
+  po:
+  - {fileID: 9010515335742159986, guid: 1115718f3dd748b69b54700d1af61dd3, type: 3}
+  - {fileID: 9010515335742159986, guid: b23cc03eb4ba443b993877e5d8b8235c, type: 3}

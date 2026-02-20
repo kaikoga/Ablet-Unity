@@ -8,7 +8,7 @@ using UnityEditor.UIElements;
 
 namespace Ablet.View.UIElements
 {
-    sealed class GameObjectPopupField : PopupField<GameObject>
+    sealed class GameObjectPopupField : Silksprite.Loch.UIElements.LEditor.PopupField<GameObject>
     {
         public GameObjectPopupField()
         {

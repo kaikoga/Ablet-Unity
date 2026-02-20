@@ -8,6 +8,8 @@
         "UniHumanoid",
         "VRM",
         "UniVRM.Editor",
+        "Loch",
+        "Ablet.Loch.Editor",
         "Ablet",
         "Ablet.Editor",
         "Ablet.API",
