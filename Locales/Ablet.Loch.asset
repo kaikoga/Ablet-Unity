@@ -14,7 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Ablet
   assemblies:
-  - Ablet.
+  - Ablet
+  - Ablet.AAO.Ndmf.Editor
+  - Ablet.API
+  - Ablet.Builtin
+  - Ablet.Builtin.Editor
+  - Ablet.Builtin.NdmfEmu
+  - Ablet.Builtin.NdmfEmu.Editor
+  - Ablet.Builtin.UniVRM
+  - Ablet.Builtin.UniVRM.Editor
+  - Ablet.Builtin.UniVRM10
+  - Ablet.Builtin.UniVRM10.Editor
+  - Ablet.Builtin.VRChat.Avatars
+  - Ablet.Builtin.VRChat.Avatars.Editor
+  - Ablet.Editor
+  - Ablet.EditorAPI.Editor
+  - Ablet.ErrorReporting
+  - Ablet.Hooks.Av3Emulator.Editor
+  - Ablet.Hooks.Default.Editor
+  - Ablet.Hooks.NdmfPlugin.Editor
+  - Ablet.Hooks.VRChat.Avatars.Editor
+  - Ablet.InternalAPI.Editor
+  - Ablet.Locales
+  - Ablet.Loch.Editor
+  - Ablet.Ndmf.Editor
+  - Ablet.Previewing.Editor
+  - Ablet.View.Editor
+  assemblyPrefixes: []
   po:
   - {fileID: 9010515335742159986, guid: 1115718f3dd748b69b54700d1af61dd3, type: 3}
   - {fileID: 9010515335742159986, guid: b23cc03eb4ba443b993877e5d8b8235c, type: 3}
