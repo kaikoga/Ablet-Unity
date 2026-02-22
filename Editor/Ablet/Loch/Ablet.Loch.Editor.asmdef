@@ -3,7 +3,8 @@
     "rootNamespace": "Ablet.Loch",
     "references": [
         "Loch",
-        "Loch.Editor"
+        "Loch.Editor",
+        "nadena.dev.ndmf"
     ],
     "includePlatforms": [
         "Editor"
@@ -19,6 +20,11 @@
             "name": "net.kaikoga.loch",
             "expression": "",
             "define": "ABLET_LOCH"
+        },
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "",
+            "define": "ABLET_NDMF"
         }
     ],
     "noEngineReferences": false
