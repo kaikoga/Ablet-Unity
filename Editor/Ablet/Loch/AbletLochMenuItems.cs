@@ -11,7 +11,7 @@ namespace Ablet.Loch
         static void Init()
         {
             EditorApplication.delayCall += SetChecked;
-            LochRepository.Instance.OnLanguageChanged += SetChecked;
+            LochRepository.Instance.OnLocaleChanged += SetChecked;
         }
 
         [MenuItem("Tools/Ablet/Sync Translation (Loch) with NDMF", false, 44)]

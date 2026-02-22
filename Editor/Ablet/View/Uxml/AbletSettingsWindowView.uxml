@@ -54,7 +54,7 @@
             <engine:VisualElement name="syncTranslationContainer" class="field">
                 <aeditor:Toggle name="syncTranslationToggle" text="Sync Translation (Loch) with NDMF" />
                 <aeditor:Label name="syncTranslationInfoLabel" parse-escape-sequences="true" text="If enabled, applies NDMF language setting." style="white-space: normal;" />
-                <aeditor:GlobalLanguageSelector />
+                <aeditor:GlobalLocaleSelector />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement class="section" name="temporaryContainer">

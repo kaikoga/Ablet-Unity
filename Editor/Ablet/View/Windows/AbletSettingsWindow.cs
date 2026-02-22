@@ -59,7 +59,7 @@ namespace Ablet.View.Windows
 #if ABLET_NDMF && ABLET_LOCH
             _view.SyncTranslationToggle.RegisterValueChangedCallback(evt =>
                 Silksprite.Loch.Core.NdmfSyncSettingRepository.Instance.IsNdmfSyncEnabled = evt.newValue);
-            Silksprite.Loch.Core.LochRepository.Instance.OnLanguageChanged += RedrawNdmfSync;
+            Silksprite.Loch.Core.LochRepository.Instance.OnLocaleChanged += RedrawNdmfSync;
             RedrawNdmfSync();
 #endif
 
@@ -75,7 +75,7 @@ namespace Ablet.View.Windows
         {
             EditorSettingsRepository.Instance.OnChanged -= Redraw;
 #if ABLET_NDMF && ABLET_LOCH
-            Silksprite.Loch.Core.LochRepository.Instance.OnLanguageChanged -= RedrawNdmfSync;
+            Silksprite.Loch.Core.LochRepository.Instance.OnLocaleChanged -= RedrawNdmfSync;
 #endif
             EditorStateRepository.Instance.OnChanged -= RedrawEnhanceInplacePreview;
         }

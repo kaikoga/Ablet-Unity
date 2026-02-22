@@ -1,14 +1,15 @@
+using Silksprite.Loch.UIElements.LEditor;
 using UnityEngine.UIElements;
 
 #if ABLET_LOCH
-using BaseLanguageSelector = Silksprite.Loch.UIElements.LEditor.LanguageSelector;
+
 #else
 using BaseLanguageSelector = UnityEngine.UIElements.VisualElement;
 #endif
 
 namespace Ablet.Loch.UIElements.AEditor
 {
-    public class GlobalLanguageSelector : BaseLanguageSelector
+    public class GlobalLocaleSelector : LocaleSelector
     {
 #if !ABLET_LOCH
 
@@ -20,7 +21,7 @@ namespace Ablet.Loch.UIElements.AEditor
         }
 
 #endif
-        public new class UxmlFactory : UxmlFactory<GlobalLanguageSelector, UxmlTraits> {}
-        public new class UxmlTraits : BaseLanguageSelector.UxmlTraits { }
+        public new class UxmlFactory : UxmlFactory<GlobalLocaleSelector, UxmlTraits> {}
+        public new class UxmlTraits : LocaleSelector.UxmlTraits { }
     }
 }
