@@ -12,9 +12,11 @@
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
+    "overrideReferences": true,
     "precompiledReferences": [
-        "VRCSDK3A.dll"
+        "VRCCore-Editor.dll",
+        "VRCSDK3A.dll",
+        "VRCSDKBase.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": ["ABLET_VRCSDK3_AVATARS"],
