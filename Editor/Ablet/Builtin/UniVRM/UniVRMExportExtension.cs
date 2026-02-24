@@ -29,7 +29,7 @@ namespace Ablet.Builtin.UniVRM
                 var lastDirectory = PlayerPrefs.GetString(lastDirectoryPrefsKey, "");
 
                 var filePath = EditorUtility.SaveFilePanel(
-                    Tr("UniVRMExportExtension::saveButton"),
+                    Tr("UniVRMExportExtension::Title"), // "Save VRM0.x File"
                     lastDirectory,
                     $"{entrypointObject.name}.vrm",
                     ".vrm");

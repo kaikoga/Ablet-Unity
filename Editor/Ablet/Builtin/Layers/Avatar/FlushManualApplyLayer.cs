@@ -7,10 +7,9 @@ using Ablet.API.V1;
 using Ablet.API.V1.Attributes;
 using Ablet.API.V1.Building;
 using Ablet.Building;
-using Ablet.Building.Ephemeral;
 using Ablet.Builtin.Utils;
-using Ablet.Utils;
 using UnityEditor;
+using static Silksprite.Loch.Tools.LochTool;
 
 namespace Ablet.Builtin.Layers.Avatar
 {
@@ -60,10 +59,10 @@ namespace Ablet.Builtin.Layers.Avatar
                     return;
                 }
                 if (EditorUtility.DisplayDialog(
-                        "Ablet: Manual Apply",
-                        "You have old outputs of Manual Apply, do you wish to clean up?",
-                        "Delete Manual Apply outputs",
-                        "Do not clear (for this session)"))
+                        Loc("FlushManualApplyLayer::Title").Tr,
+                        Loc("FlushManualApplyLayer::Message?").Tr,
+                        Loc("FlushManualApplyLayer::Ok").Tr,
+                        Loc("FlushManualApplyLayer::Cancel").Tr))
                 {
                     AssetPersister.ClearManualAssets();
                 }
