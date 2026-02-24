@@ -20,7 +20,7 @@
             </engine:TwoPaneSplitView>
         </engine:VisualElement>
         <engine:VisualElement name="right-pane">
-            <aeditor:LanguageSelector />
+            <aeditor:GlobalLocaleSelector />
             <ablet:GameObjectPopupField label="Select Scene Entrypoints" name="sceneEntrypointsPopup" />
             <aeditor:ObjectField type="UnityEngine.GameObject, UnityEngine.CoreModule" label="Specify Entrypoint Object" name="entrypointObjectField" />
             <engine:ScrollView>
