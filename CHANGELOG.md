@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-02-26
+
+### Added
+
+- Added i18n support when Loch is also installed. Loch is an optional dependency for Ablet.
+
 ## [2.2.0] - 2026-02-06
 
 ### Added
