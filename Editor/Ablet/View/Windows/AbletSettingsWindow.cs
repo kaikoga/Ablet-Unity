@@ -116,9 +116,15 @@ namespace Ablet.View.Windows
             _view.IsCompilingLabel.style.display = isCompiling ? DisplayStyle.Flex : DisplayStyle.None;
             _view.Container.SetEnabled(!isCompiling);
 
-            var isNdmfOnAbletAvailable = NdmfConfigAccess.IsNdmfOnAbletAvailable();
+            var isNdmfOnAbletAvailable = IsNdmfOnAbletAvailable();
             _view.NdmfOnAbletContainer.SetEnabled(isNdmfOnAbletAvailable);
             _view.NdmfOnAbletDisabledLabel.style.display = isNdmfOnAbletAvailable ? DisplayStyle.None : DisplayStyle.Flex;
         }
+        
+#if ABLET_NDMF
+        static bool IsNdmfOnAbletAvailable() => NdmfConfigAccess.IsNdmfOnAbletAvailable();
+#else
+        static bool IsNdmfOnAbletAvailable() => false;
+#endif
     }
 }
