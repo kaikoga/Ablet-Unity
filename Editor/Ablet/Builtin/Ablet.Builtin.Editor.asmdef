@@ -8,7 +8,7 @@
         "Ablet.Editor",
         "Ablet.EditorAPI.Editor",
         "Ablet.ErrorReporting",
-        "Loch"
+        "Ablet.Loch.Editor"
     ],
     "includePlatforms": [
         "Editor"

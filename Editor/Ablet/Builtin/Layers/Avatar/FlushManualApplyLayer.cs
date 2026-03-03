@@ -9,7 +9,7 @@ using Ablet.API.V1.Building;
 using Ablet.Building;
 using Ablet.Builtin.Utils;
 using UnityEditor;
-using static Silksprite.Loch.Tools.LochTool;
+using static Ablet.Loch.Tools.AbletLochTool;
 
 namespace Ablet.Builtin.Layers.Avatar
 {
@@ -59,10 +59,10 @@ namespace Ablet.Builtin.Layers.Avatar
                     return;
                 }
                 if (EditorUtility.DisplayDialog(
-                        Loc("FlushManualApplyLayer::Title").Tr,
-                        Loc("FlushManualApplyLayer::Message?").Tr,
-                        Loc("FlushManualApplyLayer::Ok").Tr,
-                        Loc("FlushManualApplyLayer::Cancel").Tr))
+                        Tr("FlushManualApplyLayer::Title"),
+                        Tr("FlushManualApplyLayer::Message?"),
+                        Tr("FlushManualApplyLayer::Ok"),
+                        Tr("FlushManualApplyLayer::Cancel")))
                 {
                     AssetPersister.ClearManualAssets();
                 }

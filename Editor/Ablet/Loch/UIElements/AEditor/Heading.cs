@@ -9,6 +9,10 @@ namespace Ablet.Loch.UIElements.AEditor
 {
     public class Heading : BaseHeading
     {
+#if !ABLET_LOCH
+        public string? loc;
+#endif
+
         public Heading() { }
         public new class UxmlFactory : UxmlFactory<Heading, UxmlTraits> {}
         public new class UxmlTraits : BaseHeading.UxmlTraits { }

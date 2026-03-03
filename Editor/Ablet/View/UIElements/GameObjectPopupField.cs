@@ -1,14 +1,9 @@
 using UnityEngine;
-
 using UnityEngine.UIElements;
-
-#if !UNITY_2022_3_OR_NEWER
-using UnityEditor.UIElements;
-#endif
 
 namespace Ablet.View.UIElements
 {
-    sealed class GameObjectPopupField : Silksprite.Loch.UIElements.LEditor.PopupField<GameObject>
+    sealed class GameObjectPopupField : Ablet.Loch.UIElements.AEditor.PopupField<GameObject>
     {
         public GameObjectPopupField()
         {

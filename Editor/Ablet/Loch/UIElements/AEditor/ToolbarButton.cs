@@ -9,6 +9,10 @@ namespace Ablet.Loch.UIElements.AEditor
 {
     public class ToolbarButton : BaseToolbarButton
     {
+#if !ABLET_LOCH
+        public string? loc;
+#endif
+
         public new class UxmlFactory : UxmlFactory<ToolbarButton, UxmlTraits> {}
         public new class UxmlTraits : BaseToolbarButton.UxmlTraits { }
     }
