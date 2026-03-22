@@ -13,7 +13,6 @@ namespace Ablet.Loch.UIElements.AEditor
         public string? loc;
 #endif
 
-        public Heading() { }
         public new class UxmlFactory : UxmlFactory<Heading, UxmlTraits> {}
         public new class UxmlTraits : BaseHeading.UxmlTraits { }
     }

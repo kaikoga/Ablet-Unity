@@ -13,7 +13,6 @@ namespace Ablet.Loch.UIElements.AEditor
         public string? loc;
 #endif
 
-        public Toggle() { }
         public new class UxmlFactory : UxmlFactory<Toggle, UxmlTraits> {}
         public new class UxmlTraits : BaseToggle.UxmlTraits { }
     }

@@ -5,8 +5,6 @@ using Ablet.API.V1.Attributes;
 using Ablet.API.V1.Building;
 using Ablet.Building.Ephemeral;
 using Ablet.Builtin.Utils;
-using Ablet.Hooks;
-using Ablet.Utils;
 
 namespace Ablet.Builtin.Layers.Avatar
 {

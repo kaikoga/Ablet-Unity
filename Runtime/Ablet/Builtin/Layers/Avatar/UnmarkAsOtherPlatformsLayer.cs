@@ -28,7 +28,7 @@ namespace Ablet.Builtin.Layers.Avatar
             config.AddDependency<BeforeLayer<CollectingPhase>>();
         }
 
-        AbletProcedure? IAbletLayer.ToProcedure(IBuildArgument argument)
+        AbletProcedure IAbletLayer.ToProcedure(IBuildArgument argument)
         {
             var otherPlatforms = PlatformRegistry.Instance.All()
                 .Where(platform => platform.Id != argument.TargetPlatform.Id);

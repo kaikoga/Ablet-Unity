@@ -5,13 +5,13 @@ namespace Ablet.ErrorReporting.Ephemeral
 {
     class ObjectChainElement
     {
-        public readonly SerializedObjectReference obj;
-        public readonly AbletLayer? layer;
+        public readonly SerializedObjectReference Obj;
+        public readonly AbletLayer? Layer;
 
         public ObjectChainElement(SerializedObjectReference obj, AbletLayer? layer)
         {
-            this.obj = obj;
-            this.layer = layer;
+            this.Obj = obj;
+            this.Layer = layer;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Ablet.ErrorReporting
         internal static ErrorReportContextScope? Current;
 
         internal readonly InterestRepository InterestRepository = new InterestRepository();
-        internal readonly ObjectChainRepository objectChainRepository = new ObjectChainRepository();
+        internal readonly ObjectChainRepository ObjectChainRepository = new ObjectChainRepository();
 
         public ErrorReportContextScope()
         {

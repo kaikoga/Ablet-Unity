@@ -15,9 +15,9 @@ namespace Ablet.ErrorReporting.Ephemeral
 
         SerializedObjectReference ToInput(SerializedObjectReference source)
         {
-            while (_mappings.FirstOrDefault(v => v.to == source) is { } mapping)
+            while (_mappings.FirstOrDefault(v => v.To == source) is { } mapping)
             {
-                source = mapping.from;
+                source = mapping.From;
             }
             return source;
         }
@@ -25,12 +25,12 @@ namespace Ablet.ErrorReporting.Ephemeral
         internal IEnumerable<ObjectChainElement> ToChain(SerializedObjectReference source)
         {
             var mappings = new List<ObjectChainMapping>();
-            for (var from = source; _mappings.FirstOrDefault(v => v.to == from) is { } mapping; from = mapping.from)
+            for (var from = source; _mappings.FirstOrDefault(v => v.To == from) is { } mapping; from = mapping.From)
             {
                 mappings.Add(mapping);
             }
             mappings.Reverse();
-            for (var to = source; _mappings.FirstOrDefault(v => v.from == to) is { } mapping; to = mapping.to)
+            for (var to = source; _mappings.FirstOrDefault(v => v.From == to) is { } mapping; to = mapping.To)
             {
                 mappings.Add(mapping);
             }
@@ -40,10 +40,10 @@ namespace Ablet.ErrorReporting.Ephemeral
             }
             else
             {
-                yield return new ObjectChainElement(mappings[0].from, null);
+                yield return new ObjectChainElement(mappings[0].From, null);
                 foreach (var mapping in mappings)
                 {
-                    yield return new ObjectChainElement(mapping.to, mapping.layer);
+                    yield return new ObjectChainElement(mapping.To, mapping.Layer);
                 }
             }
         }
@@ -67,15 +67,15 @@ namespace Ablet.ErrorReporting.Ephemeral
 
         class ObjectChainMapping
         {
-            public readonly SerializedObjectReference from;
-            public readonly SerializedObjectReference to;
-            public readonly AbletLayer? layer;
+            public readonly SerializedObjectReference From;
+            public readonly SerializedObjectReference To;
+            public readonly AbletLayer? Layer;
 
             public ObjectChainMapping(SerializedObjectReference from, SerializedObjectReference to, AbletLayer? layer)
             {
-                this.from = from;
-                this.to = to;
-                this.layer = layer;
+                this.From = from;
+                this.To = to;
+                this.Layer = layer;
             }
         }
     }

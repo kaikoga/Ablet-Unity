@@ -16,8 +16,6 @@ namespace Ablet.Loch.UIElements.AEditor
         public string? loc;
 #endif
 
-        public PopupField() { }
-
         public new class UxmlFactory : UxmlFactory<PopupField<T>, UxmlTraits> {}
         public new class UxmlTraits : BaseUIElements.PopupField<T>.UxmlTraits { }
     }

@@ -1,7 +1,6 @@
 using System.Linq;
 using Ablet.API.V1;
 using Ablet.Building;
-using Ablet.Building.Ephemeral;
 using Ablet.Builtin;
 using Ablet.Builtin.VRChat.Avatars;
 using Ablet.Planning;

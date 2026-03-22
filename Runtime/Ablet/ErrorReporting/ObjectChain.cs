@@ -11,7 +11,7 @@ namespace Ablet.ErrorReporting
             var context = BuildContext.Current;
             if (context != null)
             {
-                ErrorReportContextScope.Current?.objectChainRepository.Add(context, from, to);
+                ErrorReportContextScope.Current?.ObjectChainRepository.Add(context, from, to);
             }
             ErrorOutput.Instance.AddExternalObjectMapping(from, to);
         }

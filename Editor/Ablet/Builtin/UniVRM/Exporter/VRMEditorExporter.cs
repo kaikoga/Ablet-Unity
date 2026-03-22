@@ -9,6 +9,7 @@ using UniGLTF.MeshUtility;
 using UniGLTF.Utils;
 using UnityEngine;
 using VRM;
+// ReSharper disable All
 
 namespace Ablet.Builtin.UniVRM.Exporter
 {
