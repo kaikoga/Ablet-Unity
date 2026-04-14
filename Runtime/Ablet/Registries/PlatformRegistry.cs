@@ -73,28 +73,5 @@ namespace Ablet.Registries
             platform = null;
             return false;
         }
-
-        [Obsolete]
-        public GameObject GuessEntrypointObject(GameObject childObject, out AbletPlatform platform)
-        {
-#pragma warning disable CS8601, CS8603, CS8625
-            if (!childObject)
-            {
-                platform = null;
-                return null;
-            }
-            var candidate = childObject.transform;
-            while (candidate)
-            {
-                if (TryGuessPlatform(candidate.gameObject, out platform))
-                {
-                    return candidate.gameObject;
-                }
-                candidate = candidate.parent;
-            }
-            platform = null;
-            return null;
-#pragma warning restore CS8601, CS8603, CS8625
-        }
     }
 }

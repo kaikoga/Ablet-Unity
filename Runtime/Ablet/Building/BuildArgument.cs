@@ -25,7 +25,6 @@ namespace Ablet.Building
         AssetGenerationMode IBuildArgument.WillPersistGeneratedAssets => _catalyst.WillPersistGeneratedAssets;
         bool IBuildArgument.IsPartial => _catalyst.IsPartial;
         BuildInitiationSourceMode IBuildArgument.BuildInitiationSourceMode => _catalyst.BuildInitiationSourceMode;
-        ObjectRetainMode IBuildArgument.ObjectRetainMode => _catalyst.ObjectRetainMode;
 
         internal PreviewMode PreviewMode => _catalyst.PreviewMode;
         internal bool IsObservable => _catalyst.IsObservable;
