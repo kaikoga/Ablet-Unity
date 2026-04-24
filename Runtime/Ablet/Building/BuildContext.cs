@@ -15,6 +15,12 @@ namespace Ablet.Building
     {
         internal static IBuildContext? Current;
 
+        public static bool TryGetCurrentBuildArgument([MaybeNullWhen(false)] out IBuildArgument argument)
+        {
+            argument = Current?.Argument;
+            return argument != null;
+        }
+
         public BuildArgument Argument { get; }
         IBuildArgument IProcessContext.Argument => Argument;
 
