@@ -52,7 +52,7 @@ namespace Ablet.ErrorReporting.Serialized
 
         static SerializedObjectChain ExportAsObjectChain(this SerializedObjectReference objectReference)
         {
-            if (ErrorReportContextScope.Current?.objectChainRepository is { } chainRepository)
+            if (ErrorReportContextScope.Current?.ObjectChainRepository is { } chainRepository)
             {
                 return new SerializedObjectChain
                 {
@@ -72,7 +72,7 @@ namespace Ablet.ErrorReporting.Serialized
 
         static SerializedObjectChainElement Export(ObjectChainElement element)
         {
-            return new SerializedObjectChainElement(element.obj, element.layer?.Id ?? "");
+            return new SerializedObjectChainElement(element.Obj, element.Layer?.Id ?? "");
         }
 
         public static IEnumerable<SerializedObjectReference> Export(IEnumerable<Object> interests, GameObject rootObject) =>
