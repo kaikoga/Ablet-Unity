@@ -9,6 +9,7 @@ namespace Ablet.API.V1.Building
         IAbletPlatformHandle? EntrypointPlatform { get; }
         IAbletPlatformHandle TargetPlatform { get; }
 
+        string CatalystId { get; }
         AssetGenerationMode WillCloneSceneObject { get; }
         AssetGenerationMode WillPersistGeneratedAssets { get; }
         bool IsPartial { get; }

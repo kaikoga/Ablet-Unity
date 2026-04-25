@@ -21,6 +21,7 @@ namespace Ablet.Building
         IAbletPlatformHandle? IBuildArgument.EntrypointPlatform => _entrypointPlatform != null ? new AbletPlatformHandle(_entrypointPlatform) : null;
         IAbletPlatformHandle IBuildArgument.TargetPlatform => new AbletPlatformHandle(_targetPlatform);
 
+        string IBuildArgument.CatalystId => _catalyst.Id;
         AssetGenerationMode IBuildArgument.WillCloneSceneObject => _catalyst.WillCloneSceneObject;
         AssetGenerationMode IBuildArgument.WillPersistGeneratedAssets => _catalyst.WillPersistGeneratedAssets;
         bool IBuildArgument.IsPartial => _catalyst.IsPartial;
@@ -63,14 +64,14 @@ namespace Ablet.Building
         }
         
         public static BuildArgument FromEditModeAssetBuild(GameObject entrypointObject, AbletPlatform targetPlatform, bool willClone, BuildInitiationSourceMode buildInitiationSourceMode)
-            => FromGameObject(entrypointObject, targetPlatform, new Catalyst
+            => FromGameObject(entrypointObject, targetPlatform, new Catalyst("Ablet.Catalyst.EditModeAssetBuild")
             {
                 WillCloneSceneObject = willClone ? AssetGenerationMode.Temporary : AssetGenerationMode.None,
                 ObjectRetainMode = willClone ? ObjectRetainMode.None : ObjectRetainMode.RetainObjectId,
                 BuildInitiationSourceMode = buildInitiationSourceMode
             });
         public static BuildArgument FromAssetBuild(GameObject entrypointObject, AbletPlatform targetPlatform, bool willClone, BuildInitiationSourceMode buildInitiationSourceMode)
-            => FromGameObject(entrypointObject, targetPlatform, new Catalyst
+            => FromGameObject(entrypointObject, targetPlatform, new Catalyst("Ablet.Catalyst.AssetBuild")
             {
                 WillCloneSceneObject = willClone ? AssetGenerationMode.Temporary : AssetGenerationMode.None,
                 WillPersistGeneratedAssets = AssetGenerationMode.Temporary,
@@ -79,31 +80,31 @@ namespace Ablet.Building
             });
 
         internal static BuildArgument FromInplacePreview(GameObject entrypointObject, AbletPlatform targetPlatform)
-            => FromGameObject(entrypointObject, targetPlatform, new Catalyst
+            => FromGameObject(entrypointObject, targetPlatform, new Catalyst("Ablet.Catalyst.InplacePreview")
             {
                 PreviewMode = PreviewMode.InPlacePreview,
                 IsObservable = true,
             });
         internal static BuildArgument FromManualApply(GameObject entrypointObject, AbletPlatform targetPlatform)
-            => FromGameObject(entrypointObject, targetPlatform, new Catalyst
+            => FromGameObject(entrypointObject, targetPlatform, new Catalyst("Ablet.Catalyst.ManualApply")
             {
                 WillCloneSceneObject = AssetGenerationMode.UserInitiated,
                 WillPersistGeneratedAssets = AssetGenerationMode.UserInitiated
             });
         internal static BuildArgument FromApplyOnPlay(GameObject entrypointObject, AbletPlatform targetPlatform)
-            => FromGameObject(entrypointObject, targetPlatform, new Catalyst
+            => FromGameObject(entrypointObject, targetPlatform, new Catalyst("Ablet.Catalyst.ApplyOnPlay")
             {
                 ObjectRetainMode = ObjectRetainMode.RetainObjectId
             });
         internal static BuildArgument FromPartialBuild(GameObject entrypointObject, AbletPlatform targetPlatform, ObjectRetainMode objectRetainMode, BuildInitiationSourceMode buildInitiationSourceMode)
-            => FromGameObject(entrypointObject, targetPlatform, new Catalyst
+            => FromGameObject(entrypointObject, targetPlatform, new Catalyst("Ablet.Catalyst.PartialBuild")
             {
                 IsPartial = true,
                 ObjectRetainMode = objectRetainMode,
                 BuildInitiationSourceMode = buildInitiationSourceMode
             });
         internal static BuildArgument FromPartialAssetBuild(GameObject entrypointObject, AbletPlatform targetPlatform, ObjectRetainMode objectRetainMode, BuildInitiationSourceMode buildInitiationSourceMode)
-            => FromGameObject(entrypointObject, targetPlatform, new Catalyst
+            => FromGameObject(entrypointObject, targetPlatform, new Catalyst("Ablet.Catalyst.PartialAssetBuild")
             {
                 IsPartial = true,
                 WillPersistGeneratedAssets = AssetGenerationMode.Temporary,
@@ -111,8 +112,9 @@ namespace Ablet.Building
                 BuildInitiationSourceMode = buildInitiationSourceMode
             });
 
-        struct Catalyst
+        class Catalyst
         {
+            public readonly string Id;
             public AssetGenerationMode WillCloneSceneObject;
             public AssetGenerationMode WillPersistGeneratedAssets;
             public bool IsPartial;
@@ -121,6 +123,11 @@ namespace Ablet.Building
 
             public PreviewMode PreviewMode;
             public bool IsObservable;
+
+            public Catalyst(string id)
+            {
+                Id = id;
+            }
         }
     }
 }
