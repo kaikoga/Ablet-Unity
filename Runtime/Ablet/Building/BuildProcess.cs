@@ -33,7 +33,7 @@ namespace Ablet.Building
 
         public GameObject Build(GameObject rootObject)
         {
-            BuildActivityRepository.Instance.Restart(_argument.CatalystId);
+            using (BuildActivityRepository.Instance.CreateScope(_argument.CatalystId))
             using (BuildErrorReportEvents.CreateScope?.Invoke())
             using (var context = new BuildContext(_argument, rootObject))
             {
