@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Ablet.API.V1;
 using Ablet.Planning;
+using Ablet.Repositories;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Ablet.Building
 {
@@ -33,6 +33,7 @@ namespace Ablet.Building
 
         public GameObject Build(GameObject rootObject)
         {
+            BuildActivityRepository.Instance.Restart(_argument.CatalystId);
             using (BuildErrorReportEvents.CreateScope?.Invoke())
             using (var context = new BuildContext(_argument, rootObject))
             {
@@ -79,7 +80,8 @@ namespace Ablet.Building
                 }
                 if (processedSomething)
                 {
-                    Debug.Log($"[Ablet] <{pass.Layer.DisplayName}> layer processed in {stopwatch.ElapsedMilliseconds}ms");
+                    var ticks = stopwatch.ElapsedTicks;
+                    BuildActivityRepository.Instance.Record(pass.Layer, ticks);
                 }
             }
         }

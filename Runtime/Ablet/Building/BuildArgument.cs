@@ -27,6 +27,7 @@ namespace Ablet.Building
         bool IBuildArgument.IsPartial => _catalyst.IsPartial;
         BuildInitiationSourceMode IBuildArgument.BuildInitiationSourceMode => _catalyst.BuildInitiationSourceMode;
 
+        internal string CatalystId => _catalyst.Id;
         internal PreviewMode PreviewMode => _catalyst.PreviewMode;
         internal bool IsObservable => _catalyst.IsObservable;
         internal ObjectRetainMode ObjectRetainMode => _catalyst.ObjectRetainMode;
