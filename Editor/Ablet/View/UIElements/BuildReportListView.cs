@@ -5,6 +5,7 @@ using Ablet.Models.Extensions;
 using Ablet.Models.Serialized;
 using Ablet.Registries;
 using Ablet.Repositories;
+using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.UIElements;
@@ -33,6 +34,7 @@ namespace Ablet.View.UIElements
         public BuildReportListView()
         {
             var container = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath).CloneTree();
+            container.Localize<BuildReportListView>();
 
             _entrypointDisplayNameText = container.Q<Label>("entrypointDisplayNameText");
             _entrypointScenePathText = container.Q<Label>("entrypointScenePathText");

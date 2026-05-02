@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Ablet.EditorAPI.V1.Extensions.BuildReporter;
 using Ablet.Models.Extensions;
+using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEngine.UIElements;
 
@@ -53,6 +54,8 @@ namespace Ablet.View.UIElements
         public BuildReporterStateView()
         {
             var container = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath).CloneTree();
+            container.Localize<BuildReporterStateView>();
+
             container.style.flexGrow = 1;
             _enabledToggle = container.Q<Toggle>("enabledToggle");
             _enabledToggle.RegisterValueChangedCallback(evt => OnChangeEnabled(evt.newValue));

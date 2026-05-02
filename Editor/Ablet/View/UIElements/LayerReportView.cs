@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Ablet.Models.Serialized;
 using Ablet.Registries;
+using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,6 +18,8 @@ namespace Ablet.View.UIElements
         public LayerReportView()
         {
             var container = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath).CloneTree();
+            container.Localize<LayerReportView>();
+
             _layerDisplayNameText = container.Q<Label>("layerDisplayNameText");
             _resultContainer = container.Q<VisualElement>("resultContainer");
             hierarchy.Add(container);

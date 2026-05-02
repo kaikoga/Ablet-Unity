@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Ablet.Models.Serialized;
+using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -29,6 +30,7 @@ namespace Ablet.View.UIElements
                 }
             }
             var container = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath).CloneTree();
+            container.Localize<AbletConsoleWindowView>();
             container.style.flexGrow = 1;
             BuildReporterList = container.Q<BuildReporterListView>("buildReporterListView");
             EntrypointList = container.Q<ListView>("entrypointList");

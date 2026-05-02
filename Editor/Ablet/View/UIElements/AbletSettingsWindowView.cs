@@ -1,5 +1,6 @@
 using System;
 using Ablet.Repositories;
+using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEngine.UIElements;
 
@@ -46,6 +47,7 @@ namespace Ablet.View.UIElements
                 }
             }
             var container = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath).CloneTree();
+            container.Localize<AbletSettingsWindowView>();
             container.Q<IMGUIContainer>("imgui").onGUIHandler = imgui;
             
             IsCompilingLabel = container.Q<Label>("isCompilingLabel");
