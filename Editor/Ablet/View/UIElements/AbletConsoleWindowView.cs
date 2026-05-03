@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Ablet.Loch.Tools;
 using Ablet.Models.Serialized;
-using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -14,7 +14,7 @@ namespace Ablet.View.UIElements
 
         public readonly BuildReporterListView BuildReporterList;
         public readonly ListView EntrypointList;
-        public readonly Button ClearReportsButton;
+        public readonly ToolbarButton ClearReportsButton;
         public readonly GameObjectPopupField SceneEntrypointsPopup;
         public readonly ObjectField EntrypointObjectField;
         readonly VisualElement _buildReportsContainer;
@@ -34,7 +34,7 @@ namespace Ablet.View.UIElements
             container.style.flexGrow = 1;
             BuildReporterList = container.Q<BuildReporterListView>("buildReporterListView");
             EntrypointList = container.Q<ListView>("entrypointList");
-            ClearReportsButton = container.Q<Button>("clearReports");
+            ClearReportsButton = container.Q<ToolbarButton>("clearReports");
             SceneEntrypointsPopup = container.Q<GameObjectPopupField>("sceneEntrypointsPopup");
             EntrypointObjectField = container.Q<ObjectField>("entrypointObjectField");
             _buildReportsContainer = container.Q<VisualElement>("buildReportsContainer");

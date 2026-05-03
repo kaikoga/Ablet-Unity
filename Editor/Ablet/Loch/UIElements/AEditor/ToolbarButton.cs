@@ -7,13 +7,20 @@ using BaseToolbarButton = UnityEditor.UIElements.ToolbarButton;
 
 namespace Ablet.Loch.UIElements.AEditor
 {
-    public class ToolbarButton : BaseToolbarButton
+#if UNITY_2023_2_OR_NEWER
+    [UxmlElement] public partial 
+#else
+    public
+#endif
+        class ToolbarButton : BaseToolbarButton
     {
 #if !ABLET_LOCH
         public string? loc;
 #endif
 
+#if !UNITY_2023_2_OR_NEWER
         public new class UxmlFactory : UxmlFactory<ToolbarButton, UxmlTraits> {}
         public new class UxmlTraits : BaseToolbarButton.UxmlTraits { }
+#endif
     }
 }

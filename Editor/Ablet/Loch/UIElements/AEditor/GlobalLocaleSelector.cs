@@ -8,7 +8,12 @@ using BaseGlobalLocaleSelector = UnityEngine.UIElements.VisualElement;
 
 namespace Ablet.Loch.UIElements.AEditor
 {
-    public class GlobalLocaleSelector : BaseGlobalLocaleSelector
+#if UNITY_2023_2_OR_NEWER
+    [UxmlElement] public partial 
+#else
+    public
+#endif
+        class GlobalLocaleSelector : BaseGlobalLocaleSelector
     {
 #if !ABLET_LOCH
         public string? loc;
@@ -24,7 +29,10 @@ namespace Ablet.Loch.UIElements.AEditor
         }
 
 #endif
+
+#if !UNITY_2023_2_OR_NEWER
         public new class UxmlFactory : UxmlFactory<GlobalLocaleSelector, UxmlTraits> {}
         public new class UxmlTraits : BaseGlobalLocaleSelector.UxmlTraits { }
+#endif
     }
 }

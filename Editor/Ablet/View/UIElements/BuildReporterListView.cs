@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using Ablet.EditorAPI.V1.Extensions.BuildReporter;
+using Ablet.Loch.Tools;
 using Ablet.Models.Extensions;
-using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace Ablet.View.UIElements
 {
+#if UNITY_2023_2_OR_NEWER
+    [UxmlElement] partial 
+#endif
     class BuildReporterListView : VisualElement
     {
         readonly ListView _listView;
@@ -35,9 +38,11 @@ namespace Ablet.View.UIElements
             _listView.RefreshItems();
         }
 
+#if !UNITY_2023_2_OR_NEWER
         public new class UxmlFactory : UxmlFactory<BuildReporterListView, UxmlTraits>
         {
         }
+#endif
     }
 
     class BuildReporterStateView : VisualElement

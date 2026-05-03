@@ -10,13 +10,20 @@ using BaseUIElements = UnityEditor.UIElements;
 
 namespace Ablet.Loch.UIElements.AEditor
 {
-    public class PopupField<T> : BaseUIElements.PopupField<T>
+#if UNITY_2023_2_OR_NEWER
+    [UxmlElement] public partial 
+#else
+    public
+#endif
+        class PopupField<T> : BaseUIElements.PopupField<T>
     {
 #if !ABLET_LOCH
         public string? loc;
 #endif
 
+#if !UNITY_2023_2_OR_NEWER
         public new class UxmlFactory : UxmlFactory<PopupField<T>, UxmlTraits> {}
         public new class UxmlTraits : BaseUIElements.PopupField<T>.UxmlTraits { }
+#endif
     }
 }

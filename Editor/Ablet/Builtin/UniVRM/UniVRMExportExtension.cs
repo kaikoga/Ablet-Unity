@@ -57,7 +57,7 @@ namespace Ablet.Builtin.UniVRM
             {
                 loc = Loc("UniVRMExportExtension::exportButton"),
                 text = "Export VRM0.x Avatar..."
-            };
+            }.LocalizeWith(typeof(UniVRMExportExtension));
         }
     }
 }

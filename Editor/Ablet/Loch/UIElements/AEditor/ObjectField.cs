@@ -7,13 +7,20 @@ using BaseObjectField = UnityEditor.UIElements.ObjectField;
 
 namespace Ablet.Loch.UIElements.AEditor
 {
-    public class ObjectField : BaseObjectField
+#if UNITY_2023_2_OR_NEWER
+    [UxmlElement] public partial 
+#else
+    public
+#endif
+        class ObjectField : BaseObjectField
     {
 #if !ABLET_LOCH
         public string? loc;
 #endif
 
+#if !UNITY_2023_2_OR_NEWER
         public new class UxmlFactory : UxmlFactory<ObjectField, UxmlTraits> {}
         public new class UxmlTraits : BaseObjectField.UxmlTraits { }
+#endif
     }
 }

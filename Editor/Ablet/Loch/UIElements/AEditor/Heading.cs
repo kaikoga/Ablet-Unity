@@ -7,13 +7,20 @@ using BaseHeading = UnityEngine.UIElements.Label;
 
 namespace Ablet.Loch.UIElements.AEditor
 {
-    public class Heading : BaseHeading
+#if UNITY_2023_2_OR_NEWER
+    [UxmlElement] public partial 
+#else
+    public
+#endif
+        class Heading : BaseHeading
     {
 #if !ABLET_LOCH
         public string? loc;
 #endif
 
+#if !UNITY_2023_2_OR_NEWER
         public new class UxmlFactory : UxmlFactory<Heading, UxmlTraits> {}
         public new class UxmlTraits : BaseHeading.UxmlTraits { }
+#endif
     }
 }

@@ -3,7 +3,12 @@ using UnityEngine.UIElements;
 
 namespace Ablet.View.UIElements
 {
-    sealed class GameObjectPopupField : Ablet.Loch.UIElements.AEditor.PopupField<GameObject>
+#if UNITY_2023_2_OR_NEWER
+    [UxmlElement] sealed partial
+#else
+    sealed
+#endif
+        class GameObjectPopupField : Ablet.Loch.UIElements.AEditor.PopupField<GameObject>
     {
         public GameObjectPopupField()
         {
@@ -11,8 +16,10 @@ namespace Ablet.View.UIElements
             formatSelectedValueCallback = gameObject => gameObject ? gameObject.name : "";
         }
 
+#if !UNITY_2023_2_OR_NEWER
         public new class UxmlFactory : UxmlFactory<GameObjectPopupField, UxmlTraits>
         {
         }
+#endif
     }
 }
