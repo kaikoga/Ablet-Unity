@@ -3,6 +3,7 @@
     "rootNamespace": "Ablet",
     "references": [
         "nadena.dev.ndmf",
+        "Loch",
         "Ablet",
         "Ablet.API",
         "Ablet.Builtin",

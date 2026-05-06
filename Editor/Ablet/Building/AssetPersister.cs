@@ -1,20 +1,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ablet.Utils;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
+using static Silksprite.Loch.Tools.LochTool;
 
 namespace Ablet.Building
 {
+    [PublicAPI]
     public static class AssetPersister
     {
         internal const string OutputPath = "Assets/AbletOutput";
         internal const string TempPath = "Assets/AbletOutput/__Temp__";
 
+        const string OptOutDecisionKey = "Ablet.FlushManualApply.OptOut";
+
         public static IEnumerable<string> GetManualAssetPaths()
         {
             return AssetDatabase.FindAssets("t:Prefab", new[] { OutputPath })
                 .Select(AssetDatabase.GUIDToAssetPath);
+        }
+
+        public static void InteractiveClearManualAssets(bool isUserInitiated)
+        {
+            if (EditorUtility.GetDialogOptOutDecision(DialogOptOutDecisionType.ForThisSession, OptOutDecisionKey))
+            {
+                return;
+            }
+            if (EditorUtility.DisplayDialog(
+                    Tr("FlushManualApplyLayer::Title"),
+                    isUserInitiated ? Tr("FlushManualApplyLayer::UserInitiatedMessage?") : Tr("FlushManualApplyLayer::Message?"),
+                    Tr("FlushManualApplyLayer::Ok"),
+                    Tr("FlushManualApplyLayer::Cancel")))
+            {
+                ClearManualAssets();
+            }
+            else
+            {
+                EditorUtility.SetDialogOptOutDecision(DialogOptOutDecisionType.ForThisSession, OptOutDecisionKey, true);
+            }
         }
 
         public static void ClearManualAssets()

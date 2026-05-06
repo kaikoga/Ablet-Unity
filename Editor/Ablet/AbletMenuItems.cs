@@ -1,5 +1,6 @@
 #if !ABLET_PREFER_NDMF
 
+using Ablet.Building;
 using Ablet.Registries;
 using Ablet.Repositories;
 using UnityEditor;
@@ -29,6 +30,13 @@ namespace Ablet
         static void ManualApplyToGameObject()
         {
             AbletFacade.ManualApplyToGameObject(Selection.activeGameObject);
+        }
+
+        [MenuItem("GameObject/Ablet/Flush Manual Apply Prefabs", false, 1)]
+        [MenuItem("Tools/Ablet/Flush Manual Apply Prefabs", false, 1)]
+        static void FlushManualApplyPrefabs()
+        {
+            AssetPersister.InteractiveClearManualAssets(true);
         }
 
         [MenuItem("Tools/Ablet/Apply on Play", false, 20)]

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-02-25 12:47+0900\n"
+"POT-Creation-Date: 2026-05-07 12:03+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -193,20 +193,24 @@ msgstr "Partial Plan"
 msgid "DebugLayerDependencyWindowView::planButton"
 msgstr "Plan"
 
-#: Editor/Ablet/Builtin/Layers/Avatar/FlushManualApplyLayer.cs:65
+#: Editor/Ablet/Building/AssetPersister.cs:35
 msgid "FlushManualApplyLayer::Cancel"
 msgstr ""
 
-#: Editor/Ablet/Builtin/Layers/Avatar/FlushManualApplyLayer.cs:63
+#: Editor/Ablet/Building/AssetPersister.cs:33
 msgid "FlushManualApplyLayer::Message?"
 msgstr ""
 
-#: Editor/Ablet/Builtin/Layers/Avatar/FlushManualApplyLayer.cs:64
+#: Editor/Ablet/Building/AssetPersister.cs:34
 msgid "FlushManualApplyLayer::Ok"
 msgstr ""
 
-#: Editor/Ablet/Builtin/Layers/Avatar/FlushManualApplyLayer.cs:62
+#: Editor/Ablet/Building/AssetPersister.cs:32
 msgid "FlushManualApplyLayer::Title"
+msgstr ""
+
+#: Editor/Ablet/Building/AssetPersister.cs:33
+msgid "FlushManualApplyLayer::UserInitiatedMessage?"
 msgstr ""
 
 #: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:58

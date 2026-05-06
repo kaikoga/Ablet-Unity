@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-02-25 12:47+0900\n"
+"POT-Creation-Date: 2026-05-07 12:03+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: Tr;Loc\n"
@@ -199,35 +199,39 @@ msgstr "Open Scene"
 
 #: Editor/Ablet/Debugging/View/Uxml/DebugBuildPlanWindowView.uxml
 msgid "DebugBuildPlanWindowView::copyButton"
-msgstr ""
+msgstr "Copy"
 
 #: Editor/Ablet/Debugging/View/Uxml/DebugLayerDependencyWindowView.uxml
 msgid "DebugLayerDependencyWindowView::copyLayerDepsButton"
-msgstr ""
+msgstr "Copy Layer Deps"
 
 #: Editor/Ablet/Debugging/View/Uxml/DebugLayerDependencyWindowView.uxml
 msgid "DebugLayerDependencyWindowView::partialPlanButton"
-msgstr ""
+msgstr "Partial Plan"
 
 #: Editor/Ablet/Debugging/View/Uxml/DebugLayerDependencyWindowView.uxml
 msgid "DebugLayerDependencyWindowView::planButton"
-msgstr ""
+msgstr "Plan"
 
-#: Editor/Ablet/Builtin/Layers/Avatar/FlushManualApplyLayer.cs:65
+#: Editor/Ablet/Building/AssetPersister.cs:35
 msgid "FlushManualApplyLayer::Cancel"
-msgstr ""
+msgstr "Do not flush for this session"
 
-#: Editor/Ablet/Builtin/Layers/Avatar/FlushManualApplyLayer.cs:63
+#: Editor/Ablet/Building/AssetPersister.cs:33
 msgid "FlushManualApplyLayer::Message?"
-msgstr ""
+msgstr "Old output prefabs of Manual Apply are detected. Flush them now?"
 
-#: Editor/Ablet/Builtin/Layers/Avatar/FlushManualApplyLayer.cs:64
+#: Editor/Ablet/Building/AssetPersister.cs:34
 msgid "FlushManualApplyLayer::Ok"
-msgstr ""
+msgstr "Delete Manual Apply output prefabs"
 
-#: Editor/Ablet/Builtin/Layers/Avatar/FlushManualApplyLayer.cs:62
+#: Editor/Ablet/Building/AssetPersister.cs:32
 msgid "FlushManualApplyLayer::Title"
-msgstr ""
+msgstr "Ablet: Manual Apply"
+
+#: Editor/Ablet/Building/AssetPersister.cs:33
+msgid "FlushManualApplyLayer::UserInitiatedMessage?"
+msgstr "Flush old output prefabs of Manual Apply now?"
 
 #: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:58
 msgid "UniVRM10ExportExtension::exportButton"

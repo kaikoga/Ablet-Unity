@@ -42,8 +42,6 @@ namespace Ablet.Builtin.Layers.Avatar
 
     class FlushManualApplyProcedure : AbletBuildProcedure
     {
-        const string OptOutDecisionKey = "Ablet.FlushManualApply.OptOut";
-
         static readonly TimeSpan ClearManualAssetsDelay = TimeSpan.FromHours(12);
 
         public override void Process(IBuildContext context)
@@ -54,22 +52,7 @@ namespace Ablet.Builtin.Layers.Avatar
 
             if (maxDuration > ClearManualAssetsDelay)
             {
-                if (EditorUtility.GetDialogOptOutDecision(DialogOptOutDecisionType.ForThisSession, OptOutDecisionKey))
-                {
-                    return;
-                }
-                if (EditorUtility.DisplayDialog(
-                        Tr("FlushManualApplyLayer::Title"),
-                        Tr("FlushManualApplyLayer::Message?"),
-                        Tr("FlushManualApplyLayer::Ok"),
-                        Tr("FlushManualApplyLayer::Cancel")))
-                {
-                    AssetPersister.ClearManualAssets();
-                }
-                else
-                {
-                    EditorUtility.SetDialogOptOutDecision(DialogOptOutDecisionType.ForThisSession, OptOutDecisionKey, true);
-                }
+                AssetPersister.InteractiveClearManualAssets(false);
             }
         }
     }
