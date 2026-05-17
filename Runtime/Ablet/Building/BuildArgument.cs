@@ -15,11 +15,13 @@ namespace Ablet.Building
 
         readonly AbletPlatform? _entrypointPlatform;
         readonly AbletPlatform _targetPlatform;
+        readonly AbletSubplatform _targetSubplatform;
         readonly Catalyst _catalyst;
         readonly DatastoreRepository _inputs = new DatastoreRepository();
 
         IAbletPlatformHandle? IBuildArgument.EntrypointPlatform => _entrypointPlatform != null ? new AbletPlatformHandle(_entrypointPlatform) : null;
         IAbletPlatformHandle IBuildArgument.TargetPlatform => new AbletPlatformHandle(_targetPlatform);
+        IAbletPlatformHandle IBuildArgument.TargetSubplatform => new AbletPlatformHandle(_targetSubplatform);
 
         string IBuildArgument.CatalystId => _catalyst.Id;
         AssetGenerationMode IBuildArgument.WillCloneSceneObject => _catalyst.WillCloneSceneObject;
@@ -37,6 +39,8 @@ namespace Ablet.Building
             EntrypointObject = entrypointObject;
             _entrypointPlatform = entrypointPlatform;
             _targetPlatform = targetPlatform;
+            // FIXME
+            _targetSubplatform = SubplatformRegistry.Instance.GuessSubplatform(entrypointObject, targetPlatform);
             _catalyst = catalyst;
 
             if (entrypointPlatform?.Id != targetPlatform.Id)

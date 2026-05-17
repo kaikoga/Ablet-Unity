@@ -8,6 +8,7 @@ namespace Ablet.API.V1.Building
         GameObject EntrypointObject { get; }
         IAbletPlatformHandle? EntrypointPlatform { get; }
         IAbletPlatformHandle TargetPlatform { get; }
+        IAbletPlatformHandle TargetSubplatform { get; }
 
         string CatalystId { get; }
         AssetGenerationMode WillCloneSceneObject { get; }
