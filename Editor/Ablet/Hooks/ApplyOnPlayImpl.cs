@@ -30,7 +30,7 @@ namespace Ablet.Hooks
                 .ToArray();
             AQueryContext.Immediate.GetSceneEntrypoints(platforms, false).Observe(r =>
             {
-                var arguments = new BuildArgumentBuilder(r.gameObject, r.platform).ForApplyOnPlay();
+                var arguments = BuildArgumentBuilder.TargetsPlatform(r.gameObject, r.platform).ForApplyOnPlay();
                 AbletFacade.BuildWithArguments(arguments);
             });
         }

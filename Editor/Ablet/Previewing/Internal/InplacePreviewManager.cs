@@ -113,14 +113,14 @@ namespace Ablet.Previewing.Internal
 
         static void ApplyEnhancedPreview(GameObject avatar, AbletPlatform platform, AbletObservableProcedure? posingProcedure)
         {
-            var arguments = new BuildArgumentBuilder(avatar, platform).ForInplacePreview()
+            var arguments = BuildArgumentBuilder.TargetsPlatform(avatar, platform).ForInplacePreview()
                 .AddInput(new InplacePreviewPosingInput(posingProcedure));
             AbletFacade.BuildWithArguments(arguments);
         }
 
         static void ApplyPosingOnly(GameObject avatar, AbletPlatform platform, AbletObservableProcedure? posingProcedure)
         {
-            var arguments = new BuildArgumentBuilder(avatar, platform).ForInplacePreview()
+            var arguments = BuildArgumentBuilder.TargetsPlatform(avatar, platform).ForInplacePreview()
                 .AddInput(new InplacePreviewPosingInput(posingProcedure));
             var layer = LayerRegistry.Instance.Get<InplacePreviewPosingLayer>();
             var process = BuildProcess.FromSinglePass(new AbletPass(layer), arguments);

@@ -41,8 +41,9 @@ namespace Ablet.Builtin.UniVRM10
 
                     try
                     {
-                        AbletPlatform targetPlatform = PlatformRegistry.Instance.Get<UniVRM10Platform>();
-                        var arguments = new BuildArgumentBuilder(entrypointObject, targetPlatform).ForEditModeAssetBuild(true, BuildInitiationSourceMode.Ablet);
+                        var targetPlatform = PlatformRegistry.Instance.Get<UniVRM10Platform>();
+                        var arguments = BuildArgumentBuilder.TargetsPlatform(entrypointObject, targetPlatform)
+                            .ForEditModeAssetBuild(true, BuildInitiationSourceMode.Ablet);
                         var buildResult = AbletFacade.BuildWithArguments(arguments);
                         VRM1FileExporter.ExportVRM1File(buildResult.GetComponent<Vrm10Instance>(), filePath);
                         AbletEditorUtil.OpenInExplorer(directory);

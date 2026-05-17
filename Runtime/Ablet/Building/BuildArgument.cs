@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using Ablet.API.V1;
 using Ablet.API.V1.Building;
 using Ablet.Models;
-using Ablet.Registries;
 using Ablet.Repositories;
 using UnityEngine;
 
@@ -34,13 +33,17 @@ namespace Ablet.Building
         internal bool IsObservable => _catalyst.IsObservable;
         internal ObjectRetainMode ObjectRetainMode => _catalyst.ObjectRetainMode;
 
-        internal BuildArgument(GameObject entrypointObject, AbletPlatform? entrypointPlatform, AbletPlatform targetPlatform, Catalyst catalyst)
+        internal BuildArgument(
+            GameObject entrypointObject,
+            AbletPlatform? entrypointPlatform,
+            AbletPlatform targetPlatform,
+            AbletSubplatform targetSubplatform,
+            Catalyst catalyst)
         {
             EntrypointObject = entrypointObject;
             _entrypointPlatform = entrypointPlatform;
             _targetPlatform = targetPlatform;
-            // FIXME
-            _targetSubplatform = SubplatformRegistry.Instance.GuessSubplatform(entrypointObject, targetPlatform);
+            _targetSubplatform = targetSubplatform;
             _catalyst = catalyst;
 
             if (entrypointPlatform?.Id != targetPlatform.Id)

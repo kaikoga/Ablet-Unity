@@ -10,12 +10,26 @@ namespace Ablet.Building
         readonly GameObject _entrypointObject;
         readonly AbletPlatform? _entrypointPlatform;
         readonly AbletPlatform _targetPlatform;
+        readonly AbletSubplatform _targetSubplatform;
 
-        public BuildArgumentBuilder(GameObject entrypointObject, AbletPlatform targetPlatform)
+        BuildArgumentBuilder(GameObject entrypointObject, AbletPlatform targetPlatform, AbletSubplatform targetSubplatform)
         {
             _entrypointObject = entrypointObject;
             PlatformRegistry.Instance.TryGuessPlatform(entrypointObject, out _entrypointPlatform);
             _targetPlatform = targetPlatform;
+            _targetSubplatform = targetSubplatform;
+        }
+
+        public static BuildArgumentBuilder TargetsPlatform(GameObject entrypointObject, AbletPlatform targetPlatform)
+        {
+            var targetSubplatform = SubplatformRegistry.Instance.GuessSubplatform(entrypointObject, targetPlatform);
+            return new BuildArgumentBuilder(entrypointObject, targetPlatform, targetSubplatform);
+        }
+
+        public static BuildArgumentBuilder TargetsSubplatform(GameObject entrypointObject, AbletSubplatform targetSubplatform)
+        {
+            var targetPlatform = targetSubplatform.Platform;
+            return new BuildArgumentBuilder(entrypointObject, targetPlatform, targetSubplatform);
         }
 
         public BuildArgument ForEditModeAssetBuild(bool willClone, BuildInitiationSourceMode buildInitiationSourceMode)
@@ -69,7 +83,7 @@ namespace Ablet.Building
 
         BuildArgument Build(Catalyst catalyst)
         {
-            return new BuildArgument(_entrypointObject, _entrypointPlatform, _targetPlatform, catalyst);
+            return new BuildArgument(_entrypointObject, _entrypointPlatform, _targetPlatform, _targetSubplatform, catalyst);
         }
     }
 }
