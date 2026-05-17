@@ -3,6 +3,7 @@ using Ablet.API.V1;
 using Ablet.Building;
 using Ablet.Builtin;
 using Ablet.Builtin.VRChat.Avatars;
+using Ablet.Models;
 using Ablet.Planning;
 using Ablet.Registries;
 using Ablet.Repositories;
@@ -33,7 +34,7 @@ namespace Ablet.Hooks.VRChat.Avatars
             var actualEntrypoint = AbletRuntimeUtil.GuessActualEntrypointMaybeCloned(avatarGameObject);
 
             var platform = PlatformRegistry.Instance.Get<VRChatAvatarSDK3Platform>();
-            var arguments = BuildArgument.FromPartialAssetBuild(actualEntrypoint, platform, ObjectRetainMode.RetainObjectId, BuildInitiationSourceMode.PlatformBuild);
+            var arguments = new BuildArgumentBuilder(actualEntrypoint, platform).ForPartialAssetBuild(ObjectRetainMode.RetainObjectId, BuildInitiationSourceMode.PlatformBuild);
             var plan = AvatarBuildPlanner.Plan(LayerRegistry.Instance.All())
                 .TakeWhile(pass => pass.Layer.DefType != typeof(MaterializingPhase));
             var process = BuildProcess.FromPlan(plan, arguments);
@@ -61,7 +62,7 @@ namespace Ablet.Hooks.VRChat.Avatars
             }
             var actualEntrypoint = AbletRuntimeUtil.GuessActualEntrypointMaybeCloned(avatarGameObject);
             var platform = PlatformRegistry.Instance.Get<VRChatAvatarSDK3Platform>();
-            var arguments = BuildArgument.FromPartialAssetBuild(actualEntrypoint, platform, ObjectRetainMode.RetainObjectId, BuildInitiationSourceMode.PlatformBuild);
+            var arguments = new BuildArgumentBuilder(actualEntrypoint, platform).ForPartialAssetBuild(ObjectRetainMode.RetainObjectId, BuildInitiationSourceMode.PlatformBuild);
             var plan = AvatarBuildPlanner.Plan(LayerRegistry.Instance.All())
                 .SkipWhile(pass => pass.Layer.DefType != typeof(MaterializingPhase));
             var process = BuildProcess.FromPlan(plan, arguments);

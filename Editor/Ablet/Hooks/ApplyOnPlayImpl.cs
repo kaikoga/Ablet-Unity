@@ -2,6 +2,7 @@ using System.Linq;
 using Ablet.Building;
 using Ablet.Builtin;
 using Ablet.Hooks.Default;
+using Ablet.Models;
 using Ablet.Querying;
 using Ablet.Registries;
 using UnityEngine;
@@ -29,7 +30,7 @@ namespace Ablet.Hooks
                 .ToArray();
             AQueryContext.Immediate.GetSceneEntrypoints(platforms, false).Observe(r =>
             {
-                var arguments = BuildArgument.FromApplyOnPlay(r.gameObject, r.platform);
+                var arguments = new BuildArgumentBuilder(r.gameObject, r.platform).ForApplyOnPlay();
                 AbletFacade.BuildWithArguments(arguments);
             });
         }

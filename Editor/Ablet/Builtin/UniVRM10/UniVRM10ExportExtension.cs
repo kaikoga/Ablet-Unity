@@ -4,6 +4,7 @@ using Ablet.API.V1;
 using Ablet.API.V1.Attributes;
 using Ablet.Building;
 using Ablet.EditorAPI.V1.Extensions.Platform;
+using Ablet.Models;
 using Ablet.Registries;
 using Ablet.Utils;
 using UnityEditor;
@@ -40,7 +41,8 @@ namespace Ablet.Builtin.UniVRM10
 
                     try
                     {
-                        var arguments = BuildArgument.FromEditModeAssetBuild(entrypointObject, PlatformRegistry.Instance.Get<UniVRM10Platform>(), true, BuildInitiationSourceMode.Ablet);
+                        AbletPlatform targetPlatform = PlatformRegistry.Instance.Get<UniVRM10Platform>();
+                        var arguments = new BuildArgumentBuilder(entrypointObject, targetPlatform).ForEditModeAssetBuild(true, BuildInitiationSourceMode.Ablet);
                         var buildResult = AbletFacade.BuildWithArguments(arguments);
                         VRM1FileExporter.ExportVRM1File(buildResult.GetComponent<Vrm10Instance>(), filePath);
                         AbletEditorUtil.OpenInExplorer(directory);

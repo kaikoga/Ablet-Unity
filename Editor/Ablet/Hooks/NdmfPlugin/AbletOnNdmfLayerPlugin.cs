@@ -3,6 +3,7 @@ using Ablet.API.V1;
 using Ablet.Building;
 using Ablet.ErrorReporting.Serialized;
 using Ablet.Hooks.NdmfPlugin;
+using Ablet.Models;
 using Ablet.Models.Serialized;
 using Ablet.Planning;
 using Ablet.Registries;
@@ -108,7 +109,7 @@ namespace Ablet.Hooks.NdmfPlugin
         {
             var actualEntrypoint = context.GetState<AbletState>(null).ActualEntrypoint;
             var platform = PlatformRegistry.Instance.RequirePlatform(context.AvatarRootObject); 
-            var arguments = BuildArgument.FromPartialBuild(actualEntrypoint, platform, ObjectRetainMode.RetainObjectId, BuildInitiationSourceMode.NDMF);
+            var arguments = new BuildArgumentBuilder(actualEntrypoint, platform).ForPartialBuild(ObjectRetainMode.RetainObjectId, BuildInitiationSourceMode.NDMF);
             var process = BuildProcess.FromSinglePass(_abletPass, arguments);
             process.Build(context.AvatarRootObject);
         }

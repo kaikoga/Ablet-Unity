@@ -38,7 +38,7 @@ namespace Ablet
 
         static GameObject ManualApplyToGameObject(GameObject entrypointObject, AbletPlatform platform)
         {
-            var arguments = BuildArgument.FromManualApply(entrypointObject, platform);
+            var arguments = new BuildArgumentBuilder(entrypointObject, platform).ForManualApply();
             return BuildWithArguments(arguments);
         }
 
