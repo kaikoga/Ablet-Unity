@@ -16,7 +16,7 @@ namespace Ablet.Building
         readonly AbletPlatform _targetPlatform;
         readonly AbletSubplatform _targetSubplatform;
         readonly Catalyst _catalyst;
-        readonly DatastoreRepository _inputs = new DatastoreRepository();
+        readonly DatastoreRepository _inputs;
 
         IAbletPlatformHandle? IBuildArgument.EntrypointPlatform => _entrypointPlatform != null ? new AbletPlatformHandle(_entrypointPlatform) : null;
         IAbletPlatformHandle IBuildArgument.TargetPlatform => new AbletPlatformHandle(_targetPlatform);
@@ -38,13 +38,15 @@ namespace Ablet.Building
             AbletPlatform? entrypointPlatform,
             AbletPlatform targetPlatform,
             AbletSubplatform targetSubplatform,
-            Catalyst catalyst)
+            Catalyst catalyst,
+            DatastoreRepository inputs)
         {
             EntrypointObject = entrypointObject;
             _entrypointPlatform = entrypointPlatform;
             _targetPlatform = targetPlatform;
             _targetSubplatform = targetSubplatform;
             _catalyst = catalyst;
+            _inputs = inputs;
 
             if (entrypointPlatform?.Id != targetPlatform.Id)
             {
@@ -54,13 +56,6 @@ namespace Ablet.Building
                     throw new ArgumentException($"Platform not convertible, entrypoint: <{entrypointPlatform?.DisplayName}> target: <{targetPlatform.DisplayName}>");
                 }
             }
-        }
-
-        public BuildArgument AddInput<T>(T value)
-        where T : class
-        {
-            _inputs.Add(value);
-            return this;
         }
 
         bool IBuildArgument.TryGetInput<T>([MaybeNullWhen(false)] out T value) where T : class => _inputs.TryGet(out value);

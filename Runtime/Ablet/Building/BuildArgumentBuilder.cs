@@ -1,6 +1,7 @@
 using Ablet.API.V1;
 using Ablet.Models;
 using Ablet.Registries;
+using Ablet.Repositories;
 using UnityEngine;
 
 namespace Ablet.Building
@@ -11,6 +12,7 @@ namespace Ablet.Building
         readonly AbletPlatform? _entrypointPlatform;
         readonly AbletPlatform _targetPlatform;
         readonly AbletSubplatform _targetSubplatform;
+        readonly DatastoreRepository _inputs = new DatastoreRepository();
 
         BuildArgumentBuilder(GameObject entrypointObject, AbletPlatform targetPlatform, AbletSubplatform targetSubplatform)
         {
@@ -81,9 +83,22 @@ namespace Ablet.Building
                 BuildInitiationSourceMode = buildInitiationSourceMode
             });
 
+        public BuildArgumentBuilder AddInput<T>(T value)
+            where T : class
+        {
+            _inputs.Add(value);
+            return this;
+        }
+
         BuildArgument Build(Catalyst catalyst)
         {
-            return new BuildArgument(_entrypointObject, _entrypointPlatform, _targetPlatform, _targetSubplatform, catalyst);
+            return new BuildArgument(
+                _entrypointObject,
+                _entrypointPlatform,
+                _targetPlatform,
+                _targetSubplatform,
+                catalyst,
+                _inputs);
         }
     }
 }
