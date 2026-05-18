@@ -21,7 +21,7 @@ namespace Ablet.Builtin.VRChat.Avatars
     }
 
     [AbletExtension]
-    class VRChatAvatarSDK3Extension : IApplyOnPlaySupportExtension
+    class VRChatAvatarSDK3Extension : IApplyOnPlaySupportExtension, IMecePlatformExtension
     {
         Type IAbletExtension.ForType => typeof(VRChatAvatarSDK3Platform);
     }

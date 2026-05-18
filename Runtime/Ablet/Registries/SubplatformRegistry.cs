@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Ablet.API.V1;
 using Ablet.API.V1.Attributes;
+using Ablet.API.V1.Extensions.Platform;
 using Ablet.Models;
+using Ablet.Models.Extensions;
 using Ablet.Registries.Base;
 using Ablet.Utils.Reflection;
 using UnityEngine;
@@ -17,7 +18,11 @@ namespace Ablet.Registries
         SubplatformRegistry()
         {
             Collect(new ModelCollector<IAbletSubplatform, AbletSubplatformAttribute, AbletSubplatform>(def => new AbletSubplatform(def)));
-            Collect(new ModelCollector<IAbletPlatform, AbletPlatformAttribute, AbletSubplatform>(def => new AbletSubplatform(new DefaultSubplatform(def))));
+            Collect(new ModelCollector<IAbletPlatform, AbletPlatformAttribute, AbletSubplatform>(
+                def =>
+                    def.TryGetExtensionOfDef<IMecePlatformExtension>(out _)
+                        ? null
+                        : new AbletSubplatform(new DefaultSubplatform(def))));
         }
 
         public override IEnumerable<AbletSubplatform> All() => Unordered();

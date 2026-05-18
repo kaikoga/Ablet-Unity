@@ -10,16 +10,18 @@ namespace Ablet.Utils.Reflection
         where TMarker : Attribute
         where TModel : class
     {
-        readonly Func<TDefinition, TModel> _converter;
+        readonly Func<TDefinition, TModel?> _converter;
 
-        public ModelCollector(Func<TDefinition, TModel> converter) => _converter = converter;
+        public ModelCollector(Func<TDefinition, TModel?> converter) => _converter = converter;
 
         public Dictionary<Type, TModel> Collect()
         {
             return TypeCollector.Collect<TMarker>()
                 .Select(type => (type, def: MaybeActivator.MaybeConstruct<TDefinition>(type)))
                 .Where(kv => kv.def != null)
-                .ToDictionary(kv => kv.type, kv => _converter(kv.def!));
+                .Select(kv => (kv.type, model: _converter(kv.def!)))
+                .Where(kv => kv.model != null)
+                .ToDictionary(kv => kv.type, kv => kv.model!);
         }
 
         public TModel? MaybeConstruct(Type type)
