@@ -16,6 +16,10 @@ namespace Ablet.Builtin.VRChat.Avatars
 
         public bool IsAvailable => true;
 
+#if UNITY_STANDALONE_WIN
         public bool IsPreferredSubplatform(GameObject entrypointObject) => true;
+#else
+        public bool IsPreferredSubplatform(GameObject entrypointObject) => false;
+#endif
     }
 }
