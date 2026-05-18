@@ -35,20 +35,17 @@ namespace Ablet.Registries
             return false;
         }
 
-        IOrderedEnumerable<AbletSubplatform> OrderedForPlatform(AbletPlatform platform)
-        {
+        IEnumerable<AbletSubplatform> UnorderedForPlatform(AbletPlatform platform)
+            => Unordered().Where(subplatform => subplatform.PlatformId == platform.Id && subplatform.IsAvailable);
 
-            return Unordered()
-                .Where(subplatform => subplatform.PlatformId == platform.Id && subplatform.IsAvailable)
-                .OrderBy(subplatform => subplatform.Priority);
-        }
-
-        public IEnumerable<AbletSubplatform> ForPlatform(AbletPlatform platform) => OrderedForPlatform(platform);
+        public IEnumerable<AbletSubplatform> ForPlatform(AbletPlatform platform)
+            => UnorderedForPlatform(platform).OrderBy(subplatform => subplatform.Priority);
 
         public AbletSubplatform GuessSubplatform(GameObject entrypointObject, AbletPlatform platform)
         {
-            var subplatform = OrderedForPlatform(platform)
-                .ThenByDescending(subplatform => subplatform.IsPreferredSubplatform(entrypointObject))
+            var subplatform = UnorderedForPlatform(platform)
+                .OrderByDescending(subplatform => subplatform.IsPreferredSubplatform(entrypointObject))
+                .ThenBy(subplatform => subplatform.Priority)
                 .FirstOrDefault();
             if (subplatform != null)
             {
