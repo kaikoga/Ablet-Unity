@@ -17,23 +17,10 @@ namespace Ablet.Registries
         SubplatformRegistry()
         {
             Collect(new ModelCollector<IAbletSubplatform, AbletSubplatformAttribute, AbletSubplatform>(def => new AbletSubplatform(def)));
+            Collect(new ModelCollector<IAbletPlatform, AbletPlatformAttribute, AbletSubplatform>(def => new AbletSubplatform(new DefaultSubplatform(def))));
         }
 
         public override IEnumerable<AbletSubplatform> All() => Unordered();
-
-        public override bool TryGetById(string id, [MaybeNullWhen(false)] out AbletSubplatform value)
-        {
-            if (base.TryGetById(id, out value))
-            {
-                return true;
-            }
-            if (PlatformRegistry.Instance.TryGetById(id, out var platform))
-            {
-                value = new AbletSubplatform(new DefaultSubplatform(platform));
-                return true;
-            }
-            return false;
-        }
 
         IEnumerable<AbletSubplatform> UnorderedForPlatform(AbletPlatform platform)
             => Unordered().Where(subplatform => subplatform.PlatformId == platform.Id && subplatform.IsAvailable);
@@ -57,12 +44,12 @@ namespace Ablet.Registries
 
         class DefaultSubplatform : IAbletSubplatform
         {
-            readonly AbletPlatform _platform;
+            readonly IAbletPlatform _platform;
 
-            public DefaultSubplatform(AbletPlatform platform) => _platform = platform;
+            public DefaultSubplatform(IAbletPlatform platform) => _platform = platform;
 
             public string Id => _platform.Id;
-            public string DisplayName => _platform.DisplayName;
+            public string DisplayName => $"{_platform.DisplayName} - Default";
             public string PlatformId => _platform.Id;
             public int Priority => int.MaxValue;
             public bool IsAvailable => true;
