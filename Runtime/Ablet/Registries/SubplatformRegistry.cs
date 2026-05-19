@@ -13,6 +13,8 @@ namespace Ablet.Registries
 {
     public class SubplatformRegistry : IdModelRegistryBase<IAbletSubplatform, AbletSubplatform>
     {
+        public const string FallbackSubplatformPrefix = "Ablet.Subplatform.Fallback";
+
         public static readonly SubplatformRegistry Instance = new SubplatformRegistry();
 
         SubplatformRegistry()
@@ -53,7 +55,7 @@ namespace Ablet.Registries
 
             public DefaultSubplatform(IAbletPlatform platform) => _platform = platform;
 
-            public string Id => _platform.Id;
+            public string Id => $"{FallbackSubplatformPrefix}.{_platform.Id}";
             public string DisplayName => $"{_platform.DisplayName} - Default";
             public string PlatformId => _platform.Id;
             public int Priority => int.MaxValue;

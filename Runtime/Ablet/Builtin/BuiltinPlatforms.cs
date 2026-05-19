@@ -1,3 +1,5 @@
+using Ablet.Registries;
+
 namespace Ablet.Builtin
 {
     public static class BuiltinPlatformIds
@@ -8,5 +10,8 @@ namespace Ablet.Builtin
         public const string VRChatAvatarSDK3Ios = "Ablet.Platform.VRChat.Avatar.SDK3.iOS";
         public const string UniVRM = "Ablet.Platform.UniVRM.VRM";
         public const string UniVRM10 = "Ablet.Platform.UniVRM.VRM10";
+        
+        public const string FallbackSubplatformPrefix = SubplatformRegistry.FallbackSubplatformPrefix;
+
     }
 }
