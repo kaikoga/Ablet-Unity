@@ -1,5 +1,5 @@
 using Ablet.Builtin.NdmfEmu;
-using Ablet.Hooks;
+using Ablet.Hooks.Common;
 using Anatawa12.AvatarOptimizer.API;
 using UnityEngine;
 

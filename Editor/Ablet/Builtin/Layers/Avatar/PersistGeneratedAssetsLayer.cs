@@ -35,7 +35,7 @@ namespace Ablet.Builtin.Layers.Avatar
                 assetPersister.PersistAssets(AssetPersister.IterateHierarchyAssetReferences(rootObject)
                     .Where(obj => !EditorUtility.IsPersistent(obj)));
                 assetPersister.SaveAsPrefab(rootObject);
-                rootObject.AddComponent<AbletManualAppliedTag>();
+                AbletHooksUtil.AddManualAppliedTag(rootObject);
             }
         }
     }

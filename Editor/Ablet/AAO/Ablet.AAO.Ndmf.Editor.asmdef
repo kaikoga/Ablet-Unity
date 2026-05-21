@@ -4,7 +4,8 @@
     "references": [
         "com.anatawa12.avatar-optimizer.api.editor",
         "Ablet.Builtin.NdmfEmu",
-        "Ablet"
+        "Ablet",
+        "Ablet.Hooks.Common"
     ],
     "includePlatforms": [
        "Editor"
