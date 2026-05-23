@@ -3,12 +3,11 @@
     "rootNamespace": "Ablet",
     "references": [
         "nadena.dev.ndmf",
-        "Loch",
         "Ablet",
         "Ablet.API",
         "Ablet.Builtin",
         "Ablet.InternalAPI.Editor",
-        "Loch.Editor"
+        "Ablet.Loch.Editor"
     ],
     "includePlatforms": [
         "Editor"

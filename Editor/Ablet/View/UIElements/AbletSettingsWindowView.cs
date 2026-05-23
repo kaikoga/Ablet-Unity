@@ -1,8 +1,8 @@
 using System;
 using Ablet.Repositories;
-using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEngine.UIElements;
+using static Ablet.Loch.Tools.AbletLochTool;
 
 namespace Ablet.View.UIElements
 {

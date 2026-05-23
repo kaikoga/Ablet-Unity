@@ -5,11 +5,11 @@ using Ablet.Models.Extensions;
 using Ablet.Models.Serialized;
 using Ablet.Registries;
 using Ablet.Repositories;
-using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using static Ablet.Loch.Tools.AbletLochTool;
 
 namespace Ablet.View.UIElements
 {

@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Text;
 using Ablet.Models.Serialized;
 using Ablet.Registries;
-using Silksprite.Loch.UIElements.Tools;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static Ablet.Loch.Tools.AbletLochTool;
 
 namespace Ablet.View.UIElements
 {

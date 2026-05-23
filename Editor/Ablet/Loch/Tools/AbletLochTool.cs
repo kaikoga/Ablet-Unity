@@ -1,10 +1,11 @@
+using System;
+using UnityEngine.UIElements;
+
 #if ABLET_LOCH
 
-using System;
 using System.Reflection;
 using Silksprite.Loch;
 using Silksprite.Loch.UIElements.Tools;
-using UnityEngine.UIElements;
 
 namespace Ablet.Loch.Tools
 {
@@ -32,14 +33,9 @@ namespace Ablet.Loch.Tools
 
         public static string Loc(string key) => key;
 
-        public static T LocalizeWith<T>(this T container, Assembly assembly, string prefix) where T : VisualElement
-        {
-            return LochElementTool.LocalizeWith(container, assembly, prefix);
-        }
+        public static T LocalizeWith<T>(this T container, Type type) where T : VisualElement => container;
 
-        public static T LocalizeWith_<T>(this T container, Type type) where T : VisualElement => container;
-
-        public static void Localize_<T>(this VisualElement container) { }
+        public static void Localize<T>(this VisualElement container) { }
     }
 }
 

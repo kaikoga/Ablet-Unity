@@ -4,7 +4,7 @@ using Ablet.Utils;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
-using static Silksprite.Loch.Tools.LochTool;
+using static Ablet.Loch.Tools.AbletLochTool;
 
 namespace Ablet.Building
 {

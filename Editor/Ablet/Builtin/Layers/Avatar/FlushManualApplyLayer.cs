@@ -8,8 +8,6 @@ using Ablet.API.V1.Attributes;
 using Ablet.API.V1.Building;
 using Ablet.Building;
 using Ablet.Builtin.Utils;
-using UnityEditor;
-using static Ablet.Loch.Tools.AbletLochTool;
 
 namespace Ablet.Builtin.Layers.Avatar
 {

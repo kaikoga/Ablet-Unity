@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Ablet.Registries;
-using Silksprite.Loch.IMGUI;
 using UnityEditor;
-using static Silksprite.Loch.Tools.LochTool;
+using static Ablet.Loch.Tools.AbletLochTool;
 
 namespace Ablet
 {
@@ -37,12 +36,12 @@ namespace Ablet
                     .Distinct()
                     .ToArray();
                 EditorGUI.showMixedValue = platformDisplayNames.Length > 1;
-                LEditorGUILayout.TextField(Loc("AbletSelectSubplatform.Platform"), platformDisplayNames.FirstOrDefault() ?? "");
+                EditorGUILayout.TextField(Tr("AbletSelectSubplatform.Platform"), platformDisplayNames.FirstOrDefault() ?? "");
             }
             EditorGUI.showMixedValue = _subplatformId.hasMultipleDifferentValues;
             var index = Array.IndexOf(_subplatformIds, _subplatformId.stringValue);
             EditorGUI.BeginChangeCheck();
-            index = EditorGUILayout.Popup(Loc("AbletSelectSubplatform.Subplatform").Tr, index, _subplatformDisplayNames);
+            index = EditorGUILayout.Popup(Tr("AbletSelectSubplatform.Subplatform"), index, _subplatformDisplayNames);
             if (EditorGUI.EndChangeCheck())
             {
                 _subplatformId.stringValue = _subplatformIds[index];
