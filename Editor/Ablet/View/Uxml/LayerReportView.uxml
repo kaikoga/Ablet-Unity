@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <engine:UXML
     xmlns:engine="UnityEngine.UIElements"
+    xmlns:aeditor="Ablet.Loch.UIElements.AEditor"
 >
-    <engine:VisualElement class="row">
+    <engine:VisualElement name="layerHeader" class="row">
         <engine:Label name="layerDisplayNameText" class="layer-name-header" />
+        <aeditor:Button name="copyButton" text="Copy" />
     </engine:VisualElement>
     <engine:VisualElement class="box">
         <engine:VisualElement name="resultContainer" />

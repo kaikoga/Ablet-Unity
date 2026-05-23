@@ -68,6 +68,11 @@ LayerReportView #layerDisplayNameText {
     font-size: 14px;
 }
 
+LayerReportView #layerHeader {
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
 #full-pane {
     flex-grow: 1;
 }

@@ -25,5 +25,8 @@ namespace Ablet.Models.Serialized
             this.layerId = layerId;
             this.payload = payload;
         }
+
+        public bool IsCopyable => payload is IAbletSerializedBuildReportPayload.ClipboardCopyable;
+        public string ToCopyableString() => (payload as IAbletSerializedBuildReportPayload.ClipboardCopyable)?.ToCopyableString() ?? "";
     }
 }

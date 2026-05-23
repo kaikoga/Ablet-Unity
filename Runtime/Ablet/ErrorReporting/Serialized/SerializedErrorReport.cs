@@ -1,13 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Ablet.API;
 
 namespace Ablet.ErrorReporting.Serialized
 {
     [Serializable]
-    public class SerializedErrorReport : IAbletSerializedBuildReportPayload
+    public class SerializedErrorReport : IAbletSerializedBuildReportPayload.ClipboardCopyable
     {
         public List<SerializedErrorLog> log = new List<SerializedErrorLog>();
+
+        string IAbletSerializedBuildReportPayload.ClipboardCopyable.ToCopyableString()
+        {
+            return log
+                .Select(l => l.ToCopyableString())
+                .Aggregate(new StringBuilder(), (sb, s) => sb.AppendLine(s)).ToString();
+
+        }
     }
 
     [Serializable]
@@ -17,6 +27,16 @@ namespace Ablet.ErrorReporting.Serialized
         public SerializedObjectChain[] interests = { };
         public SerializedTextLog text = new SerializedTextLog();
         public SerializedExceptionLog exception = new SerializedExceptionLog();
+
+        internal string ToCopyableString() =>
+            kind switch
+            {
+                ErrorKind.Error => text.ToCopyableString(),
+                ErrorKind.Warning => text.ToCopyableString(),
+                ErrorKind.Information => text.ToCopyableString(),
+                ErrorKind.Exception => exception.ToCopyableString(),
+                _ => throw new ArgumentOutOfRangeException()
+            };
     }
 
     [Serializable]
@@ -24,6 +44,8 @@ namespace Ablet.ErrorReporting.Serialized
     {
         public string message = "";
         public string stacktrace = "";
+
+        internal string ToCopyableString() => $"{message}\n{stacktrace}";
     }
 
     [Serializable]
@@ -32,5 +54,7 @@ namespace Ablet.ErrorReporting.Serialized
         public string type = "";
         public string message = "";
         public string stacktrace = "";
+
+        internal string ToCopyableString() => $"{type}\n{message}\n{stacktrace}";
     }
 }

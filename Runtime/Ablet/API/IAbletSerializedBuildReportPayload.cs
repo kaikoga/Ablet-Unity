@@ -14,5 +14,10 @@ namespace Ablet.API
         {
             int Priority { get; }
         }
+
+        public interface ClipboardCopyable : IAbletSerializedBuildReportPayload
+        {
+            string ToCopyableString();
+        }
     }
 }

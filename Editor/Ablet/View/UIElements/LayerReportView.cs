@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using Ablet.Models.Serialized;
 using Ablet.Registries;
 using Silksprite.Loch.UIElements.Tools;
@@ -13,7 +14,10 @@ namespace Ablet.View.UIElements
         const string UxmlPath = "Packages/net.kaikoga.ablet/Editor/Ablet/View/Uxml/LayerReportView.uxml";
 
         readonly Label _layerDisplayNameText;
+        readonly Button _copyButton;
         readonly VisualElement _resultContainer;
+
+        readonly List<SerializedBuildReport> _copyableBuildReports = new List<SerializedBuildReport>();
 
         public LayerReportView()
         {
@@ -21,6 +25,8 @@ namespace Ablet.View.UIElements
             container.Localize<LayerReportView>();
 
             _layerDisplayNameText = container.Q<Label>("layerDisplayNameText");
+            _copyButton = container.Q<Button>("copyButton");
+            _copyButton.clickable.clicked += OnCopy;
             _resultContainer = container.Q<VisualElement>("resultContainer");
             hierarchy.Add(container);
         }
@@ -29,6 +35,7 @@ namespace Ablet.View.UIElements
         {
             _layerDisplayNameText.text = LayerRegistry.Instance.ToDisplayName(layerId);
             _resultContainer.Clear();
+            _copyableBuildReports.Clear();
             style.display = DisplayStyle.None;
             foreach (var buildReport in buildReports)
             {
@@ -38,7 +45,22 @@ namespace Ablet.View.UIElements
                     _resultContainer.Add(payloadView);
                     style.display = DisplayStyle.Flex;
                 }
+                if (buildReport.IsCopyable)
+                {
+                    _copyableBuildReports.Add(buildReport);
+                }
             }
+            _copyButton.style.display = _copyableBuildReports.Count > 0 ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        void OnCopy()
+        {
+            var sb = new StringBuilder();
+            foreach (var buildReport in _copyableBuildReports)
+            {
+                sb.AppendLine(buildReport.ToCopyableString());
+            }
+            EditorGUIUtility.systemCopyBuffer = sb.ToString();
         }
     }
 }
