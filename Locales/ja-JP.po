@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-05-19 11:12+0900\n"
+"POT-Creation-Date: 2026-05-23 06:21+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,11 +29,11 @@ msgstr "エントリポイントを直接指定する"
 msgid "AbletConsoleWindowView::sceneEntrypointsPopup"
 msgstr "シーン上のエントリポイントを選択する"
 
-#: Editor/Ablet/AbletSelectSubplatformEditor.cs:39
+#: Editor/Ablet/AbletSelectSubplatformEditor.cs:40
 msgid "AbletSelectSubplatform.Platform"
 msgstr "プラットフォーム"
 
-#: Editor/Ablet/AbletSelectSubplatformEditor.cs:44
+#: Editor/Ablet/AbletSelectSubplatformEditor.cs:45
 msgid "AbletSelectSubplatform.Subplatform"
 msgstr "サブプラットフォーム"
 
@@ -246,6 +246,10 @@ msgstr "Ablet: Manual Apply"
 #: Editor/Ablet/Building/AssetPersister.cs:33
 msgid "FlushManualApplyLayer::UserInitiatedMessage?"
 msgstr "Manual Applyの古い生成物を掃除しますか？"
+
+#: Editor/Ablet/View/Uxml/LayerReportView.uxml
+msgid "LayerReportView::copyButton"
+msgstr "コピー"
 
 #: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:61
 msgid "UniVRM10ExportExtension::exportButton"
