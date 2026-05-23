@@ -13,12 +13,18 @@ namespace Ablet.Builtin.ErrorReporting
 
         readonly VisualElement _contextObjectsContainer;
         readonly TextField _messageText;
+        readonly Foldout _messageFoldout;
+
+        string _message = "";
+        string _expandedMessage = "";
         
         public ErrorLogView()
         {
             var container = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath).CloneTree();
             _contextObjectsContainer = container.Q<VisualElement>("contextObjectsContainer");
             _messageText = container.Q<TextField>("messageText");
+            _messageFoldout = container.Q<Foldout>("messageFoldout"); 
+            _messageFoldout.RegisterValueChangedCallback(evt => DrawMessage(evt.newValue));
             hierarchy.Add(container);
         }
 
@@ -37,14 +43,23 @@ namespace Ablet.Builtin.ErrorReporting
                 case ErrorKind.Error:
                 case ErrorKind.Warning:
                 case ErrorKind.Information:
-                    _messageText.value = errorLog.message;
+                    _message = errorLog.text.message;
+                    _expandedMessage = $"{errorLog.text.message}\n{errorLog.text.stacktrace}";
                     break;
                 case ErrorKind.Exception:                
-                    _messageText.value = $"{errorLog.exception.message}\n{errorLog.exception.stacktrace}";
+                    _message = $"{errorLog.exception.type}: {errorLog.exception.message}";
+                    _expandedMessage = $"{errorLog.exception.type}\n{errorLog.exception.message}\n{errorLog.exception.stacktrace}";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            _messageFoldout.value = false;
+            DrawMessage(false);
+        }
+
+        void DrawMessage(bool isExpanded)
+        {
+            _messageText.value = isExpanded ? _expandedMessage : _message;
         }
     }
 }

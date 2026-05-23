@@ -34,17 +34,22 @@ namespace Ablet.ErrorReporting.Serialized
 
             var (message, exception) = log.Exception switch
             {
-                { } ex => (ex.Message, new SerializedExceptionLog
+                { } ex => (new SerializedTextLog(), new SerializedExceptionLog
                 {
+                    type = ex.GetType().Name,
                     message = ex.Message,
                     stacktrace = $"{BuildStackTrace(ex)}\n{log.ExtraStackTrace}"
                 }),
-                _ => (log.Message, new SerializedExceptionLog())
+                _ => (new SerializedTextLog
+                {
+                    message = log.Message,
+                    stacktrace = log.ExtraStackTrace
+                }, new SerializedExceptionLog())
             };
             return new SerializedErrorLog
             {
                 kind = log.Kind,
-                message = message,
+                text = message,
                 interests = log.SerializedInterests.Select(ExportAsObjectChain).ToArray(),
                 exception = exception
             };

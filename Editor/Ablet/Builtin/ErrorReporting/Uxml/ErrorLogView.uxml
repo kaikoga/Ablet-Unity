@@ -3,5 +3,8 @@
     xmlns:engine="UnityEngine.UIElements"
 >
     <engine:VisualElement name="contextObjectsContainer" />
-    <engine:TextField name="messageText" multiline="true" readonly="true" />
+    <engine:VisualElement name="messageContainer">
+      <engine:Foldout name="messageFoldout" />
+      <engine:TextField name="messageText" multiline="true" readonly="true" />
+    </engine:VisualElement>
 </engine:UXML>

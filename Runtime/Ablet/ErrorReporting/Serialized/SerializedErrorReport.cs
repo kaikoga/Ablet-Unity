@@ -14,14 +14,22 @@ namespace Ablet.ErrorReporting.Serialized
     public class SerializedErrorLog
     {
         public ErrorKind kind;
-        public string message = "";
         public SerializedObjectChain[] interests = { };
+        public SerializedTextLog text = new SerializedTextLog();
         public SerializedExceptionLog exception = new SerializedExceptionLog();
+    }
+
+    [Serializable]
+    public class SerializedTextLog
+    {
+        public string message = "";
+        public string stacktrace = "";
     }
 
     [Serializable]
     public class SerializedExceptionLog
     {
+        public string type = "";
         public string message = "";
         public string stacktrace = "";
     }

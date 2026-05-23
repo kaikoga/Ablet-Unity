@@ -16,7 +16,7 @@ namespace Ablet.ErrorReporting.Ephemeral
         public readonly Object[] Interests;
         public readonly SerializedObjectReference[] SerializedInterests;
         public readonly Exception? Exception;
-        public readonly string? ExtraStackTrace;
+        public readonly string ExtraStackTrace;
         
         ErrorLog(AbletLayer? layer, ErrorKind kind, Exception exception, string extraStackTrace, IEnumerable<Object> interests)
         {
@@ -31,11 +31,12 @@ namespace Ablet.ErrorReporting.Ephemeral
                 : Array.Empty<SerializedObjectReference>();
         }
 
-        ErrorLog(AbletLayer? layer, ErrorKind kind, string message, IEnumerable<Object> contexts)
+        ErrorLog(AbletLayer? layer, ErrorKind kind, string message, string extraStackTrace, IEnumerable<Object> contexts)
         {
             Layer = layer;
             Kind = kind;
             Message = message;
+            ExtraStackTrace = extraStackTrace;
             Interests = contexts.ToArray();
             SerializedInterests = BuildContext.Current != null
                 ? ErrorReportSerializer.Export(Interests, BuildContext.Current.CurrentRootObject).ToArray()
@@ -47,19 +48,19 @@ namespace Ablet.ErrorReporting.Ephemeral
             return new ErrorLog(layer, ErrorKind.Exception, exception, extraStackTrace, interests);
         }
 
-        internal static ErrorLog AsError(AbletLayer? layer, string message, IEnumerable<Object> interests)
+        internal static ErrorLog AsError(AbletLayer? layer, string message, string extraStackTrace, IEnumerable<Object> interests)
         {
-            return new ErrorLog(layer, ErrorKind.Error, message, interests);
+            return new ErrorLog(layer, ErrorKind.Error, message, extraStackTrace, interests);
         }
 
-        internal static ErrorLog AsWarning(AbletLayer? layer, string message, IEnumerable<Object> interests)
+        internal static ErrorLog AsWarning(AbletLayer? layer, string message, string extraStackTrace, IEnumerable<Object> interests)
         {
-            return new ErrorLog(layer, ErrorKind.Warning, message, interests);
+            return new ErrorLog(layer, ErrorKind.Warning, message, extraStackTrace, interests);
         }
 
-        internal static ErrorLog AsInformation(AbletLayer? layer, string message, IEnumerable<Object> interests)
+        internal static ErrorLog AsInformation(AbletLayer? layer, string message, string extraStackTrace, IEnumerable<Object> interests)
         {
-            return new ErrorLog(layer, ErrorKind.Information, message, interests);
+            return new ErrorLog(layer, ErrorKind.Information, message, extraStackTrace, interests);
         }
     }
 }

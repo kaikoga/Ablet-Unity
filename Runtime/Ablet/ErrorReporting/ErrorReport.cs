@@ -20,19 +20,22 @@ namespace Ablet.ErrorReporting
 
         public static void LogError(string message)
         {
-            var log = ErrorLog.AsError(CurrentLayer(), message, CurrentInterests());
+            var extraStackTrace = string.Join("\n", Environment.StackTrace.Split("\n").Skip(1));
+            var log = ErrorLog.AsError(CurrentLayer(), message, extraStackTrace, CurrentInterests());
             LogNow(log);
         }
 
         public static void LogWarning(string message)
         {
-            var log = ErrorLog.AsWarning(CurrentLayer(), message, CurrentInterests());
+            var extraStackTrace = string.Join("\n", Environment.StackTrace.Split("\n").Skip(1));
+            var log = ErrorLog.AsWarning(CurrentLayer(), message, extraStackTrace, CurrentInterests());
             LogNow(log);
         }
 
         public static void LogInformation(string message)
         {
-            var log = ErrorLog.AsInformation(CurrentLayer(), message, CurrentInterests());
+            var extraStackTrace = string.Join("\n", Environment.StackTrace.Split("\n").Skip(1));
+            var log = ErrorLog.AsInformation(CurrentLayer(), message, extraStackTrace, CurrentInterests());
             LogNow(log);
         }
 

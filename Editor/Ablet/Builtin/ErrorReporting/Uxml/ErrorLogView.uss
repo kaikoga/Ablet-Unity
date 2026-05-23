@@ -19,11 +19,22 @@ ErrorLogView.Exception {
     border-left-color: darkred;
 }
 
+ErrorLogView #messageContainer {
+    flex-direction: row;
+    align-items: stretch;
+}
+
+ErrorLogView #messageFoldout {
+    flex-shrink: 0;
+}
+
 ErrorLogView #messageText {
-    margin-left: 2px;
-    overflow: scroll;
-    width: auto;
-    height: auto;
+   flex-grow: 1;
+   flex-shrink: 1;
+   margin-left: 2px;
+   overflow: scroll;
+   width: auto;
+   height: auto;
 }
 
 ObjectChainView #objectFieldContainer {
