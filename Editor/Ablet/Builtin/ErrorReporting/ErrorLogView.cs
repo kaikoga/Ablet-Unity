@@ -44,11 +44,11 @@ namespace Ablet.Builtin.ErrorReporting
                 case ErrorKind.Warning:
                 case ErrorKind.Information:
                     _message = errorLog.text.message;
-                    _expandedMessage = $"{errorLog.text.message}\n{errorLog.text.stacktrace}";
+                    _expandedMessage = $"{errorLog.text.message}\n{errorLog.text.PrettyStackTrace}";
                     break;
                 case ErrorKind.Exception:                
                     _message = $"{errorLog.exception.type}: {errorLog.exception.message}";
-                    _expandedMessage = $"{errorLog.exception.type}\n{errorLog.exception.message}\n{errorLog.exception.stacktrace}";
+                    _expandedMessage = $"{errorLog.exception.type}\n{errorLog.exception.message}\n{errorLog.exception.PrettyStackTrace}";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

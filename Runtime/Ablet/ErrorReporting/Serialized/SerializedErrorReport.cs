@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Ablet.API;
+using UnityEngine;
 
 namespace Ablet.ErrorReporting.Serialized
 {
@@ -27,7 +29,7 @@ namespace Ablet.ErrorReporting.Serialized
         public SerializedObjectChain[] interests = { };
         public SerializedTextLog text = new SerializedTextLog();
         public SerializedExceptionLog exception = new SerializedExceptionLog();
-
+        
         internal string ToCopyableString() =>
             kind switch
             {
@@ -37,6 +39,13 @@ namespace Ablet.ErrorReporting.Serialized
                 ErrorKind.Exception => exception.ToCopyableString(),
                 _ => throw new ArgumentOutOfRangeException()
             };
+
+        internal static string PrettyPrintStackTrace(string stackTrace)
+        {
+            const string projectRoot = "/%PROJECT_ROOT%";
+            var projectPath = Path.GetDirectoryName(Application.dataPath) ?? projectRoot;
+            return stackTrace.Replace(projectPath, projectRoot);
+        }
     }
 
     [Serializable]
@@ -44,8 +53,10 @@ namespace Ablet.ErrorReporting.Serialized
     {
         public string message = "";
         public string stacktrace = "";
+        
+        public string PrettyStackTrace => SerializedErrorLog.PrettyPrintStackTrace(stacktrace);
 
-        internal string ToCopyableString() => $"{message}\n{stacktrace}";
+        internal string ToCopyableString() => $"{message}\n{PrettyStackTrace}";
     }
 
     [Serializable]
@@ -55,6 +66,8 @@ namespace Ablet.ErrorReporting.Serialized
         public string message = "";
         public string stacktrace = "";
 
-        internal string ToCopyableString() => $"{type}\n{message}\n{stacktrace}";
+        public string PrettyStackTrace => SerializedErrorLog.PrettyPrintStackTrace(stacktrace);
+
+        internal string ToCopyableString() => $"{type}\n{message}\n{PrettyStackTrace}";
     }
 }
