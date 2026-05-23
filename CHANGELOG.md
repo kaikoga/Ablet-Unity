@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-05-24
+
+### Added
+
+- Supports Unity 6.4.
+- Subplatform is introduced.
+  - Added VRChat PC / Android / iOS as builtin Subplatforms of builtin VRChat Platform.
+- Added Copy buttons to Error Reports.
+
+### Changed
+
+- API has breaking changes. Notably BuildArgument.
+- Supports Nullable Reference Types.
+- Supports Loch 3.0 breaking changes.
+
 ## [2.3.1] - 2026-03-05
 
 ### Fixed
