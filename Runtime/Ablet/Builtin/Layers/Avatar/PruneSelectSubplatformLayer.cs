@@ -27,11 +27,11 @@ namespace Ablet.Builtin.Layers.Avatar
         {
             context.RootObject
                 .GetComponentsInChildren<AbletSelectSubplatform>(true)
-                .Observe(transform =>
+                .Observe(component =>
                 {
-                    if (transform)
+                    if (component)
                     {
-                        Object.DestroyImmediate(transform.gameObject);
+                        Object.DestroyImmediate(component);
                     }
                 });
         }
