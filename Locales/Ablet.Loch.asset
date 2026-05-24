@@ -32,6 +32,7 @@ MonoBehaviour:
   - Ablet.ErrorReporting
   - Ablet.Hooks.Av3Emulator.Editor
   - Ablet.Hooks.Common
+  - Ablet.Hooks.Common.Editor
   - Ablet.Hooks.Default.Editor
   - Ablet.Hooks.NdmfPlugin.Editor
   - Ablet.Hooks.VRChat.Avatars.Editor

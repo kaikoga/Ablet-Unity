@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-05-23 06:21+0900\n"
+"POT-Creation-Date: 2026-05-24 11:45+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,11 +29,19 @@ msgstr "Specify Entrypoint Object"
 msgid "AbletConsoleWindowView::sceneEntrypointsPopup"
 msgstr "Select Scene Entrypoints"
 
-#: Editor/Ablet/AbletSelectSubplatformEditor.cs:40
+#: Editor/Ablet/Hooks/Common/AbletManualAppliedTagEditor.cs:27
+msgid "AbletManualAppliedTag::Platform"
+msgstr "Platform"
+
+#: Editor/Ablet/Hooks/Common/AbletManualAppliedTagEditor.cs:31
+msgid "AbletManualAppliedTag::Subplatform"
+msgstr "Subplatform"
+
+#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:39
 msgid "AbletSelectSubplatform.Platform"
 msgstr "Platform"
 
-#: Editor/Ablet/AbletSelectSubplatformEditor.cs:45
+#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:44
 msgid "AbletSelectSubplatform.Subplatform"
 msgstr "Subplatform"
 
@@ -245,18 +253,18 @@ msgstr "Flush old output prefabs of Manual Apply now?"
 msgid "LayerReportView::copyButton"
 msgstr "Copy"
 
-#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:61
+#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:60
 msgid "UniVRM10ExportExtension::exportButton"
 msgstr "Export VRM1.0 Avatar..."
 
-#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:33
+#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:32
 msgid "UniVRM10ExportExtension::Title"
 msgstr "Save VRM1.0 File"
 
-#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:61
+#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:60
 msgid "UniVRMExportExtension::exportButton"
 msgstr "Export VRM0.x Avatar..."
 
-#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:33
+#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:32
 msgid "UniVRMExportExtension::Title"
 msgstr "Save VRM0.x File"

@@ -1,9 +1,8 @@
-﻿using Ablet.Hooks.Common;
-using Ablet.Registries;
+﻿using Ablet.Registries;
 using UnityEditor;
 using static Ablet.Loch.Tools.AbletLochTool;
 
-namespace Ablet
+namespace Ablet.Hooks.Common
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(AbletManualAppliedTag))]
@@ -25,11 +24,11 @@ namespace Ablet
                 EditorGUI.showMixedValue = _platformId.hasMultipleDifferentValues;
                 var platformId = _platformId.stringValue;
                 var platformDisplayName = PlatformRegistry.Instance.TryGetById(platformId, out var platform) ? platform.DisplayName : platformId;
-                EditorGUILayout.TextField(Tr("AbletManualAppliedTag::platformId"), platformDisplayName);
+                EditorGUILayout.TextField(Tr("AbletManualAppliedTag::Platform"), platformDisplayName);
                 EditorGUI.showMixedValue = _platformId.hasMultipleDifferentValues;
                 var subplatformId = _subplatformId.stringValue;
                 var subplatformDisplayName = SubplatformRegistry.Instance.TryGetById(subplatformId, out var subplatform) ? subplatform.DisplayName : subplatformId;
-                EditorGUILayout.TextField(Tr("AbletManualAppliedTag::subplatformId"), subplatformDisplayName);
+                EditorGUILayout.TextField(Tr("AbletManualAppliedTag::Subplatform"), subplatformDisplayName);
                 EditorGUI.showMixedValue = false;
             }
         }

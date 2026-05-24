@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-05-23 06:21+0900\n"
+"POT-Creation-Date: 2026-05-24 11:45+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,11 +29,19 @@ msgstr "エントリポイントを直接指定する"
 msgid "AbletConsoleWindowView::sceneEntrypointsPopup"
 msgstr "シーン上のエントリポイントを選択する"
 
-#: Editor/Ablet/AbletSelectSubplatformEditor.cs:40
+#: Editor/Ablet/Hooks/Common/AbletManualAppliedTagEditor.cs:27
+msgid "AbletManualAppliedTag::Platform"
+msgstr "プラットフォーム"
+
+#: Editor/Ablet/Hooks/Common/AbletManualAppliedTagEditor.cs:31
+msgid "AbletManualAppliedTag::Subplatform"
+msgstr "サブプラットフォーム"
+
+#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:39
 msgid "AbletSelectSubplatform.Platform"
 msgstr "プラットフォーム"
 
-#: Editor/Ablet/AbletSelectSubplatformEditor.cs:45
+#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:44
 msgid "AbletSelectSubplatform.Subplatform"
 msgstr "サブプラットフォーム"
 
@@ -251,18 +259,18 @@ msgstr "Manual Applyの古い生成物を掃除しますか？"
 msgid "LayerReportView::copyButton"
 msgstr "コピー"
 
-#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:61
+#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:60
 msgid "UniVRM10ExportExtension::exportButton"
 msgstr "VRM1.0 アバターをエクスポート..."
 
-#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:33
+#: Editor/Ablet/Builtin/UniVRM10/UniVRM10ExportExtension.cs:32
 msgid "UniVRM10ExportExtension::Title"
 msgstr "VRM1.0 ファイルを保存する"
 
-#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:61
+#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:60
 msgid "UniVRMExportExtension::exportButton"
 msgstr "VRM0.x アバターを出力..."
 
-#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:33
+#: Editor/Ablet/Builtin/UniVRM/UniVRMExportExtension.cs:32
 msgid "UniVRMExportExtension::Title"
 msgstr "VRM0.x ファイルを保存する"

@@ -6,7 +6,6 @@
         "Ablet",
         "Ablet.API",
         "Ablet.Builtin",
-        "Ablet.Hooks.Common",
         "Ablet.InternalAPI.Editor",
         "Ablet.Loch.Editor"
     ],

@@ -2,7 +2,7 @@ using Ablet.Models;
 using Ablet.Registries;
 using UnityEngine;
 
-namespace Ablet
+namespace Ablet.Hooks.Common
 {
     [AddComponentMenu("Ablet/Ablet Select Subplatform")]
     [HelpURL("https://docs.kaikoga.net/ablet/components/ablet_select_subplatform")]

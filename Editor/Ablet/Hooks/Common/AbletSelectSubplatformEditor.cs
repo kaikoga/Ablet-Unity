@@ -4,7 +4,7 @@ using Ablet.Registries;
 using UnityEditor;
 using static Ablet.Loch.Tools.AbletLochTool;
 
-namespace Ablet
+namespace Ablet.Hooks.Common
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(AbletSelectSubplatform))]
