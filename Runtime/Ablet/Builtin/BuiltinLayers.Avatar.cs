@@ -35,6 +35,7 @@ namespace Ablet.Builtin
             public const string MarkAsTargetPlatform =  "Ablet.Avatar.MarkAsTargetPlatform";
 
             public const string PruneEditorOnlyTag =  "Ablet.Avatar.PruneEditorOnlyTag";
+            public const string PruneSelectSubplatform =  "Ablet.Avatar.PruneSelectSubplatform";
 
             public const string SetupAsTargetPlatform =  "Ablet.Avatar.SetupAsTargetPlatform";
             public const string UnmarkAsOtherPlatforms =  "Ablet.Avatar.UnmarkAsOtherPlatforms";
