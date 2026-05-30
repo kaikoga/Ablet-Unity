@@ -24,11 +24,15 @@ namespace Ablet.Hooks
 
         static void ApplyOnPlay()
         {
-            // naively skip inactive avatars
-            var platforms = PlatformRegistry.Instance.All().Where(platform => platform.ApplyOnPlay)
+            // naively skip inactive avatar
+            var allPlatforms = PlatformRegistry.Instance.All().ToArray();
+            var applicablePlatformIds = allPlatforms.Where(platform => platform.ApplyOnPlay)
                 .Where(platform => _includeVRChat || platform.Id != BuiltinPlatformIds.VRChatAvatarSDK3)
+                .Select(platform => platform.Id)
                 .ToArray();
-            AQueryContext.Immediate.GetSceneEntrypoints(platforms, false).Observe(r =>
+            AQueryContext.Immediate.GetSceneEntrypoints(allPlatforms, false)
+                .Where(r => applicablePlatformIds.Contains(r.platform.Id))
+                .Observe(r =>
             {
                 var arguments = BuildArgumentBuilder.TargetsPlatform(r.gameObject, r.platform).ForApplyOnPlay();
                 AbletFacade.BuildWithArguments(arguments);
