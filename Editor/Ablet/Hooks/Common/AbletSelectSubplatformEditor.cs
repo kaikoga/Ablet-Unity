@@ -30,6 +30,13 @@ namespace Ablet.Hooks.Common
         {
             using (new EditorGUI.DisabledScope(true))
             {
+                var guessedPlatformDisplayNames = _abletSelectSubplatforms
+                    .Select(t => PlatformRegistry.Instance.TryGuessPlatform(t.gameObject, out var platform) ? platform.DisplayName : null)
+                    .Distinct()
+                    .ToArray();
+                EditorGUI.showMixedValue = guessedPlatformDisplayNames.Length > 1;
+                EditorGUILayout.TextField(Tr("AbletSelectSubplatform.AvatarPlatform"), guessedPlatformDisplayNames.FirstOrDefault() ?? "");
+                
                 var platformDisplayNames = _abletSelectSubplatforms
                     .Select(sf => sf.Subplatform?.Platform.DisplayName)
                     .OfType<string>()

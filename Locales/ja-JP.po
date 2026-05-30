@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-05-24 11:45+0900\n"
+"POT-Creation-Date: 2026-05-30 11:22+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -37,11 +37,15 @@ msgstr "プラットフォーム"
 msgid "AbletManualAppliedTag::Subplatform"
 msgstr "サブプラットフォーム"
 
-#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:39
+#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:38
+msgid "AbletSelectSubplatform.AvatarPlatform"
+msgstr "アバタープラットフォーム"
+
+#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:46
 msgid "AbletSelectSubplatform.Platform"
 msgstr "プラットフォーム"
 
-#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:44
+#: Editor/Ablet/Hooks/Common/AbletSelectSubplatformEditor.cs:51
 msgid "AbletSelectSubplatform.Subplatform"
 msgstr "サブプラットフォーム"
 
