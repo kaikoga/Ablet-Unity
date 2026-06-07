@@ -3,6 +3,7 @@ using System.IO;
 using Ablet.API.V1;
 using Ablet.API.V1.Attributes;
 using Ablet.Building;
+using Ablet.DataObjects;
 using Ablet.EditorAPI.V1.Extensions.Platform;
 using Ablet.Registries;
 using Ablet.Utils;
@@ -38,18 +39,23 @@ namespace Ablet.Builtin.UniVRM
                     var directory = Path.GetDirectoryName(filePath) ?? "";
                     PlayerPrefs.SetString(lastDirectoryPrefsKey, directory);
 
+                    var request = new UniVRMExportRequest();
+                    var settings = ScriptableObject.CreateInstance<VRMExportSettings>();
                     try
                     {
                         var targetPlatform = PlatformRegistry.Instance.Get<UniVRMPlatform>();
                         var arguments = BuildArgumentBuilder.TargetsPlatform(entrypointObject, targetPlatform)
+                            .AddInput(request)
                             .ForEditModeAssetBuild(true, BuildInitiationSourceMode.Ablet);
                         var buildResult = AbletFacade.BuildWithArguments(arguments);
-                        VRM0FileExporter.ExportVRM0File(buildResult.GetComponent<VRMMeta>(), filePath);
+                        ReadSetting(settings, request.Setting);
+                        VRM0FileExporter.ExportVRM0File(buildResult.GetComponent<VRMMeta>(), settings, filePath);
                         AbletEditorUtil.OpenInExplorer(directory);
                         Object.DestroyImmediate(buildResult);
                     }
                     finally
                     {
+                        Object.DestroyImmediate(settings);
                         AssetPersister.DelayClearTempAssets();
                     }
                 }
@@ -60,6 +66,20 @@ namespace Ablet.Builtin.UniVRM
                 loc = Loc("UniVRMExportExtension::exportButton"),
                 text = "Export VRM0.x Avatar..."
             }.LocalizeWith(typeof(UniVRMExportExtension));
+        }
+
+        static void ReadSetting(VRMExportSettings settings, UniVRMExportSetting requestSetting)
+        {
+            settings.ForceTPose = requestSetting.forceTPose;
+            settings.PoseFreeze = requestSetting.poseFreeze;
+            settings.FreezeMeshUseCurrentBlendShapeWeight = requestSetting.freezeMeshUseCurrentBlendShapeWeight;
+            settings.UseSparseAccessor = requestSetting.useSparseAccessor;
+            settings.OnlyBlendshapePosition = requestSetting.onlyBlendshapePosition;
+            settings.ReduceBlendshape = requestSetting.reduceBlendshape;
+            settings.ReduceBlendshapeClip = requestSetting.reduceBlendshapeClip;
+            settings.DivideVertexBuffer = requestSetting.divideVertexBuffer;
+            settings.KeepVertexColor = requestSetting.keepVertexColor;
+            settings.KeepAnimation = requestSetting.keepAnimation;
         }
     }
 }
