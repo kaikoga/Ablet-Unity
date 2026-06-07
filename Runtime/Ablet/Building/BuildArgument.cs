@@ -58,6 +58,7 @@ namespace Ablet.Building
             }
         }
 
+        // TODO: restrict to IAbletInput
         bool IBuildArgument.TryGetInput<T>([MaybeNullWhen(false)] out T value) where T : class => _inputs.TryGet(out value);
     }
 }

@@ -1,10 +1,9 @@
-using Ablet.API.V1.Attributes;
+using Ablet.API;
 using Ablet.DataObjects;
 
 namespace Ablet.Builtin.UniVRM10
 {
-    [AbletPlatform]
-    public class UniVRM10ExportRequest
+    public class UniVRM10ExportRequest : IAbletInput
     {
         public readonly UniVRM10ExportSetting Setting;
         

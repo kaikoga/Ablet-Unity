@@ -36,7 +36,7 @@ namespace Ablet.Builtin.Layers.Avatar
         public AbletObservableProcedure ToProcedure(IBuildArgument argument) => new InplacePreviewPosingProcedure();
     }
 
-    class InplacePreviewPosingInput
+    class InplacePreviewPosingInput : IAbletInput
     {
         public readonly AbletObservableProcedure? Value;
         
