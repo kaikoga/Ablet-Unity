@@ -34,15 +34,15 @@ namespace Ablet.Hooks.NdmfPlugin
 
     class NdmfImportingPhase : AbletNdmfPhase<ImportingPhase>
     {
-        public override BuildPhase NdmfBuildPhase => BuildPhase.PlatformInit;
+        public override BuildPhase NdmfBuildPhase => BuildPhase.BuiltInPhases[1];
+
+        // this is explicitly after SyncPlatformConfigPass
+        protected override void NdmfConfigureSequence(Sequence sequence) => sequence.AfterPlugin("nadena.dev.ndmf.InternalPasses");
     }
 
     class NdmfConvertingPhase : AbletNdmfPhase<ConvertingPhase>
     {
-        public override BuildPhase NdmfBuildPhase => BuildPhase.BuiltInPhases[1];
-
-        // after SyncPlatformConfigPass
-        protected override void NdmfConfigureSequence(Sequence sequence) => sequence.AfterPlugin("nadena.dev.ndmf.InternalPasses");
+        public override BuildPhase NdmfBuildPhase => BuildPhase.PlatformInit;
     }
 
     class NdmfPruningPhase : AbletNdmfPhase<PruningPhase>
